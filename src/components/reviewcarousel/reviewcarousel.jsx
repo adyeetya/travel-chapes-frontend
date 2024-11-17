@@ -70,7 +70,7 @@ const SectionWithCarousel = () => {
   }, [currentIndex])
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between p-4 max-w-screen-xl mx-auto">
+    <div className="my-12 flex flex-col md:flex-row items-center justify-between p-4 max-w-screen-xl mx-auto">
       <div className="md:w-1/2 mb-4 md:mb-0">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">
           What Our Customers Say
@@ -85,19 +85,19 @@ const SectionWithCarousel = () => {
         <div className="w-full p-4 border rounded-lg shadow-lg bg-white flex-col items-center">
           <div className="flex flex-row justify-start items-center gap-4">
             <div
-              className={`w-16 h-16 flex items-center justify-center rounded-full text-white font-bold ${reviews[currentIndex].color}`}
+              className={`w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full text-white font-bold ${reviews[currentIndex].color}`}
             >
               {getInitials(reviews[currentIndex].reviewerName)}
             </div>
-            <p className="italic font-bold">
+            <p className="italic font-bold text-sm">
               {reviews[currentIndex].reviewerName}
             </p>
-            <p className="text-gray-600 text-sm">
+            <p className="text-gray-600 text-xs md:text-sm">
               {reviews[currentIndex].destination}
             </p>
           </div>
           <div className="flex-1 ml-4">
-            <p className="text-gray-800 mt-2 text-sm">
+            <p className="text-gray-800 mt-2 text-xs md:text-sm">
               &apos;{reviews[currentIndex].reviewText}&apos;
             </p>
             <a

@@ -30,8 +30,8 @@ const PlacesCarousel = ({ destinations }) => {
   }
   return (
     <div className="p-4 max-w-screen-xl mx-auto">
-      <div className="flex flex-col md:flex-row gap-8 justify-between items-center">
-        <h1 className="text-4xl whitespace-nowrap">Best Roadtrips</h1>
+      <div className="flex flex-col md:flex-row gap-8 justify-start md:justify-between items-start md:items-center">
+        <h2 className="text-3xl text-left font-bold my-4">Our Best Roadtrips</h2>
         <p className="max-w-lg">
           Embark on India&apos;s Most Scenic Road Trips. From Coastal Highways
           to Mountain Passes, Every Route Promises Unforgettable Journeys.

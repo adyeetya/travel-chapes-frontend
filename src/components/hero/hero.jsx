@@ -97,14 +97,14 @@ const PhoneBanner = () => {
   }, [])
 
   return (
-    <div ref={bannerRef} className="relative w-full h-[100vh]">
+    <div ref={bannerRef} className="relative w-full h-[calc(100vh-3rem)]">
       <BrandsCarousel
         autoplay={isInView}
         opts={{
           align: 'start',
           loop: true,
         }}
-        className="w-full h-[100vh]"
+        className="w-full h-screen"
       >
         <BrandsCarouselContent className="">
           {phoneBanners.map((card) => (
@@ -116,7 +116,7 @@ const PhoneBanner = () => {
                   width={2000}
                   height={0}
                   priority
-                  className="w-full h-[100vh] object-cover"
+                  className="w-full h-screen object-cover"
                 />
               </div>
             </BrandsCarouselItem>
@@ -176,25 +176,26 @@ const Hero = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search for destinations"
-                  className="bg-white focus:outline-none backdrop-filter backdrop-blur-lg border border-white/30 z-50 w-fit text-gray-900 py-1 px-6 rounded-full text-sm"
+                  className="bg-white focus:outline-none backdrop-filter backdrop-blur-lg border border-white/30 z-50 w-fit text-gray-900 py-1 px-6 rounded-full text-[17px] md:text-base"
                 />
                 <button
                   type="submit"
                   disabled={!searchQuery.trim()}
-                  className="bg-white  backdrop-filter backdrop-blur-lg border border-white/30 z-50 w-fit text-gray-700 p-1 rounded-full text-sm hover:bg-black hover:text-gray-100"
+                  className="bg-white backdrop-filter backdrop-blur-lg border border-white/30 z-50 w-fit text-gray-700 p-1 rounded-full text-sm hover:bg-black hover:text-gray-100"
                 >
                   <IoIosSearch className="w-6 h-6" />
                 </button>
               </form>
             </div>
+
             {searchResults.length > 0 && (
-              <div className="">
-                <div className="z-50 flex flex-1 w-fit  bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg border border-white/30  text-white my-4 px-6 rounded-full">
+              <div className="relative">
+                <div className="z-50 flex flex-1 w-fit max-w-full bg-black bg-opacity-20 backdrop-filter backdrop-blur-lg border border-white/30 text-white my-4 px-2 md:px-4 rounded-md">
                   <div className="flex flex-col w-full gap-1">
                     {searchResults.map((destination) => (
                       <div key={destination.id} className="p-2">
                         <Link href={`/destination/${destination.id}`}>
-                          <h3 className="text-sm text-gray-200">
+                          <h3 className="text-sm text-gray-200 break-words whitespace-normal">
                             {destination.title}
                           </h3>
                         </Link>
@@ -211,9 +212,9 @@ const Hero = () => {
 
         <div className="absolute bottom-0 left-0 md:ml-auto flex items-center w-full h-16 mx-auto border-none shadow-none">
           <div className="z-50 flex flex-1 w-full md:w-[calc(100vw-4rem)] shadow-none justify-end items-center h-16 bg-white rounded-bl-none rounded-[2rem] p-2">
-            <div className="flex flex-col w-[16.5rem] gap-1">
+            <div className="flex flex-col w-[18rem] gap-1">
               {/* Circles with Background Images */}
-              <div className="z-50 flex flex-row justify-between gap-3 items-center w-full">
+              <div className="z-50 flex flex-row justify-center gap-3 items-center w-full ">
                 <div className="flex -space-x-4">
                   <div
                     className="w-10 h-10 bg-cover bg-center border bg-white border-gray-400 rounded-full"
@@ -260,7 +261,9 @@ const Hero = () => {
           {/* button side */}
           <div className="flex w-16 h-16 justify-center items-center">
             <div className="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg border border-white/30 h-12 w-12 rounded-full flex justify-center items-center shadow-lg">
-              <span className="text-3xl rotate-90 text-white">→</span>
+              <span className="text-xl md:text-3xl text-white flex justify-center items-center">
+                ↓
+              </span>
             </div>
           </div>
         </div>

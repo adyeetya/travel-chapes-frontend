@@ -90,7 +90,7 @@ Phone: ${formData.phone}
                 className="w-full sm:basis-1/2 md:basis-1/3 flex-shrink-0"
               >
                 <div
-                  className="border-2 rounded-xl relative h-[450px] flex flex-col justify-end bg-cover bg-center"
+                  className="border-2 rounded-xl relative h-[450px] flex flex-col justify-end bg-cover bg-center cursor-pointer"
                   onClick={() => setSelectedTrek(trip)}
                   style={{
                     backgroundImage: `url('${trip.image}')`,
@@ -98,7 +98,7 @@ Phone: ${formData.phone}
                 >
                   {/* Glass effect text overlay */}
                   <div className="relative z-20 bg-black/10 brightness-90 backdrop-blur-md rounded-b-xl p-4">
-                    <h3 className="text-lg font-semibold text-white hover:underline">
+                    <h3 className="text-lg font-semibold text-white hover:underline cursor-pointer">
                       {trip.name}
                     </h3>
 
@@ -127,25 +127,25 @@ Phone: ${formData.phone}
       {selectedTrek && (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 px-4">
           <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-4/5 lg:max-w-4xl flex flex-col md:flex-row h-auto md:h-[65vh] lg:h-[90vh] max-h-[665px]">
+            <button
+              onClick={() => setSelectedTrek(null)}
+              className="text-black z-50 absolute top-4 right-4 bg-red-300 rounded-full p-2 hover:bg-red-400 focus:outline-none"
+            >
+              <IoClose size={24} />
+            </button>
             {/* Left Image Section */}
             <div className="relative h-48 md:h-full md:w-1/2">
               <Image
                 src={selectedTrek.image}
                 alt={selectedTrek.name}
-                layout="fill"
-                objectFit="cover"
+                width={1000}
+                height={1000}
                 className="w-full h-full object-cover"
               />
             </div>
 
             {/* Right Form Section */}
             <div className="p-4 md:p-6 w-full md:w-1/2 relative h-full overflow-auto max-h-[665px]">
-              <button
-                onClick={() => setSelectedTrek(null)}
-                className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
-              >
-                <IoClose size={24} />
-              </button>
               <h2 className="text-2xl font-bold mb-4">
                 Plan Your Trip to {selectedTrek.name}
               </h2>
@@ -240,8 +240,8 @@ const TrekCarousel = ({ destinations }) => {
 
   return (
     <div className="p-4 max-w-screen-xl mx-auto">
-      <div className="flex flex-col md:flex-row gap-8 justify-between items-center">
-        <h1 className="text-4xl whitespace-nowrap">Our Best Treks</h1>
+      <div className="flex flex-col md:flex-row gap-8 justify-start md:justify-between items-start md:items-center">
+        <h2 className="text-3xl text-left font-bold my-4">Our Best Treks</h2>
         <p className="max-w-lg">
           Discover India&apos;s Most Breathtaking Trails. From Himalayan Peaks
           to Hidden Valleys Where Every Trail Tells a Story. Experience

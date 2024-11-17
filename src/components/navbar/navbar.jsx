@@ -181,7 +181,7 @@ const Navbar = () => {
       {isMenuOpen && (
         <div
           ref={menuRef}
-          className="z-50 md:hidden absolute top-16 right-0 bg-[#080808] text-white shadow-lg w-full"
+          className="z-50 md:hidden absolute top-12 right-0 bg-[#080808] text-white shadow-lg w-full"
         >
           <div className="px-4 py-4 space-y-2">
             <Link

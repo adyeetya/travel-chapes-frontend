@@ -11,7 +11,7 @@ const About = () => {
         {/* Top Heading */}
         <div className="text-right flex flex-col gap-4 w-full justify-center">
           {/* Replace with your SVG image */}
-          <h1 className="text-[8vw] md:text-[6vw]">
+          <h1 className="text-[10vw] md:text-[6vw] font-semibold">
             FROM REEL <br /> TO REALITY
           </h1>
         </div>

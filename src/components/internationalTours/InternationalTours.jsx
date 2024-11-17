@@ -106,9 +106,9 @@ Number of Days: ${formData.days}`
               <Image
                 src={tour.image}
                 alt={tour.name}
-                layout="fill"
-                objectFit="cover"
-                className="group-hover:scale-110 transition-transform duration-300"
+                width={1000}
+                height={1000}
+                className="group-hover:scale-110 transition-transform duration-300 object-cover"
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center p-4">
                 <h2 className="text-white text-2xl font-bold">{tour.name}</h2>
@@ -125,25 +125,25 @@ Number of Days: ${formData.days}`
       {selectedTour && (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 px-4">
           <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-4/5 lg:max-w-4xl flex flex-col md:flex-row h-auto md:h-[65vh] lg:h-[90vh] max-h-[665px]">
+            <button
+              onClick={() => setSelectedTour(null)}
+              className="text-black z-50 absolute top-4 right-4 bg-red-300 rounded-full p-2 hover:bg-red-400 focus:outline-none"
+            >
+              <IoClose size={24} />
+            </button>
             {/* Left Image Section */}
             <div className="relative h-48 md:h-full md:w-1/2">
               <Image
                 src={selectedTour.image}
                 alt={selectedTour.name}
-                layout="fill"
-                objectFit="cover"
+                width={1000}
+                height={1000}
                 className="w-full h-full object-cover"
               />
             </div>
 
             {/* Right Form Section */}
             <div className="p-4 md:p-6 w-full md:w-1/2 relative h-full overflow-auto">
-              <button
-                onClick={() => setSelectedTour(null)}
-                className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
-              >
-                <IoClose size={24} />
-              </button>
               <h2 className="text-2xl font-bold mb-4">
                 Plan Your Trip to {selectedTour.name}
               </h2>
@@ -217,7 +217,7 @@ Number of Days: ${formData.days}`
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-red-500 text-white py-2 rounded-md mt-4 hover:bg-red-600 transition-all duration-300"
+                  className="w-full bg-black text-white py-2 rounded-full mt-4 hover:bg-red-600 transition-all duration-300"
                 >
                   Book Now
                 </button>

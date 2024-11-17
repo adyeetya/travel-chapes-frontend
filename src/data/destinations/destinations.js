@@ -10,12 +10,13 @@ export const destinations = [
       web: '/images/chopta/chopta_banner_web.webp',
     },
     images: [
-      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/CHOPTA_TUNGNATH/ct1.jpg',
-      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/CHOPTA_TUNGNATH/ct2.jpg',
-      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/CHOPTA_TUNGNATH/ct3.jpg',
-      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/CHOPTA_TUNGNATH/ct5.jpg',
-      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/CHOPTA_TUNGNATH/ct6.jpg',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/CHOPTA_TUNGNATH/chopta_new1.webp',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/CHOPTA_TUNGNATH/ct7.jpg',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/jibhitirthan/jt7.webp',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/jibhitirthan/jt8.webp',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/kasol_rudrarg/kasol5.webp',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti4.webp',
+
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/CHOPTA_TUNGNATH/ct8.jpg',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/CHOPTA_TUNGNATH/ct9.jpg',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/CHOPTA_TUNGNATH/ct10.jpg',
@@ -1612,7 +1613,7 @@ export const destinations = [
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/ladakh/ladakh8.webp',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/ladakh/ladakh9.webp',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/ladakh/ladakh10.webp',
-      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/ladakh/ladakh4.mp4',
+
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/ladakh/ladakh_gif.webm',
     ],
     metaTitle:
@@ -1878,9 +1879,9 @@ export const destinations = [
     images: [
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir1.jpg',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir2.webp',
-      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir3.jpg',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir4.jpg',
-      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir5.jpg',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir3.jpg',
+'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir5.jpg',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir6.jpg',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir7.jpg',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir8.png',

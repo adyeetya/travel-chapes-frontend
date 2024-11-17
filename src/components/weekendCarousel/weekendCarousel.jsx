@@ -44,12 +44,12 @@ const AnimatedStat = ({ label, value, suffix }) => {
 
   return (
     <h1 ref={ref} className="md:text-center">
-      <span className="text-2xl whitespace-nowrap">{label}</span>
+      <span className="text-xl md:text-2xl whitespace-nowrap">{label}</span>
       <br />
-      <motion.span className="text-3xl md:text-4xl font-semibold md:font-bold">
+      <motion.span className="text-2xl md:text-4xl font-semibold md:font-bold">
         {roundedCount}
       </motion.span>
-      <span className="text-3xl md:text-4xl font-semibold md:font-bold">
+      <span className="text-2xl md:text-4xl font-semibold md:font-bold">
         {suffix}
       </span>
     </h1>

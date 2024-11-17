@@ -4,7 +4,7 @@ import { Poppins } from 'next/font/google'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 import Navbar from '../components/navbar/navbar'
 import Footer from '../components/footer/footer'
-
+import TripModalWrapper from '@/components/modal/ModalWrapper'
 export const metadata = {
   title: 'Travel Chapes',
   description: 'The number 1 travel guide',
@@ -19,6 +19,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
+        <TripModalWrapper />
       </body>
     </html>
   )

@@ -75,10 +75,8 @@ const BackpackingCarousel = ({ destinations }) => {
         <HimachalHigh />
       </section>
       <div className="p-4 max-w-screen-xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-8 justify-between items-center">
-          <h1 className="text-4xl whitespace-nowrap">
-            Best Backpacking <br /> Experience
-          </h1>
+        <div className="flex flex-col md:flex-row gap-8 justify-start md:justify-between items-start md:items-center">
+          <h2 className="text-3xl text-left font-bold my-4">Best Backpacking <br /> Experience</h2>
           <p className="max-w-lg">
             Set out on India’s ultimate backpacking journeys, where every step
             reveals a new story. Wander through lush valleys, scale rugged
@@ -99,7 +97,11 @@ const BackpackingCarousel = ({ destinations }) => {
                   <div
                     className="border-2 rounded-xl relative h-[450px] flex flex-col justify-end bg-cover bg-center"
                     style={{
-                      backgroundImage: `url('${trip.images?trip.images[0]:"/images/homepage/phonebanner1.webp"}')`,
+                      backgroundImage: `url('${
+                        trip.images
+                          ? trip.images[0]
+                          : '/images/homepage/phonebanner1.webp'
+                      }')`,
                     }}
                   >
                     <Link

@@ -47,7 +47,7 @@ Number of Travelers: ${formData.travelers}`
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 px-4">
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-4/5 lg:max-w-4xl flex flex-col-reverse md:flex-row h-auto md:h-[65vh] lg:h-[90vh] max-h-[665px]">
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-4/5 lg:max-w-4xl flex flex-col-reverse md:flex-row h-auto md:h-[65vh] lg:h-[90vh] max-h-[500px]">
         <button
           onClick={onClose}
           className="text-black z-50 absolute top-4 right-4 bg-red-300 rounded-full p-2 hover:bg-red-400 focus:outline-none"
@@ -115,7 +115,6 @@ Number of Travelers: ${formData.travelers}`
                 onChange={handleChange}
                 placeholder="Email Address"
                 className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
-                
               />
             </div>
 
@@ -130,7 +129,6 @@ Number of Travelers: ${formData.travelers}`
                 onChange={handleChange}
                 placeholder="Number of Travelers"
                 className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
-                
               />
             </div>
 

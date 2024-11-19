@@ -6,8 +6,8 @@ const reviews = [
   {
     id: 1,
     reviewText:
-      'Thank you being there ☺️ you made our trip awesome ✌️☺️we loved your service ✌️😍it and yes thank you to your team as well who were all active all the time responding to all the messages and giving us the places where to visit 💯✌️😃🤩 /n In thailand also people were responding very well and up to date 👌😎which made our trip smooth and we had no issues as well 💯☺️ /n We will recommend ppl about your company also 👌😎',
-    destination: 'Himachal High',
+      'Thank you being there ☺️ you made our trip awesome ✌️☺️we loved your service ✌️😍it and yes thank you to your team as well who were all active all the time responding to all the messages and giving us the places where to visit 💯✌️😃🤩 .In thailand also people were responding very well and up to date 👌😎which made our trip smooth and we had no issues as well 💯☺️. We will recommend ppl about your company also 👌😎',
+    destination: 'Thailand',
     reviewerName: 'Aman Pandya',
     url: 'https://maps.app.goo.gl/dBKLe9eDGALSyp968',
     color: 'bg-red-500',
@@ -25,7 +25,7 @@ const reviews = [
     id: 3,
     reviewText:
       'Travel Chapes totally made my spiti trip memorable! Captain deepak bhaiya and Abhishek were awesome, very helpful and our group was super cool. This was my first solo trip, and it was absolutely perfect. Their planning and attention to detail were spot on, adding that extra spark to the whole experience. The stunning landscapes and the great vibe among fellow travelers just clicked perfectly',
-    destination: 'Manali Backtracking',
+    destination: 'Himachal High',
     reviewerName: 'Karishma Rout',
     url: 'https://maps.app.goo.gl/oHr4s7tH9W3AmF557',
     color: 'bg-green-500',
@@ -72,7 +72,7 @@ const SectionWithCarousel = () => {
   return (
     <div className="my-12 flex flex-col md:flex-row items-center justify-between p-4 max-w-screen-xl mx-auto">
       <div className="md:w-1/2 mb-4 md:mb-0">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">
+        <h2 className="text-3xl text-left font-bold my-4">
           What Our Customers Say
         </h2>
         <p className="text-gray-600">
@@ -82,10 +82,10 @@ const SectionWithCarousel = () => {
       </div>
 
       <div className="md:w-1/2 flex flex-col items-center">
-        <div className="w-full p-4 border rounded-lg shadow-lg bg-white flex-col items-center">
-          <div className="flex flex-row justify-start items-center gap-4">
+        <div className="w-full p-2 rounded-lg shadow-lg bg-yellow-100 border border-yellow-300 h-[230px] flex-col items-center justify-between">
+          <div className="flex mb-3 flex-row justify-start items-center gap-4 h-[50px]">
             <div
-              className={`w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full text-white font-bold ${reviews[currentIndex].color}`}
+              className={`w-12 h-12 flex items-center justify-center rounded-full text-white font-bold ${reviews[currentIndex].color}`}
             >
               {getInitials(reviews[currentIndex].reviewerName)}
             </div>
@@ -96,9 +96,13 @@ const SectionWithCarousel = () => {
               {reviews[currentIndex].destination}
             </p>
           </div>
-          <div className="flex-1 ml-4">
+          <div className="flex-1 ml-4 max-h-[150px] overflow-y-auto">
             <p className="text-gray-800 mt-2 text-xs md:text-sm">
-              &apos;{reviews[currentIndex].reviewText}&apos;
+              &apos;
+              {reviews[currentIndex].reviewText.length > 250
+                ? `${reviews[currentIndex].reviewText.substring(0, 247)}...`
+                : reviews[currentIndex].reviewText}
+              &apos;
             </p>
             <a
               href={reviews[currentIndex].url}

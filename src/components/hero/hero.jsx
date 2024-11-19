@@ -160,15 +160,33 @@ const Hero = () => {
         {/* texts */}
         <div className="flex w-full md:mt-12 mb-20 py-4 h-full justify-start items-end md:items-center overflow-hidden max-w-screen-xl mx-auto">
           <div className="text-gray-100 text-left z-10">
-            <h1 className="text-4xl mb-1 2xl:text-6xl font-bold text-left text-gray-100 tracking-wide 2xl:tracking-widest">
+            <h1
+              className="text-4xl mb-1 2xl:text-6xl text-left text-gray-100 tracking-wide 2xl:tracking-widest"
+              style={{
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
+                WebkitTextStroke: '0.1px #b8b8b8',
+              }}
+            >
               Chase Adventures
             </h1>
-            <h1 className="text-4xl 2xl:text-6xl font-bold text-left text-gray-100 tracking-wide 2xl:tracking-widest">
+            <h1
+              className="text-4xl 2xl:text-6xl text-left text-gray-100 tracking-wide 2xl:tracking-widest"
+              style={{
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
+                WebkitTextStroke: '0.1px #b8b8b8',
+              }}
+            >
               Create Memories
             </h1>
-            <p className="text-lg mb-12">
+            <p
+              className="text-lg mb-12"
+              style={{
+                textShadow: '1px 1px 3px rgba(0, 0, 0, 0.5)',
+              }}
+            >
               TravelChapes Where dreams meet destinations
             </p>
+
             <div className="flex gap-4 items-center">
               <form onSubmit={handleSearch} className="flex gap-4 items-center">
                 <input

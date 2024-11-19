@@ -231,11 +231,11 @@ const PlacesCarousel = () => {
   }
 
   return (
-    <div className="p-4 bg-red-500">
+    <div className="p-4 bg-red-600">
       <div className="max-w-screen-xl mx-auto">
         <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
           <h1 className="text-4xl font-semibold text-white md:whitespace-nowrap">
-            10th November - 30th December
+            20th December - 4th January
           </h1>
         </div>
         <div className="my-12">
@@ -289,7 +289,7 @@ const PlacesCarousel = () => {
             rel="noopener noreferrer"
             className="menu-button"
           >
-            <button className="bg-white text-red-500 px-4 py-2 rounded-full border border-white mx-auto hover:bg-red-600 hover:text-white transition-colors duration-300">
+            <button className="bg-white text-red-500 px-4 py-2 rounded-full border border-white mx-auto hover:bg-red-800 hover:text-white transition-colors duration-300">
               Contact
             </button>
           </a>

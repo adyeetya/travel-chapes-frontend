@@ -108,7 +108,7 @@ Number of Days: ${formData.days}`
                 alt={tour.name}
                 width={1000}
                 height={1000}
-                className="group-hover:scale-110 transition-transform duration-300 object-cover"
+                className="w-full h-full group-hover:scale-110 transition-transform duration-300 object-cover"
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center p-4">
                 <h2 className="text-white text-2xl font-bold">{tour.name}</h2>

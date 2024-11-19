@@ -1,90 +1,346 @@
 'use client'
+
 import React, { useState, use, useEffect } from 'react'
 import Image from 'next/image'
-import { destinations } from '@/data/destinations/destinations'
+
 import { Trips } from '@/data/destinations/details'
 import { CiCircleChevDown } from 'react-icons/ci'
 import { IoClose } from 'react-icons/io5'
-const DescriptionWithReadMore = ({ destination }) => {
+
+const destination = {
+  id: 'spiti-high-11d',
+  title: 'Spiti Valley -An Exclusive Holidays Package',
+  category: ['weekend', 'backpacking', 'christmas', 'trek'],
+  banners: {
+    phone: '/images/spiti/spiti-banner-both.webp',
+    web: '/images/spiti/spiti-banner-both.webp',
+  },
+  images: [
+    'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/Spiti2.webp',
+    'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/Spiti9.webp',
+    'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti3.webp',
+    'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/Spit1.webp',
+    'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti6.jpg',
+    'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti7.jpg',
+    'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti8.jpeg',
+    'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti4.webp',
+    'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti5.jpeg',
+  ],
+  metaTitle:
+    "Spiti Valley Trip 2024: Explore India's Hidden Gem with Travel Chapes",
+  metaDescription:
+    'Ready to explore Spiti Valley in 2024? Join Travel Chapes for an unforgettable journey through stunning landscapes, ancient villages, and rich culture.',
+  headline: 'Discover Spiti Valley: The Hidden Himalayan Wonder',
+  description:
+    "Spiti Valley is located between Kunzum La and the lush Lahaul Valley. Some people may call it a mini-Ladakh. It's a very high-altitude desert and is a haven for all nature lovers, adventure maniacs, and culture explorers. Spiti is a truly offbeat escape from crowds as it has Unique Tibetan Buddhist monasteries, picturesque villages, and barren landscapes. The Spiti River breeze past whitewashed mud-brick homes and thriving barley fields, while monasteries cling to cliffs high above. The journey through the valley, including the dramatic Spiti-Kinnaur road trip, is one of the most scenic and thrilling in Asia. /n So it is an ideal escape for those who want to explore an unbelievably serene, unspoiled destination. The magic of Spiti Valley,its rugged beauty and ancient Tibetan culture is waiting for you.",
+  shortItinerary: [
+    {
+      day: 'Day 1',
+      description: 'Delhi to Jibhi | Overnight Journey',
+    },
+    {
+      day: 'Day 2',
+      description: 'Jibhi Arrival | Bike Introduction | Day at Leisure',
+    },
+    {
+      day: 'Day 3',
+      description: 'Jibhi to Chitkul | Jalori Pass (214 Kms) 8hrs',
+    },
+    {
+      day: 'Day 4',
+      description:
+        'Chitkul to Kalpa | sucide point | kinner kailash view (60Kms) 4 hrs',
+    },
+    {
+      day: 'Day 5',
+      description:
+        'Kalpa to Dhankar | Khab Sangam | Nako Village | Tabo monastery (200 Kms) 8 hrs',
+    },
+    {
+      day: 'Day 6',
+      description: 'Dhankar to Kaza | Pin Valley | Local Market (40 Kms) 5 hrs',
+    },
+    {
+      day: 'Day 7',
+      description:
+        'Spiti Sightseeing Day | Hikkim, Komic, langza | Key Monastery, Chicham Bridge',
+    },
+    {
+      day: 'Day 8',
+      description: 'Kaza to Chandratal | Kunzum Pass | (90 Kms)',
+    },
+    {
+      day: 'Day 9',
+      description: 'Chandratal to Manali (125 Kms)',
+    },
+    {
+      day: 'Day 10',
+      description: 'Manali Leisure Day | Old Manali ',
+    },
+    {
+      day: 'Day 11',
+      description: 'Delhi Arrival | Tour Ends ',
+    },
+  ],
+  fullItinerary: [
+    {
+      day: 'Day 1',
+      title: 'Delhi to Jibhi | Overnight Journey',
+      description: `
+- By around 7:00 PM, we'll gather at the pickup point.
+- The anticipation rises as we introduce the team captains, setting the stage for an exciting journey.
+- Embarking on an overnight adventure to Jibhi awaits us, with Majnu Ka Tila as our tentative pickup point.
+      `,
+    },
+    {
+      day: 'Day 2',
+      title: 'Jibhi Arrival | Bike Introduction | Day at Leisure',
+
+      description: `
+- Travelers opting for the Tempo Traveller will disembark at Aut Tunnel, making their way directly to Jibhi.
+- Meanwhile, those on the Bike Trip will head to Manali, where bikes await them for a test run before joining us in Jibhi.
+- Upon arriving at Jibhi, the welcoming embrace of our designated hotel awaits, promising a night of camaraderie, dinner, and relaxation.
+      `,
+    },
+    {
+      day: 'Day 3',
+      title: '',
+      description: `
+     - Awaking to the melody of birdsong after a serene night, we indulge in a delightful breakfast.
+     - Checking out, we set forth toward Chitkul, the Last Village on the India-China Border, passing through the enchanting Jalori Pass.
+     - Nestling into our respective hotels in Chitkul, we cap off the day with dinner and an overnight stay.
+       `,
+    },
+    {
+      day: 'Day 4',
+      title:
+        'Chitkul to Kalpa | sucide point | kinner kailash view (60Kms) 4 hrs',
+      description: `
+     - Following breakfast, our journey unfolds towards Kalpa, famed for its scenic vistas.
+     - En route, Reckong Peo beckons, offering a potential glimpse of the majestic Kinner Kailash Peak if the weather permits.
+     - Kalpa welcomes us with leisure moments, followed by a visit to the ancient Kalpa Monastery and the awe-inspiring Suicide Point.
+     - Dinner and an overnight stay in the tranquil ambiance of Kalpa conclude the day.
+      `,
+    },
+    {
+      day: 'Day 5',
+      title:
+        'Kalpa to Dhankar | Khab Sangam | Nako Village | Tabo monastery (200 Kms) 8 hrs',
+      description: `
+      - With an early morning start, we venture toward Dhankar, the historical capital of Spiti Valley.
+      - Halting at Khab, the confluence of Sutlej and Spiti rivers, and passing through Nako Village and Tabo Monastery, our journey unfolds.
+      - Upon reaching Dhankar, we delve into its rich history and culture through an enlightening session with a local guide, followed by dinner and a night's stay.
+      `,
+    },
+    {
+      day: 'Day 6',
+      title: 'Dhankar to Kaza | Pin Valley | Local Market (40 Kms) 5 hrs',
+      description: `
+- After a nourishing breakfast, we explore the wonders of Dhankar Monastery and Fort, offering mesmerizing valley views.
+- Journeying towards Kaza, our route includes a visit to Mud village in Pin Valley.
+- Upon arriving in Kaza, we check into our stay, inviting travelers to partake in the delightful cafe scene in Kaza Market.
+- The day concludes with dinner and an overnight stay in Kaza.    `,
+    },
+    {
+      day: 'Day 7',
+      title:
+        'Spiti Sightseeing Day | Hikkim, Komic, langza | Key Monastery, Chicham Bridge',
+      description: `
+- Post breakfast, our exploration takes us to Key Monastery, Chicham Bridge, and the record-holding Hikkim post office.
+- Continuing our adventure, we visit Komic village, Langza, and the captivating Buddha statue atop a hill.
+- Returning to Kaza, we wrap up the day with dinner and an overnight stay, reveling in the day's discoveries.
+ `,
+    },
+    {
+      day: 'Day 8',
+      title: 'Kaza to Chandratal | Kunzum Pass | (90 Kms)',
+      description: `
+- After breakfast, we set out for the pristine Chandratal, a crescent-shaped lake resembling the moon, traversing the iconic Kunzum Pass.
+- Upon reaching our designated campsites, we check in, spending leisure time by the enchanting Chandratal Lake.
+- The evening brings dinner, creating lasting memories amidst the natural beauty, or an alternative stay if weather conditions close the roads to Chandratal.
+    `,
+    },
+    {
+      day: 'Day 9',
+      title: 'Chandratal to Manali (125 Kms)',
+      description: `
+- Checking out from our campsites, we head to Manali via the iconic Atal Tunnel.
+- On reaching Manali, we bid farewell to our bikes and settle into our designated stay, followed by dinner and a night's rest.
+`,
+    },
+    {
+      day: 'Day 10',
+      title: 'Manali Leisure Day | Old Manali',
+      description: `
+- A leisurely morning breakfast paves the way for a day at leisure.
+- Travelers are encouraged to explore the vibrant cafe culture, local market, and Mall Road.
+- As evening falls, an overnight bus journey from Manali to Delhi awaits, concluding our time in Manali    `,
+    },
+    {
+      day: 'Day 11',
+      title: 'Delhi Arrival | Tour Ends',
+      description: `
+      - Reaching Delhi, we part ways, cherishing the camaraderie forged during this unforgettable journey.
+      - The echoes of our shared adventures linger as the tour gracefully comes to an end.
+    `,
+    },
+  ],
+
+  inclusions: [
+    {
+      title: 'Christmas and New Year Celebration',
+      description:
+        'Christmas and New Year Celebration with festive snacks, music, cake, and a bonfire (weather permitting) to make your trip even more memorable.',
+    },
+    {
+      title: 'Transportation',
+      description:
+        'Comfortable Tempo Traveller for local transportation in Shimla, ensuring a smooth journey throughout your tour.',
+    },
+    {
+      title: 'Volvo Transfers',
+      description:
+        'Volvo transfers from Delhi to Shimla and back for a hassle-free start and end to your adventure.',
+    },
+    {
+      title: 'Sightseeing',
+      description:
+        'All sightseeing will be conducted in a Tempo Traveler, providing comfort and flexibility for the group.',
+    },
+    {
+      title: 'Accommodation',
+      description:
+        'Accommodation for 6 nights at the best local hotels:\n1 night at Chitkul\n1 night at Nako\n1 night at Tabo\n2 nights at Kaza\n1 night at Kalpa',
+    },
+    {
+      title: 'Meal Plan',
+      description:
+        'Meal Plan: MAP (Modified American Plan) which includes 12 meals in total (Dinner on Day 2, Breakfast and Dinner on Days 3 to 7, and Breakfast on Day 8).',
+    },
+    {
+      title: 'Permits',
+      description:
+        'All necessary inner line permits to explore restricted areas like Spiti Valley and Kinnaur.',
+    },
+    {
+      title: 'Driver and Transportation Costs',
+      description:
+        'Driver Night Charges, Toll Tax, Parking Charges, and all other transportation-related costs are included in the package.',
+    },
+    {
+      title: 'Trip Captain',
+      description:
+        'A dedicated Team Captain to guide you throughout the trip and ensure your safety and comfort.',
+    },
+    {
+      title: 'Safety Measures',
+      description:
+        'Essential First Aid Kits, Oximeter, and an Oxygen Cylinder are available 24/7 in the vehicle for emergencies.',
+    },
+  ],
+
+  exclusions: [
+    {
+      title: 'GST (5%)',
+      description: 'GST (5%) is applicable and will be charged extra.',
+    },
+    {
+      title: 'Early Check-in & Late Check-out',
+      description:
+        'Charges for any early check-in (before 1:00 PM) or late check-out (after 11:00 AM) at the hotel.',
+    },
+    {
+      title: 'Personal Expenses',
+      description:
+        'Any extra expenses for personal items such as souvenirs, snacks, or optional activities.',
+    },
+    {
+      title: 'Additional Accommodation/Food Costs',
+      description:
+        'The cost of any additional stays or meals incurred due to travel delays or unforeseen circumstances.',
+    },
+    {
+      title: 'Lunch',
+      description: 'Lunch or any other meals not included in the package.',
+    },
+    {
+      title: 'Airfare/Rail Fare',
+      description:
+        'Any airfare or rail fare not specified in the package inclusions.',
+    },
+    {
+      title: 'Monument Fees',
+      description:
+        'Entry fees or parking charges for monuments and sightseeing spots that are not part of the itinerary.',
+    },
+    {
+      title: 'Additional Costs Due to Natural Calamities',
+      description:
+        'Extra charges arising from unexpected events like flight cancellations, landslides, roadblocks, or other natural calamities.',
+    },
+    {
+      title: 'Other Services',
+      description:
+        'Any services or expenses not explicitly mentioned in the Inclusions section.',
+    },
+  ],
+
+  importantPoints: [
+    {
+      title: 'Winter Travel Advisory',
+      description:
+        'During the winter months, heavy snowfall can sometimes block access to high-altitude regions like Hikkim, Komik, Langza, and Pin Valley in Spiti Valley. In such cases, we’ll ensure alternate plans are in place so you can still enjoy the beauty and culture of the region.',
+    },
+    {
+      title: 'Travel Arrangements',
+      description:
+        'Travelers from outside Delhi are advised to book their arrival in Delhi by 4 PM on the trip starting date. For departures, it’s better to book return flights or trains after 2 PM at the trip’s end to allow time for any delays.',
+    },
+    {
+      title: 'Itinerary Changes',
+      description:
+        'We may adjust the itinerary as needed due to unfavorable weather, inaccessible roads, or participants’ physical limitations. Your safety and comfort will always come first when making such adjustments.',
+    },
+  ],
+}
+
+const DescriptionWithReadMore = ({ description }) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const handleToggleExpand = () => {
-    setIsExpanded(!isExpanded)
-  }
+  // Truncate the text to 200 characters
+  const truncatedDescription = description.slice(0, 200)
 
-  // Render when only `description` exists
-  if (destination.description && !destination.detailDescription) {
-    const truncatedDescription = destination.description.slice(0, 200)
-    const displayText = isExpanded
-      ? destination.description
-      : `${truncatedDescription}...`
+  // Display either the full or truncated description
+  const displayText =
+    isExpanded || description.length <= 200 ? description : truncatedDescription
 
-    return (
-      <div>
-        <p className="text-black">
-          {displayText}
-          {destination.description.length > 200 && (
-            <span
-              onClick={handleToggleExpand}
-              className="text-blue-500 hover:text-blue-700 cursor-pointer ml-2"
-            >
-              {isExpanded ? 'Read Less' : 'Read More'}
-            </span>
-          )}
-        </p>
-      </div>
-    )
-  }
-
-  // Render when `detailDescription` exists
-  if (
-    destination.detailDescription &&
-    destination.detailDescription.length > 0
-  ) {
-    const firstDetail = destination.detailDescription[0]
-    const truncatedDetail = `${
-      firstDetail.title
-    }: ${firstDetail.description.slice(0, 200)}...`
-    const fullDetail = destination.detailDescription.map((item, index) => (
-      <div key={index} className="mb-4">
-        {item.title && (
-          <h3 className="font-semibold text-xl text-black mb-2">
-            {item.title}
-          </h3>
+  return (
+    <div>
+      <p className="text-black">
+        {displayText.split('/n').map((paragraph, index) => (
+          <React.Fragment key={index}>
+            {index > 0 && <br />} {/* Add a line break between paragraphs */}
+            {paragraph}
+          </React.Fragment>
+        ))}
+        {!isExpanded && description.length > 200 && (
+          <span className="text-black">...</span>
         )}
-        <p className="text-black">{item.description}</p>
-      </div>
-    ))
-
-    return (
-      <div>
-        {!isExpanded && (
-          <p className="text-black">
-            {truncatedDetail}
-            <span
-              onClick={handleToggleExpand}
-              className="text-blue-500 hover:text-blue-700 cursor-pointer ml-2"
-            >
-              Read More
-            </span>
-          </p>
+        {description.length > 200 && (
+          <span
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="text-blue-500 hover:text-blue-700 mt-2 cursor-pointer ml-4 whitespace-nowrap"
+          >
+            {isExpanded ? 'Read Less' : 'Read More'}
+          </span>
         )}
-        {isExpanded && (
-          <div>
-            {fullDetail}
-            <span
-              onClick={handleToggleExpand}
-              className="text-blue-500 hover:text-blue-700 cursor-pointer mt-2 block"
-            >
-              Read Less
-            </span>
-          </div>
-        )}
-      </div>
-    )
-  }
+      </p>
 
-  return null
+      {/* Show "Read More" button */}
+
+      {/* Show "..." when description is truncated */}
+    </div>
+  )
 }
 
 const TripModal = ({ onClose }) => {
@@ -307,9 +563,25 @@ const TravelPackage = ({ destination }) => {
         <h2 className="text-3xl font-semibold mb-4 text-black">
           {destination.title} Overview
         </h2>
-      <section className='my-12'>
-          <DescriptionWithReadMore destination={destination} />
-      </section>
+        {/* If description exists, render the DescriptionWithReadMore component */}
+        {destination.description && (
+          <DescriptionWithReadMore description={destination.description} />
+        )}
+
+        {/* If detailDescription exists, render it as a list of titles and descriptions */}
+        {destination.detailDescription &&
+          destination.detailDescription.length > 0 && (
+            <div>
+              {destination.detailDescription.map((item, index) => (
+                <div key={index} className="mb-4">
+                  <h3 className="font-semibold text-xl text-black">
+                    {item.title}
+                  </h3>
+                  <DescriptionWithReadMore description={item.description} />
+                </div>
+              ))}
+            </div>
+          )}
       </div>
       {/* Left Section */}
       <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -336,37 +608,41 @@ const TravelPackage = ({ destination }) => {
           <div className="grid grid-cols-2 gap-4 mb-6 text-center">
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
               <p className="text-sm font-medium text-gray-800">Pickup & Drop</p>
-              <p className="text-blue-600">{details?.route}</p>
+              <p className="text-blue-600">Dehradun & Dehradun</p>
             </div>
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
               <p className="text-sm font-medium text-gray-800">Category</p>
-              <p className="text-blue-600">{details?.category}</p>
+              <p className="text-blue-600">Treks</p>
             </div>
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
               <p className="text-sm font-medium text-gray-800">Duration</p>
-              <p className="text-blue-600">{details?.duration}</p>
+              <p className="text-blue-600">5 Days</p>
             </div>
-
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
-              <p className="text-sm font-medium text-gray-800">Age Group</p>
-              <p className="text-blue-600">{details?.ageGroup}</p>
+              <p className="text-sm font-medium text-gray-800">Altitude</p>
+              <p className="text-blue-600">12500 Ft.</p>
+            </div>
+            <div className="bg-gray-100 rounded-lg p-2 md:p-4">
+              <p className="text-sm font-medium text-gray-800">Difficulty</p>
+              <p className="text-blue-600">Easy to Moderate</p>
+            </div>
+            <div className="bg-gray-100 rounded-lg p-2 md:p-4">
+              <p className="text-sm font-medium text-gray-800">Trek Length</p>
+              <p className="text-blue-600">20 Km.</p>
             </div>
           </div>
 
           {/* Inclusions */}
-          <p className="my-4 text-black">Inclusions</p>
+          <p className="my-4 ">Inclusions</p>
           <div className="flex space-x-4 mb-6">
-            <div className="bg-yellow-600 p-2 flex justify-center items-center rounded-md text-center text-sm">
+            <div className="bg-gray-700 p-2 rounded-md text-center">
               <p>Meals</p>
             </div>
-            <div className="bg-yellow-600 p-2 flex justify-center items-center rounded-md text-center text-sm">
+            <div className="bg-gray-700 p-2 rounded-md text-center">
               <p>Stays</p>
             </div>
-            <div className="bg-yellow-600 p-2 flex justify-center items-center rounded-md text-center text-sm">
+            <div className="bg-gray-700 p-2 rounded-md text-center">
               <p>Transfers</p>
-            </div>
-            <div className="bg-yellow-600 p-2 flex justify-center items-center rounded-md text-center text-sm">
-              <p>Qualified Guide Captans</p>
             </div>
           </div>
 
@@ -517,7 +793,7 @@ const TravelPackage = ({ destination }) => {
               </div>
 
               {/* Scrollable content */}
-              <div className="h-48 overflow-y-auto text-sm">
+              <div className="h-40 overflow-y-auto text-sm">
                 {details?.optionSec &&
                   details.optionSec.batchSec.map((tour, index) => (
                     <div
@@ -628,16 +904,6 @@ const Itinerary = ({ shortItinerary, fullItinerary }) => {
 }
 
 const ImagesGrid = ({ images }) => {
-  // const images = [
-  //   { src: 'https://via.placeholder.com/400x300', width: 300, height: 400 },
-  //   { src: 'https://via.placeholder.com/200x300', width: 200, height: 300 },
-  //   { src: 'https://via.placeholder.com/400x300', width: 400, height: 300 },
-  //   { src: 'https://via.placeholder.com/300x300', width: 300, height: 300 },
-  //   { src: 'https://via.placeholder.com/250x350', width: 250, height: 350 },
-  //   { src: 'https://via.placeholder.com/350x250', width: 350, height: 250 },
-  //   // Add more images with varying dimensions as needed
-  // ]
-
   return (
     <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 p-4">
       {images.map((media, index) => {
@@ -671,35 +937,9 @@ const ImagesGrid = ({ images }) => {
   )
 }
 const ImagesSlider = ({ images }) => {
-  // const images = [
-  //   { src: 'https://via.placeholder.com/400x300', width: 400, height: 300 },
-  //   { src: 'https://via.placeholder.com/200x300', width: 200, height: 300 },
-  //   { src: 'https://via.placeholder.com/400x300', width: 400, height: 300 },
-  //   { src: 'https://via.placeholder.com/300x300', width: 300, height: 300 },
-  //   { src: 'https://via.placeholder.com/250x350', width: 250, height: 350 },
-  //   { src: 'https://via.placeholder.com/350x250', width: 350, height: 250 },
-  //   // Add more images with varying dimensions as needed
-  // ]
-
   return (
     <div className="p-4">
       <div className="overflow-x-scroll whitespace-nowrap scroll-smooth flex gap-4">
-        {/* {images.map((image, index) => (
-          <div
-            key={index}
-            className="inline-block mb-4 w-full max-w-[300px] flex-shrink-0"
-          >
-            <Image
-              src={image.src}
-              width={image.width}
-              height={image.height}
-              alt={`Image ${index + 1}`}
-              className="object-cover w-full h-auto rounded-lg"
-              quality={80}
-              priority
-            />
-          </div>
-        ))} */}
         {images.map((media, index) => {
           const isVideo = /\.(mp4|webm)$/i.test(media) // Check if the media is a video
           return (
@@ -887,8 +1127,7 @@ const Testimonials = () => {
   )
 }
 
-const Page = ({ params }) => {
-  const { place } = use(params)
+const Page = () => {
   const [randomQuote, setRandomQuote] = useState('')
   const quotes = [
     'Adventures and memories',
@@ -902,18 +1141,9 @@ const Page = ({ params }) => {
     'Escape the ordinary',
     'Find your path',
   ]
-  const destination = destinations.find((dest) => dest.id === place)
   useEffect(() => {
     setRandomQuote(quotes[Math.floor(Math.random() * quotes.length)])
   }, [])
-  if (!destination) {
-    return (
-      <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center text-white  bg-gray-800">
-        Destination not found
-      </div>
-    )
-  }
-
   return (
     <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center  text-white relative">
       {/* Hero Section */}
@@ -984,8 +1214,8 @@ const Page = ({ params }) => {
 
         {/* Place name at the bottom left */}
         <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8">
-          <h1 className="text-2xl md:text-5xl font-bold tracking-tight">
-            {destination.headline}
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+            {destination.title}
           </h1>
         </div>
       </section>

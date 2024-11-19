@@ -3,6 +3,9 @@ export const Trips = [
     id: 'himachal-backpacking-trip-manali-kasol-jibhi',
     name: 'Himachal Backpacking: Manali Kasol Jibhi',
     route: 'Delhi To Delhi',
+    duration: '7D & 6N',
+    category: 'Backpacking Trip',
+    ageGroup: '18-40',
     minPrice: '18000/-',
     batch: [
       {
@@ -71,6 +74,10 @@ export const Trips = [
     id: 'meghalaya-backpacking-trip',
     name: 'Meghalaya With Kaziranga',
     route: 'Guwahati - Guwahati',
+
+    duration: '7D & 6N',
+    category: 'Backpacking Trip',
+    ageGroup: '18-40',
     minPrice: '27000/-',
     batch: [
       {
@@ -135,48 +142,129 @@ export const Trips = [
       },
     ],
   },
-  //   {
-  //     id: 3,
-  //     name: 'Meghalaya 5N 6D',
-  //     route: 'Guwahati - Guwahati',
-  //     dates: [
-  //       {
-  //         start: '21 Dec ',
-  //         end: '26 Dec ',
-  //         vehicle: 'Tempo Traveller',
-  //         costTripleSharing: '23000/-',
-  //         costDoubleSharing: '25000/-',
-  //       },
-  //       {
-  //         start: '24 Dec ',
-  //         end: '29 Dec ',
-  //         vehicle: 'Tempo Traveller',
-  //         costTripleSharing: '23000/-',
-  //         costDoubleSharing: '25000/-',
-  //       },
-  //       {
-  //         start: '28 Dec ',
-  //         end: '2 Jan ',
-  //         vehicle: 'Tempo Traveller',
-  //         costTripleSharing: '23000/-',
-  //         costDoubleSharing: '25000/-',
-  //       },
-  //     ],
-  //     options: [
-  //       {
-  //         type: 'RE Himalayan Solo Rider',
-  //         costs: ['35000/-', '37000/-'],
-  //       },
-  //       {
-  //         type: 'RE Himalayan Dual Rider',
-  //         costs: ['31000/-', '33000/-'],
-  //       },
-  //     ],
-  //   },
+  {
+    id: 'meghalaya-backpacking-trip-5n-6d',
+    name: 'Meghalaya 6D-5N',
+    route: 'Guwahati - Guwahati',
+
+    duration: '6D & 5N',
+    category: 'Backpacking Trip',
+    ageGroup: '18-40',
+    minPrice: '23000/-',
+    batch: [
+      {
+        date: '21 Dec - 26 Dec',
+        transports: [
+          {
+            type: 'Tempo Traveller',
+            costTripleSharing: '23000/-',
+            costDoubleSharing: '25000/-',
+          },
+          {
+            type: 'RE Himalayan Solo Rider',
+            costTripleSharing: '35000/-',
+            costDoubleSharing: '37000/-',
+          },
+          {
+            type: 'RE Himalayan Dual Rider',
+            costTripleSharing: '31000/-',
+            costDoubleSharing: '33000/-',
+          },
+        ],
+      },
+      {
+        date: '24 Dec - 29 Dec',
+        transports: [
+          {
+            type: 'Tempo Traveller',
+            costTripleSharing: '23000/-',
+            costDoubleSharing: '25000/-',
+          },
+          {
+            type: 'RE Himalayan Solo Rider',
+            costTripleSharing: '35000/-',
+            costDoubleSharing: '37000/-',
+          },
+          {
+            type: 'RE Himalayan Dual Rider',
+            costTripleSharing: '31000/-',
+            costDoubleSharing: '33000/-',
+          },
+        ],
+      },
+      {
+        date: '28 Dec - 2 Jan',
+        transports: [
+          {
+            type: 'Tempo Traveller',
+            costTripleSharing: '23000/-',
+            costDoubleSharing: '25000/-',
+          },
+          {
+            type: 'RE Himalayan Solo Rider',
+            costTripleSharing: '35000/-',
+            costDoubleSharing: '37000/-',
+          },
+          {
+            type: 'RE Himalayan Dual Rider',
+            costTripleSharing: '31000/-',
+            costDoubleSharing: '33000/-',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'meghalaya-backpacking-trip-5n-6d',
+    name: 'Meghalaya 5N 6D',
+    route: 'Guwahati - Guwahati',
+
+    duration: '6D & 5N',
+    category: 'Backpacking Trip',
+    ageGroup: '18-40',
+    minPrice: '23000/-',
+    dates: [
+      {
+        start: '21 Dec ',
+        end: '26 Dec ',
+        vehicle: 'Tempo Traveller',
+        costTripleSharing: '23000/-',
+        costDoubleSharing: '25000/-',
+      },
+      {
+        start: '24 Dec ',
+        end: '29 Dec ',
+        vehicle: 'Tempo Traveller',
+        costTripleSharing: '23000/-',
+        costDoubleSharing: '25000/-',
+      },
+      {
+        start: '28 Dec ',
+        end: '2 Jan ',
+        vehicle: 'Tempo Traveller',
+        costTripleSharing: '23000/-',
+        costDoubleSharing: '25000/-',
+      },
+    ],
+    options: [
+      {
+        type: 'RE Himalayan Solo Rider',
+        costs: ['35000/-', '37000/-'],
+      },
+      {
+        type: 'RE Himalayan Dual Rider',
+        costs: ['31000/-', '33000/-'],
+      },
+    ],
+  },
   {
     id: 'kashmir-backpacking-trip-srinagar-gulmarg-pahalgam-sonmarg-6d',
     name: 'Kashmir (Delhi To Delhi)',
     route: 'Delhi To Delhi',
+
+    duration: '8D & 7N',
+    category: 'Backpacking Trip',
+    ageGroup: '18-40',
     minPrice: '30000/-',
     batch: [
       {
@@ -205,6 +293,9 @@ export const Trips = [
     id: 5,
     name: 'Kashmir (Srinagar to Srinagar)',
     route: 'Srinagar to Srinagar',
+    duration: '6D & 5N',
+    category: 'Backpacking Trip',
+    ageGroup: '18-40',
     minPrice: '26000/-',
     batch: [
       {
@@ -233,7 +324,11 @@ export const Trips = [
     id: 'nepal-backpacking-trip',
     name: 'Nepal (Delhi to Delhi)',
     route: 'Delhi to Delhi',
+
     minPrice: '28000/-',
+    duration: '8N & 9D / 6N & 7D',
+    category: 'Backpacking Trip',
+    ageGroup: '18-40',
     batch: [
       {
         date: '20 Dec - 28 Dec',
@@ -256,60 +351,82 @@ export const Trips = [
         ],
       },
     ],
+    optionSec: {
+      routeSec: 'Gorakhpur to Gorakhpur',
+      minPriceSec: '25000/-',
+      batchSec: [
+        {
+          date: '21 Dec - 27 Dec',
+          transports: [
+            {
+              type: 'Tempo Traveller/Sleeper Volvo',
+              costTripleSharing: '25000/-',
+              costDoubleSharing: '27000/-',
+            },
+          ],
+        },
+        {
+          date: '28 Dec - 3 Jan',
+          transports: [
+            {
+              type: 'Tempo Traveller/Sleeper Volvo',
+              costTripleSharing: '25000/-',
+              costDoubleSharing: '27000/-',
+            },
+          ],
+        },
+      ],
+    },
   },
-  //   {
-  //     id: 7,
-  //     name: 'Nepal (Gorakhpur to Gorakhpur)',
-  //     route: 'Gorakhpur to Gorakhpur',
-  //     dates: [
-  //       {
-  //         start: '21 Dec ',
-  //         end: '27 Dec ',
-  //         vehicle: 'Tempo Traveller/Sleeper Volvo',
-  //         costTripleSharing: '25000/-',
-  //         costDoubleSharing: '27000/-',
-  //       },
-  //       {
-  //         start: '28 Dec ',
-  //         end: '3 Jan ',
-  //         vehicle: 'Tempo Traveller/Sleeper Volvo',
-  //         costTripleSharing: '25000/-',
-  //         costDoubleSharing: '27000/-',
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     id: 'spiti-valley',
-  //     name: 'Spiti Winter',
-  //     route: 'Delhi',
-  //     dates: [
-  //       {
-  //         start: '21 Dec ',
-  //         end: '29 Dec ',
-  //         vehicle: 'Tempo Traveller',
-  //         costTripleSharing: '23000/-',
-  //         costDoubleSharing: '25000/-',
-  //       },
-  //       {
-  //         start: '25 Dec ',
-  //         end: '2 Jan ',
-  //         vehicle: 'Tempo Traveller',
-  //         costTripleSharing: '23000/-',
-  //         costDoubleSharing: '25000/-',
-  //       },
-  //       {
-  //         start: '28 Dec ',
-  //         end: '5 Jan ',
-  //         vehicle: 'Tempo Traveller',
-  //         costTripleSharing: '23000/-',
-  //         costDoubleSharing: '25000/-',
-  //       },
-  //     ],
-  //   },
+  {
+    id: 'spiti-valley',
+    name: 'Spiti Winter',
+    route: 'Delhi-Delhi',
+    duration: '9D & 8N',
+    category: 'Backpacking Trip',
+    ageGroup: '18-40',
+    minPrice: '23000/-',
+    batch: [
+      {
+        date: '21 Dec - 29 Dec',
+        transports: [
+          {
+            type: 'Tempo Traveller',
+            costTripleSharing: '23000/-',
+            costDoubleSharing: '25000/-',
+          },
+        ],
+      },
+      {
+        date: '25 Dec - 2 Jan',
+        transports: [
+          {
+            type: 'Tempo Traveller',
+            costTripleSharing: '23000/-',
+            costDoubleSharing: '25000/-',
+          },
+        ],
+      },
+      {
+        date: '28 Dec - 5 Jan',
+        transports: [
+          {
+            type: 'Tempo Traveller',
+            costTripleSharing: '23000/-',
+            costDoubleSharing: '25000/-',
+          },
+        ],
+      },
+    ],
+  },
+
   {
     id: 'leh-ladakh-road-trip-from-delhi',
     name: 'Winter Ladakh',
-    route: 'Leh',
+    route: 'Leh-Leh',
+    duration: '7D & 6N',
+    category: 'Backpacking Trip',
+    ageGroup: '18-40',
     minPrice: '28000/-',
     batch: [
       {
@@ -334,24 +451,14 @@ export const Trips = [
       },
     ],
   },
-  //   {
-  //     id: 10,
-  //     name: 'Himachal Highs',
-  //     route: 'Delhi to Delhi',
-  //     dates: [
-  //       {
-  //         start: '23 Dec ',
-  //         end: '2 Jan ',
-  //         vehicle: 'Volvo Bus/Tempo Traveller',
-  //         costTripleSharing: '35000/-',
-  //         costDoubleSharing: '38000/-',
-  //       },
-  //     ],
-  //   },
+
   {
-    id: 'spiti-valley',
+    id: 'spiti-high-11d',
     name: 'Spiti Highs 4x4',
     route: 'Delhi to Delhi',
+    duration: '11D & 10N',
+    category: 'Flagship Special',
+    ageGroup: '18-40',
     minPrice: '35000/-',
     batch: [
       {
@@ -371,6 +478,9 @@ export const Trips = [
     id: 'jibhi-tirthan-valley',
     name: 'Jibhi',
     route: 'Delhi To Delhi',
+    duration: '3D & 2N',
+    category: 'Weekend Gateway',
+    ageGroup: '18-35',
     minPrice: '9000/-',
     batch: [
       {
@@ -409,6 +519,10 @@ export const Trips = [
     id: 'nag-tibba-trek-from-delhi',
     name: 'Nag Tibba',
     route: 'Delhi To Delhi',
+    route: 'Delhi To Delhi',
+    duration: '3D & 2N',
+    category: 'Weekend Gateway',
+    ageGroup: '18-35',
     minPrice: '9000/-',
     batch: [
       {
@@ -447,6 +561,10 @@ export const Trips = [
     id: 'kasol-to-tosh',
     name: 'Kasol Tosh',
     route: 'Delhi To Delhi',
+    route: 'Delhi To Delhi',
+    duration: '3D & 2N',
+    category: 'Weekend Gateway',
+    ageGroup: '18-35',
     minPrice: '9000/-',
     batch: [
       {
@@ -485,6 +603,10 @@ export const Trips = [
     id: 'manali-to-sissu',
     name: 'Manali Sissu',
     route: 'Delhi To Delhi',
+    route: 'Delhi To Delhi',
+    duration: '3D & 2N',
+    category: 'Weekend Gateway',
+    ageGroup: '18-35',
     minPrice: '9000/-',
     batch: [
       {
@@ -523,6 +645,10 @@ export const Trips = [
     id: 'chopta-tungnath',
     name: 'Chopta',
     route: 'Delhi To Delhi',
+    route: 'Delhi To Delhi',
+    duration: '3D & 2N',
+    category: 'Weekend Gateway',
+    ageGroup: '18-35',
     minPrice: '8000/-',
     batch: [
       {

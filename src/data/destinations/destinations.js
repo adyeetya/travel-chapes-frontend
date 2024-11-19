@@ -1594,6 +1594,295 @@ export const destinations = [
       },
     ],
   },
+  // short meghalaya
+  {
+    id: 'meghalaya-backpacking-trip-5n-6d',
+    title: 'Meghalaya Backpacking Trip 5N 6D',
+    category: ['trek', 'backpacking', 'christmas'],
+    banners: {
+      phone: '/images/meghalaya/meghalaya_banner.jpg',
+      web: '/images/meghalaya/meghalaya_banner.jpg',
+    },
+    images: [
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/meghalya/meghalaya_7.webp',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/meghalya/meghalaya_6.webp',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/meghalya/Meghalaya5.jpg',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/meghalya/Meghalaya1.jpg',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/meghalya/Meghalaya2.jpg',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/meghalya/Meghalaya3.jpg',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/meghalya/Meghalaya4.mp4',
+    ],
+    metaTitle:
+      'Meghalaya Backpacking Trip 5N 6D | Explore Waterfalls, Hills & Culture | Travel Chapes',
+    metaDescription:
+      'Ready for an unforgettable adventure? Discover the beauty of Meghalaya on a backpacking trip – from misty hills and waterfalls to vibrant local cultures. Book your journey with Travel Chapes today!',
+    headline: 'Meghalaya Backpacking Trip | Travel Chapes',
+    detailDescription: [
+      {
+        title: 'Discover Nature in Its Purest Form',
+        description:
+          'Meghalaya – India\'s Hidden Treasure. Meghalaya, often said to be the "Land of God", is a fabulous travel destination in Northeast India. Blessed with lush green mountains, mysterious caves, sparkling rivers, and majestic waterfalls, this picturesque region promises an experience that will leave you in awe.',
+      },
+      {
+        title: 'Meghalaya – A Dream for Nature Lovers',
+        description:
+          'It receives the highest rainfall in India. The forests are colored into every shade of green for a breathtaking landscape. But not only nature; the colorful traditions of the Khasi and the Garo tribes shine bright in the Meghalaya culture.',
+      },
+      {
+        title: "Photographer's Paradise",
+        description:
+          'Meghalaya is a dream for every photographer where every view and landscape unfolds in a picturesque manner. You can trek through its lush forests, swim in blue lagoons, or enjoy the peaceful beaches of the state and find it as a paradise for nature lovers.',
+      },
+      {
+        title: 'Ditch the Boring Office Space',
+        description:
+          'Take up the call of the "Abode of Clouds," and join us on a Meghalaya tour to check out this amazing natural wonder. Take this exciting journey to Meghalaya, where adventure, culture, and beauty meet!',
+      },
+      {
+        title: 'Why Visit Meghalaya?',
+        description: `- Nature's Best Adobe: Waterfalls, forests, and rivers that will leave you breathless.  
+          - Rich Culture: Go through the vibrant traditions of the Khasi and Garo tribes. 
+          - Perfect for Photography: Capture picturesque landscapes and incredible vistas. 
+          - Adventure Awaits: Trek, swim, and unwind in the serene spots of Meghalaya.`,
+      },
+    ],
+    shortItinerary: [
+      {
+        day: 'Day 1',
+        description:
+          '| Umiam Lake | Explore Shillong’s Serenity | Laitlum Grand Canyon | Cherrapunjee | Wei Sawdong Waterfall Adventure',
+      },
+      {
+        day: 'Day 2',
+        description:
+          'Single Root Bridge | Double Decker Bridge Trek in Meghalaya',
+      },
+      {
+        day: 'Day 3',
+        description:
+          'Mawsmai Caves | Nohkalikai Waterfall | Mawlynnong Village & Dawki Camping',
+      },
+      {
+        day: 'Day 4',
+        description:
+          'Water Sports in Dawki | Krang Suri Waterfall | Shillong Exploration',
+      },
+      {
+        day: 'Day 5',
+        description:
+          'Shillong to Kaziranga National Park | Journey to Wildlife Haven',
+      },
+      {
+        day: 'Day 6',
+        description: 'Kaziranga Safari | Return to Guwahati',
+      },
+    ],
+    fullItinerary: [
+      //   {
+      //     day: 'Day 1',
+      //     title: 'Arrival in Guwahati | Umiam Lake | Explore Shillong Serenity',
+      //     description: `- Arrive in Guwahati: Begin your adventure at Lokpriya Gopinath Bordoloi International Airport, the gateway to Northeast India.
+      // - Drive to Shillong: Meet your group and Team Captain, then embark on a scenic drive to Shillong, often called the “Scotland of the East” for its picturesque landscape.
+      // - Visit Umiam Lake: Enjoy the serene beauty of Umiam Lake, a tranquil reservoir surrounded by lush East Khasi Hills, perfect for water sports and photography.
+      // - Explore Shillong: Discover the vibrant local markets, famous for handcrafted goods and unique regional specialties.
+      // - Hotel Check-in and Rest: Settle into your hotel, relax in the cool climate of Shillong, and prepare for the exciting days ahead.`,
+      //   },
+      {
+        day: 'Day 1',
+        title:
+          'Laitlum Grand Canyon | Cherrapunjee Adventure | Wei Sawdong Waterfall',
+        description: `- Laitlum Grand Canyon Exploration: Start your day with a scenic drive to the Laitlum Grand Canyon, a hidden gem offering breathtaking views of gorges and rolling hills. Often shrouded in mist, it creates a mystical atmosphere perfect for nature lovers and photographers.
+    - Drive to Cherrapunjee: Head to Cherrapunjee, one of the wettest places on Earth. Known for its waterfalls, limestone caves, and living root bridges, it’s a paradise for nature and adventure enthusiasts.
+    - Wei Sawdong Waterfall: Discover the stunning Wei Sawdong Waterfall, a three-tiered cascade that is perfect for a refreshing dip and photography.
+    - Homestay in Cherrapunjee: Experience authentic Khasi culture with a cozy homestay in Cherrapunjee, surrounded by lush landscapes and local traditions.`,
+      },
+      {
+        day: 'Day 2',
+        title:
+          'Trek to Single Root Bridge | Double Decker Root Bridge Adventure',
+        description: `- Tyrna Village Trek: Start your adventure in Tyrna Village, the gateway to the famous living root bridges of Meghalaya.
+    - Single Root Bridge: Discover the Single Root Bridge, a unique engineering marvel created by the Khasi tribes, showcasing nature’s incredible craftsmanship.
+    - Double Decker Root Bridge: The highlight of your trek is the Double Decker Root Bridge, a breathtaking two-tiered bridge made from the intertwined roots of ancient rubber trees. It’s one of the most iconic natural wonders in the region.
+    - Return to Cherrapunjee: After an adventurous day exploring these incredible bioengineering marvels, return to Cherrapunjee for a restful night, reflecting on the wonders of Meghalaya.`,
+      },
+      {
+        day: 'Day 3',
+        title:
+          'Mawsmai Caves | Nohkalikai Waterfall | Mawlynnong Village | Dawki Camping',
+        description: `- Mawsmai Caves: Begin your day exploring the Mawsmai Caves, famous for their stunning limestone formations, including stalactites and stalagmites that are sure to amaze.
+    - Nohkalikai Falls: Visit the majestic Nohkalikai Falls, the tallest plunge waterfall in India, and witness its awe-inspiring beauty as it cascades from a height of 340 meters.
+    - Mawlynnong Village: Experience the cleanest village in Asia—Mawlynnong Village—where cleanliness and eco-friendly tourism are a way of life, making it a model for sustainable living.
+    - Overnight Camping at Dawki: End the day by camping near the crystal-clear Umngot River in Dawki, one of the most serene and picturesque locations in Meghalaya, offering a peaceful night under the stars.`,
+      },
+      {
+        day: 'Day 4',
+        title: 'Dawki River Adventures | Krang Suri Falls | Return to Shillong',
+        description: `- Dawki River Water Sports: Start your day with exciting water sports in the crystal-clear Dawki River, renowned for its emerald waters and natural beauty. Enjoy activities like boating, kayaking, or simply relax by the river.
+    - Krang Suri Falls: Visit the stunning Krang Suri Falls, one of the most picturesque waterfalls in Meghalaya. Take a dip in its serene blue waters or admire the scenic beauty of this hidden gem.
+    - Return to Shillong: After an adventurous day, head back to Shillong. Explore the town’s local culture, shop for handmade crafts, and enjoy a relaxed evening in the cool climate of the Scotland of the East.`,
+      },
+      {
+        day: 'Day 5',
+        title: 'Scenic Drive from Shillong to Kaziranga National Park',
+        description: `- Scenic Drive to Kaziranga: Begin your day with a scenic drive from Shillong to Kaziranga National Park, a UNESCO World Heritage Site renowned for its rich biodiversity and home to the iconic Indian One-Horned Rhinoceros.
+    - Check-in to Resort: Arrive at your Kaziranga resort, where you can relax amidst nature and enjoy stunning views of the lush parkland. Keep an eye out for wildlife sightings, including elephants, tigers, and various bird species.`,
+      },
+      {
+        day: 'Day 6',
+        title: 'Kaziranga Safari | Return to Guwahati',
+        description: `- Morning Safari in Kaziranga: Start your day with an exhilarating jeep safari through Kaziranga National Park, famous for its dense tiger population and large herds of elephants, water buffaloes, and swamp deer. Get up close with the incredible wildlife in this UNESCO World Heritage site.
+    - Return to Guwahati: After the safari, journey back to Guwahati for your return flight. Make sure to book flights or trains departing after 5 p.m. for a smooth departure. Take home unforgettable memories and stunning photographs of your Kaziranga wildlife adventure.`,
+      },
+    ],
+    inclusions: [
+      {
+        title: 'Christmas & New Year Celebrations',
+        description:
+          'Christmas & New Year Celebrations with bonfire, 2+2 snacks, music, and cake (weather-dependent).',
+      },
+      {
+        title: 'Pickup & Drop',
+        description: 'Timely transfers as per fixed schedule.',
+      },
+      {
+        title: 'Local Transportation',
+        description:
+          'Comfortable Tempo Traveler or SUV for sightseeing from Guwahati to Guwahati.',
+      },
+      {
+        title: 'Kaziranga Safari',
+        description: 'Included jeep safari in Kaziranga National Park.',
+      },
+      {
+        title: 'Bike Options',
+        description:
+          'Royal Enfield Himalayan for bikers, including fuel, helmet, knee guards, and elbow guards. (Note: Carry your own helmet for comfort).',
+      },
+      {
+        title: 'Meal Plan (CP)',
+        description:
+          '7 meals, including breakfast on Day 2-7, and Dawki & Kaziranga meals.',
+      },
+      {
+        title: 'Entry Fees',
+        description: 'All sightseeing entry fees covered.',
+      },
+      {
+        title: 'Guided Trekking',
+        description: 'Trekking to scenic spots with expert guidance.',
+      },
+      {
+        title: 'Team Captain',
+        description: 'Dedicated captain for support throughout the journey.',
+      },
+      {
+        title: 'Medical Kit',
+        description: 'Provided for emergency situations.',
+      },
+      {
+        title: 'Driver Charges',
+        description: 'Includes night charges, tolls, and parking fees.',
+      },
+      {
+        title: 'Permits',
+        description: 'All necessary inner line permits included.',
+      },
+      {
+        title: '6 Nights Accommodation',
+        description:
+          '2 Nights in Cherrapunjee and Shillong (hotel/homestay), 1 Night in Shnongpdeng Camps (Dawki), 1 Night in Kaziranga Hotel.',
+      },
+      {
+        title: 'Activities at Shnongpdeng (Dawki)',
+        description: 'Cliff Jumping, Snorkeling, and Boating at Shnongpdeng.',
+      },
+      {
+        title: 'Kaziranga Jeep Safari',
+        description: 'Kaziranga Jeep Safari.',
+      },
+      {
+        title: 'Bonfire',
+        description: 'Bonfire (weather permitting).',
+      },
+    ],
+    exclusions: [
+      {
+        title: '5% GST',
+        description: 'Applicable on the total trip cost.',
+      },
+      {
+        title: 'Early Check-in / Late Check-out',
+        description:
+          'Any early check-in before 1:00 PM or late check-out after 11:00 AM at the hotel (additional charges may apply).',
+      },
+      {
+        title: 'Travel Expenses',
+        description: 'Train or Airfare costs, unless specified.',
+      },
+      {
+        title: 'Personal Expenses',
+        description: 'Includes telephone, internet, laundry, shopping, etc.',
+      },
+      {
+        title: 'Extra Meals',
+        description:
+          'Meals not mentioned in the itinerary (such as lunch or snacks).',
+      },
+      {
+        title: 'Additional Sightseeing',
+        description:
+          'Any extra excursions or sightseeing not listed in the itinerary.',
+      },
+      {
+        title: 'Attraction Entry Fees',
+        description: 'Museums, parks, and other local attractions.',
+      },
+      {
+        title: 'Room Heater Charges',
+        description: 'Additional charges for room heaters (if applicable).',
+      },
+      {
+        title: 'Travel Insurance',
+        description:
+          'Any travel insurance expenses (recommended but not included).',
+      },
+      {
+        title: 'Bike-related Costs',
+        description:
+          'Spare parts costs due to accidental damage while the bike is in the rider’s possession.',
+      },
+      {
+        title: 'Towing or Transfer Costs',
+        description: 'Towing or transfer costs if the bike breaks down.',
+      },
+      {
+        title: 'Servicing or Maintenance Costs',
+        description: 'Servicing or maintenance costs during the trip.',
+      },
+      {
+        title: 'Unforeseen Expenses',
+        description:
+          'Costs arising from factors like flight delays, roadblocks, vehicle breakdowns, weather conditions, landslides, strikes, or political disturbances.',
+      },
+      {
+        title: 'Note -',
+        description:
+          'Travel Chapes is not responsible for delays, cancellations, or additional expenses caused by unforeseen circumstances such as natural hazards, sickness, political closures, etc.',
+      },
+    ],
+    importantPoints: [
+      {
+        title: 'Security Deposit',
+        description:
+          'A refundable INR 5,000 security deposit per motorbike is required at the time of booking.',
+      },
+      {
+        title: 'Refund Policy',
+        description:
+          'The deposit will be refunded within 5 working days after the trip, provided no damage occurs to the bike during the journey.',
+      },
+    ],
+  },
   //8 leh ladakh - roadtrip / trek
   {
     id: 'leh-ladakh-road-trip-from-delhi',
@@ -1881,7 +2170,7 @@ export const destinations = [
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir2.webp',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir4.jpg',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir3.jpg',
-'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir5.jpg',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir5.jpg',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir6.jpg',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir7.jpg',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Kashmir/kashmir8.png',
@@ -2449,25 +2738,26 @@ export const destinations = [
     ],
   },
 
-  // spiti
+  //11 spiti
   {
     id: 'spiti-valley',
     title: 'Spiti Valley -A Winter Paradise',
-    category: ['weekend', 'backpacking', 'christmas', 'trek'],
+    category: ['backpacking', 'christmas', 'trek'],
     banners: {
       phone: '/images/spiti/spiti-banner-both.webp',
       web: '/images/spiti/spiti-banner-both.webp',
     },
     images: [
-      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/Spit1.webp',
-      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/Spiti2.webp',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti3.webp',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/Spit1.webp',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti4.webp',
-      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti5.jpeg',
+
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti6.jpg',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti7.jpg',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti8.jpeg',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/Spiti2.webp',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/Spiti9.webp',
+      'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti5.jpeg',
     ],
     metaTitle:
       "Spiti Valley Trip 2024: Explore India's Hidden Gem with Travel Chapes",
@@ -2735,6 +3025,8 @@ export const destinations = [
       },
     ],
   },
+  // 12 spiti
+  
   // spiti, kashmir 7n8d
   // Other destinations...
 ]

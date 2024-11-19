@@ -146,16 +146,20 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          {/* <div className="ml-auto">
-            <p className="text-sm mb-2 text-right">Accepted Payments</p>
+          <div className="ml-auto">
+            <p className="text-sm mb-2 text-right text-white">
+              Accepted Payments
+            </p>
             <div className="flex flex-row gap-4">
-              <div className="h-4 w-8 bg-white"></div>
-              <div className="h-4 w-8 bg-white"></div>
-              <div className="h-4 w-8 bg-white"></div>
-              <div className="h-4 w-8 bg-white"></div>
-              <div className="h-4 w-8 bg-white"></div>
+              <Image
+                src="/images/payments.webp"
+                width={1000}
+                height={1000}
+                alt="payments"
+                className="max-w-[300px] h-auto bg-white rounded-fulls"
+              />
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
 

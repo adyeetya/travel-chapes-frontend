@@ -74,8 +74,8 @@ const Footer = () => {
         </div>
 
         {/* Links Section */}
-        <div className="flex flex-col w-full md:w-1/2 px-4  items-center justify-center gap-8 z-10">
-          <div className="text-white flex flex-row justify-center gap-3 md:gap-8 text-right">
+        <div className="flex flex-col w-full md:w-1/2 px-4  md:items-center md:justify-center gap-8 z-10">
+          <div className="text-white text-sm md:text-base flex flex-row justify-between md:justify-center gap-3 md:gap-8 text-right">
             <div>
               <ul>
                 <li className="my-2">

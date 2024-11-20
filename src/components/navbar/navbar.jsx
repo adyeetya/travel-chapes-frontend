@@ -45,6 +45,10 @@ const Navbar = () => {
   }, [handleClickOutside])
 
   useEffect(() => {
+    setIsMenuOpen(false)
+  }, [pathname])
+
+  useEffect(() => {
     console.log('Search query:', searchQuery)
   }, [searchQuery])
 

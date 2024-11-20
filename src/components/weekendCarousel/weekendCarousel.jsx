@@ -134,7 +134,7 @@ const TripCarousel = ({ destinations }) => {
 
   return (
     <div className="">
-      <h2 className="text-3xl p-4 max-w-screen-xl mx-auto font-bold my-4">
+      <h2 className="text-3xl px-4 max-w-screen-xl mx-auto font-bold my-4">
         Weekend Fun
       </h2>
       <div className="my-12 p-4 max-w-screen-xl mx-auto">

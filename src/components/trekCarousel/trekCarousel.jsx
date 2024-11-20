@@ -81,7 +81,7 @@ Phone: ${formData.phone}
   return (
     <div>
       <section className="py-12">
-        <h2 className="text-3xl text-center mb-8">Our Top Treks</h2>
+        <h2 className="text-2xl text-left mb-4">Our Top Treks</h2>
         <Carousel opts={{ align: 'start' }} className="w-full">
           <CarouselContent className="">
             {topTreks.map((trip) => (

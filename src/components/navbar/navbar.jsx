@@ -77,6 +77,9 @@ const Navbar = () => {
                 className="h-12  w-auto "
                 priority
               />
+              <h1 className="font-bold text-lg text-yellow-500 hidden md:block">
+                travel CHAPES
+              </h1>
             </Link>
           </div>
 
@@ -191,19 +194,19 @@ const Navbar = () => {
               X Mas & New Year
             </Link>
             <Link
-              href="/about"
+              href="/#backpacking"
               className="block px-4 py-3 text-lg font-semibold border-b border-gray-600"
             >
               Backpacking Trips
             </Link>
             <Link
-              href="/products"
+              href="/#treks"
               className="block px-4 py-3 text-lg font-semibold border-b border-gray-600"
             >
               Treks
             </Link>
             <Link
-              href="#"
+              href="/#weekend-fun"
               className="block px-4 py-3 text-lg font-semibold border-b border-gray-600"
             >
               Weekend Fun

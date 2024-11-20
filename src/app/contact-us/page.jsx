@@ -4,6 +4,11 @@ import Image from 'next/image'
 import { Poppins } from 'next/font/google'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 
+export const metadata = {
+  title: 'Travel Chapes | Contact Us',
+  description: 'Get in touch with Travel Chapes! Whether you have questions about our tours, need assistance with bookings, or want to plan your next adventure, we’re here to help. Reach out to us today and start your journey to unforgettable experiences.',
+}
+
 const ContactUs = () => {
   return (
     <div

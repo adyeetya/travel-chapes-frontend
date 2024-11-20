@@ -157,13 +157,7 @@ Number of Travelers: ${formData.travelers}`
               help you feel more at home during the trip.
             </p>
             <div className="flex flex-wrap gap-2 mt-3 justify-center">
-              {[
-                '#happytravel',
-                '#adventure',
-                '#explore',
-                '#family',
-                '#travel',
-              ].map((tag) => (
+              {['#adventure', '#explore', '#family', '#travel'].map((tag) => (
                 <span
                   key={tag}
                   className="bg-yellow-500 text-black px-2 py-1 rounded-full text-xs"

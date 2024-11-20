@@ -352,9 +352,9 @@ export const Trips = [
       },
     ],
     optionSec: {
-      routeSec: 'Gorakhpur to Gorakhpur',
-      minPriceSec: '25000/-',
-      batchSec: [
+      route: 'Gorakhpur to Gorakhpur',
+      minPrice: '25000/-',
+      batch: [
         {
           date: '21 Dec - 27 Dec',
           transports: [

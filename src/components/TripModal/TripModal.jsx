@@ -1,13 +1,13 @@
 'use client'
-import { useState, useEffect  } from 'react'
+import { useState, useEffect } from 'react'
 import { IoClose } from 'react-icons/io5'
 import Image from 'next/image'
-const TripModal = ({ onClose }) => {
+export const TripModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
-    name: '',
-    destination: '',
+    firstName: '',
+    lastName: '',
+    email: '',
     phone: '',
-    email:'',
     travelers: '',
   })
   useEffect(() => {
@@ -26,7 +26,7 @@ const TripModal = ({ onClose }) => {
 
   const sendToWhatsApp = () => {
     const message = `Hello, I would like to plan a trip.
-Name: ${formData.name}
+Name: ${formData.firstName} ${formData.lastName}
 Email: ${formData.email}
 Phone: ${formData.phone}
 Number of Travelers: ${formData.travelers}`
@@ -39,7 +39,7 @@ Number of Travelers: ${formData.travelers}`
 
   const sendToEmail = () => {
     const subject = `Trip Planning Inquiry`
-    const body = `Hello,\n\nI would like to plan a trip.\n\nName: ${formData.name} \nEmail: ${formData.email}\nPhone: ${formData.phone}\nNumber of Travelers: ${formData.travelers}`
+    const body = `Hello,\n\nI would like to plan a trip.\n\nName: ${formData.firstName} ${formData.lastName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nNumber of Travelers: ${formData.travelers}`
 
     const mailtoURL = `mailto:contact@travelchapes.com?subject=${encodeURIComponent(
       subject
@@ -59,13 +59,15 @@ Number of Travelers: ${formData.travelers}`
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 px-4">
-      <div className="relative bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-4/5 lg:max-w-4xl flex flex-col-reverse md:flex-row h-auto md:h-[65vh] lg:h-[90vh] max-h-[500px]">
+      <div className="relative bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-4/5 lg:max-w-4xl flex flex-col-reverse md:flex-row h-auto md:h-[65vh] lg:h-[90vh] max-h-[665px]">
         <button
           onClick={onClose}
           className="text-black z-50 absolute top-4 right-4 bg-red-50 rounded-full p-2 hover:bg-red-400 focus:outline-none"
         >
           <IoClose size={24} />
         </button>
+
+        {/* Top Call Button */}
 
         {/* Left Form Section */}
         <div className="md:w-1/2 p-6 h-full overflow-auto">
@@ -85,35 +87,49 @@ Number of Travelers: ${formData.travelers}`
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-gray-700 text-xs md:text-sm mb-2 sr-only">
-                Name
+              <label className="block text-gray-700 text-xs md:text-sm mb-2">
+                First Name
               </label>
               <input
                 type="text"
-                name="name"
-                value={formData.name}
+                name="firstName"
+                value={formData.firstName}
                 onChange={handleChange}
-                placeholder="Name"
+                placeholder="First Name"
                 className="w-full border text-black rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 required
               />
             </div>
             <div>
-              <label className="block text-gray-700 text-xs md:text-sm mb-2 sr-only">
-                Destination
+              <label className="block text-gray-700 text-xs md:text-sm mb-2">
+                Last Name
               </label>
               <input
                 type="text"
-                name="destination"
-                value={formData.destination}
+                name="lastName"
+                value={formData.lastName}
                 onChange={handleChange}
-                placeholder="Destination"
+                placeholder="Last Name"
                 className="w-full border text-black rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 required
               />
             </div>
             <div>
-              <label className="block text-gray-700 text-xs md:text-sm mb-2 sr-only">
+              <label className="block text-gray-700 text-xs md:text-sm mb-2">
+                Email Address
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email Address"
+                className="w-full border text-black rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 text-xs md:text-sm mb-2">
                 Phone Number
               </label>
               <input
@@ -126,22 +142,9 @@ Number of Travelers: ${formData.travelers}`
                 required
               />
             </div>
-            <div>
-              <label className="block text-gray-700 text-xs md:text-sm mb-2 sr-only">
-                Email Address
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email Address"
-                className="w-full border text-black rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
-              />
-            </div>
 
             <div>
-              <label className="block text-gray-700 text-xs md:text-sm mb-2 sr-only">
+              <label className="block text-gray-700 text-xs md:text-sm mb-2">
                 Number of Travelers
               </label>
               <input
@@ -150,7 +153,8 @@ Number of Travelers: ${formData.travelers}`
                 value={formData.travelers}
                 onChange={handleChange}
                 placeholder="Number of Travelers"
-                className="w-full text-black border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                className="w-full border text-black rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                required
               />
             </div>
 
@@ -213,5 +217,3 @@ Number of Travelers: ${formData.travelers}`
     </div>
   )
 }
-
-export default TripModal

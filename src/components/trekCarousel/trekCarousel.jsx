@@ -12,30 +12,104 @@ import Link from 'next/link'
 import topTreks from '@/data/treks.js'
 import { IoStarSharp, IoStarHalfSharp, IoClose } from 'react-icons/io5'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 // Dummy modal component for inquiry
-const InquiryModal = ({ trek, onClose }) => {
+const BookingModal = ({
+  selectedTrek,
+  onClose,
+  formData,
+  handleChange,
+  handleSubmit,
+}) => {
+  useEffect(() => {
+    // Lock scrolling on mount
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      // Restore scrolling on unmount
+      document.body.style.overflow = ''
+    }
+  }, [])
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white p-6 rounded-lg w-1/2">
-        <h2 className="text-2xl mb-4">Inquiry for {trek.name}</h2>
-        <p className="mb-4">Location: {trek.location}</p>
-        <p className="mb-4">Height: {trek.height}</p>
-        <p className="mb-4">Distance: {trek.distance}</p>
-        <p className="mb-4">Duration: {trek.duration}</p>
-        <p className="mb-4">Description: {trek.description}</p>
+    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 px-4">
+      <div className="relative bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-4/5 lg:max-w-4xl flex flex-col md:flex-row h-auto md:h-[65vh] lg:h-[90vh] max-h-[565px]">
         <button
           onClick={onClose}
-          className="bg-blue-500 text-white px-4 py-2 rounded-full"
+          className="text-black z-50 absolute top-4 right-4 bg-red-300 rounded-full p-2 hover:bg-red-400 focus:outline-none"
         >
-          Close
+          <IoClose size={24} />
         </button>
+        <div className="relative h-48 md:h-full md:w-1/2">
+          <Image
+            src={selectedTrek.image}
+            alt={selectedTrek.name}
+            width={1000}
+            height={1000}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="p-4 md:p-6 w-full md:w-1/2 relative overflow-y-auto max-h-[565px]">
+          <form
+            className="space-y-4 flex flex-col h-full justify-between"
+            onSubmit={handleSubmit}
+          >
+            <h2 className="text-2xl font-bold mb-4">
+              Plan Your Trip to {selectedTrek.name}
+            </h2>
+            <div>
+              <input
+                type="text"
+                value={selectedTrek.name}
+                readOnly
+                className="w-full border rounded-md p-2 bg-gray-100 text-gray-600 cursor-not-allowed"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                onChange={handleChange}
+                value={formData.name}
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                onChange={handleChange}
+                value={formData.email}
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Enter your phone number"
+                className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                onChange={handleChange}
+                value={formData.phone}
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-red-500 text-white py-2 rounded-full mt-4 hover:bg-red-600 transition-all duration-300"
+            >
+              Book Now
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   )
 }
-
 const TopTreks = ({ treks }) => {
   const [selectedTrek, setSelectedTrek] = useState(null)
 
@@ -51,7 +125,7 @@ const TopTreks = ({ treks }) => {
   }
 
   const sendToWhatsApp = () => {
-    const message = `Hello, I would like to book a trip to ${selectedTour.name}.
+    const message = `Hello, I would like to book a trip to ${selectedTrek.name}.
 Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone}
@@ -75,6 +149,7 @@ Phone: ${formData.phone}
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setFormData({ name: '', email: '', phone: '' })
     // Choose either WhatsApp or email sending here, or let the user decide
     sendToWhatsApp() // Or call `sendToEmail()`
   }
@@ -125,98 +200,13 @@ Phone: ${formData.phone}
       </section>
 
       {selectedTrek && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 px-4">
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-4/5 lg:max-w-4xl flex flex-col md:flex-row h-auto md:h-[65vh] lg:h-[90vh] max-h-[665px]">
-            <button
-              onClick={() => setSelectedTrek(null)}
-              className="text-black z-50 absolute top-4 right-4 bg-red-300 rounded-full p-2 hover:bg-red-400 focus:outline-none"
-            >
-              <IoClose size={24} />
-            </button>
-            {/* Left Image Section */}
-            <div className="relative h-48 md:h-full md:w-1/2">
-              <Image
-                src={selectedTrek.image}
-                alt={selectedTrek.name}
-                width={1000}
-                height={1000}
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Right Form Section */}
-            <div className="p-4 md:p-6 w-full md:w-1/2 relative h-full overflow-auto max-h-[665px]">
-              <h2 className="text-2xl font-bold mb-4">
-                Plan Your Trip to {selectedTrek.name}
-              </h2>
-              <form
-                className="flex flex-col h-full justify-between my-4"
-                onSubmit={handleSubmit}
-              >
-                <div>
-                  <label className="block text-gray-700 text-sm mb-2">
-                    Destination
-                  </label>
-                  <input
-                    type="text"
-                    value={selectedTrek.name}
-                    readOnly
-                    className="w-full border rounded-md p-2 bg-gray-100 text-gray-600 cursor-not-allowed"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 text-sm mb-2">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Enter your name"
-                    className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
-                    onChange={handleChange}
-                    value={formData.name}
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 text-sm mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Enter your email"
-                    className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
-                    onChange={handleChange}
-                    value={formData.email}
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 text-sm mb-2">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Enter your phone number"
-                    className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
-                    onChange={handleChange}
-                    value={formData.phone}
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-red-500 text-white py-2 rounded-full mt-4 hover:bg-red-600 transition-all duration-300"
-                >
-                  Book Now
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
+        <BookingModal
+          selectedTrek={selectedTrek}
+          onClose={() => setSelectedTrek(null)}
+          formData={formData}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
       )}
     </div>
   )

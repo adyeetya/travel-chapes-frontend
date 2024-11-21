@@ -78,11 +78,11 @@ const Navbar = () => {
                 alt=""
                 width={1000}
                 height={1000}
-                className="h-12  w-auto "
+                className="h-14  w-auto "
                 priority
               />
               <h1 className="font-bold text-lg text-yellow-500 hidden md:block">
-                travel CHAPES
+                TRAVEL CHAPES
               </h1>
             </Link>
           </div>

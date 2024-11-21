@@ -3,8 +3,19 @@ import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { CiCircleChevDown } from 'react-icons/ci'
 import { IoClose } from 'react-icons/io5'
-
-
+import { FaCaretDown } from 'react-icons/fa'
+const batch = [
+  {
+    date: '23 Dec - 2 Jan',
+    transports: [
+      {
+        type: 'Volvo Bus/Tempo Traveller',
+        costTripleSharing: '35000/-',
+        costDoubleSharing: '38000/-',
+      },
+    ],
+  },
+]
 
 const DescriptionWithReadMore = () => {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -245,6 +256,103 @@ Number of Travelers: ${formData.travelers}`
   )
 }
 
+const BookingTable = () => {
+  const [sharingType, setSharingType] = useState('triple')
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen)
+
+  const handleSelection = (type) => {
+    setSharingType(type)
+    setDropdownOpen(false)
+  }
+
+  return (
+    <div>
+      {/* Main Section */}
+      <div className="bg-gray-100 h-56 mb-4 rounded-lg overflow-hidden">
+        {/* Header
+        {details?.optionSec && (
+          <div className="text-black text-lg p-2">{details?.route}</div>
+        )} */}
+        <div className="flex bg-blue-600 text-white sticky top-0 gap-2 text-sm w-full">
+          {/* Batches */}
+          <div className="flex-1 p-2 rounded-tl-lg flex justify-start items-center">
+            Batches
+          </div>
+
+          {/* Mode of Vehicle */}
+          <div className="flex-1 p-2 whitespace-nowrap flex justify-start items-center">
+            Mode of Vehicle
+          </div>
+
+          {/* Price with Custom Dropdown */}
+          <div className="flex-1 p-2 whitespace-nowrap relative">
+            <div
+              className="bg-blue-600 text-white px-2 py-1 rounded-md flex items-center cursor-pointer justify-between"
+              onClick={toggleDropdown}
+            >
+              {sharingType === 'triple' ? 'Triple Sharing' : 'Double Sharing'}
+              <FaCaretDown className="ml-2" />
+            </div>
+            {dropdownOpen && (
+              <div className="absolute bg-white text-black mt-2 rounded-md shadow-md w-full z-10">
+                <div
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                  onClick={() => handleSelection('triple')}
+                >
+                  Triple Sharing
+                </div>
+                <div
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                  onClick={() => handleSelection('double')}
+                >
+                  Double Sharing
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Scrollable content */}
+        <div className="h-48 overflow-y-auto text-sm">
+          {batch.map((tour, index) => (
+            <div
+              key={index}
+              className="grid grid-cols-4 text-black border-b gap-2 md:gap-4"
+            >
+              <div className="p-2 col-span-1 text-black flex flex-col items-center">
+                <p>{tour.date}</p>
+                <p className="text-orange-500 whitespace-nowrap text-xs md:text-sm bg-orange-200 w-fit px-2 rounded md:rounded-md mt-2">
+                  Filling Fast
+                </p>
+              </div>
+              <div className="p-2 col-span-3 text-black">
+                {tour.transports.map((vehicle, index) => (
+                  <div
+                    key={index}
+                    className="grid grid-cols-2 text-black gap-2"
+                  >
+                    <div className="mb-2 w-full flex justify-start items-center">
+                      {vehicle.type}
+                    </div>
+                    <div className="mb-2 w-full flex justify-center items-center">
+                      ₹
+                      {sharingType === 'triple'
+                        ? vehicle.costTripleSharing
+                        : vehicle.costDoubleSharing}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const TravelPackage = () => {
   const [isModalOpen, setModalOpen] = useState(false)
   const openModal = () => setModalOpen(true)
@@ -304,41 +412,38 @@ const TravelPackage = () => {
           <div className="grid grid-cols-2 gap-4 mb-6 text-center">
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
               <p className="text-sm font-medium text-gray-800">Pickup & Drop</p>
-              <p className="text-blue-600">Dehradun & Dehradun</p>
+              <p className="text-blue-600">Delhi & Delhi</p>
             </div>
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
               <p className="text-sm font-medium text-gray-800">Category</p>
-              <p className="text-blue-600">Treks</p>
+              <p className="text-blue-600">Special Flagship Trip</p>
             </div>
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
               <p className="text-sm font-medium text-gray-800">Duration</p>
-              <p className="text-blue-600">5 Days</p>
+              <p className="text-blue-600">11D - 10N</p>
             </div>
+
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
-              <p className="text-sm font-medium text-gray-800">Altitude</p>
-              <p className="text-blue-600">12500 Ft.</p>
-            </div>
-            <div className="bg-gray-100 rounded-lg p-2 md:p-4">
-              <p className="text-sm font-medium text-gray-800">Difficulty</p>
-              <p className="text-blue-600">Easy to Moderate</p>
-            </div>
-            <div className="bg-gray-100 rounded-lg p-2 md:p-4">
-              <p className="text-sm font-medium text-gray-800">Trek Length</p>
-              <p className="text-blue-600">20 Km.</p>
+              <p className="text-sm font-medium text-gray-800">Age Group</p>
+              <p className="text-blue-600">20 - 35</p>
             </div>
           </div>
 
           {/* Inclusions */}
-          <p className="my-4 ">Inclusions</p>
-          <div className="flex space-x-4 mb-6">
-            <div className="bg-gray-700 p-2 rounded-md text-center">
+
+          <p className="my-4 text-black">Inclusions</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div className="bg-yellow-600 p-4 flex justify-center items-center rounded-md text-center text-sm min-h-[80px]">
               <p>Meals</p>
             </div>
-            <div className="bg-gray-700 p-2 rounded-md text-center">
+            <div className="bg-yellow-600 p-4 flex justify-center items-center rounded-md text-center text-sm min-h-[80px]">
               <p>Stays</p>
             </div>
-            <div className="bg-gray-700 p-2 rounded-md text-center">
+            <div className="bg-yellow-600 p-4 flex justify-center items-center rounded-md text-center text-sm min-h-[80px]">
               <p>Transfers</p>
+            </div>
+            <div className="bg-yellow-600 p-4 flex justify-center items-center rounded-md text-center text-sm min-h-[80px]">
+              <p>Qualified Captains</p>
             </div>
           </div>
 
@@ -354,7 +459,9 @@ const TravelPackage = () => {
             </div>
             <div className="flex flex-col gap-2  items-center">
               <div className="bg-blue-100 p-2 w-16 h-16 flex justify-center items-center rounded-full">
-                <p className="text-3xl">💳</p>
+                <p className="text-3xl flex justify-center items-center mb-3">
+                  💳
+                </p>
               </div>
               <p className="text-sm">
                 Flexible <br /> Cancellation
@@ -365,7 +472,7 @@ const TravelPackage = () => {
                 <p className="text-3xl">💸</p>
               </div>
               <p className="text-sm">
-                Easy <br /> EMI
+                Affordable <br /> Prices
               </p>
             </div>
             <div className="flex flex-col gap-2  items-center">
@@ -385,13 +492,13 @@ const TravelPackage = () => {
           {/* Price and Discount */}
           <div className="mb-6">
             <p className="text-lg font-semibold">Starts From</p>
-            <div className="flex items-center space-x-2">
-              <span className="text-red-500 line-through text-sm">₹9,000</span>
+            {/* <div className="flex items-center space-x-2">
+              <span className="text-red-500 line-through text-sm">₹35,000</span>
               <span className="bg-green-100 text-green-500 text-xs px-2 py-1 rounded-md">
                 20% Off
               </span>
-            </div>
-            <p className="text-4xl font-bold text-blue-600 mt-2">₹7,200</p>
+            </div> */}
+            <p className="text-4xl font-bold text-blue-600 mt-2">₹35,000</p>
             <p className="text-sm text-gray-500">Per Person</p>
           </div>
 
@@ -403,63 +510,7 @@ const TravelPackage = () => {
           </button>
 
           {/* Availability Table */}
-          <div className="bg-gray-100 h-52 rounded-lg overflow-hidden">
-            {/* Header */}
-            <div className="grid grid-cols-3 bg-blue-600 text-white sticky top-0 gap-2">
-              <div className="p-2 rounded-tl-lg">Batches</div>
-              <div className="p-2">All</div>
-              <div className="p-2 rounded-tr-lg">Nov</div>
-            </div>
-
-            {/* Scrollable content */}
-            <div className="h-40 overflow-y-auto">
-              {[
-                { date: '24 Oct to 30 Oct', status: 'Filling Fast', nov: '-' },
-                {
-                  date: '01 Nov to 04 Nov',
-                  status: 'Filling Fast',
-                  nov: 'Sold Out',
-                },
-                {
-                  date: '04 Oct to 10 Nov',
-                  status: 'Sold Out',
-                  nov: 'Sold Out',
-                },
-                {
-                  date: '04 Oct to 10 Nov',
-                  status: 'Sold Out',
-                  nov: 'Available',
-                },
-                {
-                  date: '04 Oct to 10 Nov',
-                  status: 'Available',
-                  nov: 'Available',
-                },
-              ].map((batch, index) => (
-                <div key={index} className="grid grid-cols-3 border-b gap-2">
-                  <div className="p-2 text-black">{batch.date}</div>
-                  <div
-                    className={`p-2 ${
-                      batch.status === 'Sold Out'
-                        ? 'text-red-500'
-                        : 'text-green-500'
-                    }`}
-                  >
-                    {batch.status}
-                  </div>
-                  <div
-                    className={`p-2 ${
-                      batch.nov === 'Sold Out'
-                        ? 'text-red-500'
-                        : 'text-green-500'
-                    }`}
-                  >
-                    {batch.nov}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <BookingTable />
         </div>
       </div>
       {isModalOpen && <TripModal onClose={closeModal} />}
@@ -954,24 +1005,7 @@ const ImportantPoints = () => {
 }
 
 const Testimonials = () => {
-  const reviews = [
-    {
-      name: 'Priyanka Kashyap',
-      date: 'Dec 25, 2024',
-      rating: 5,
-      review:
-        'I took the Christmas package of Chopta-Tungnath trek through WanderOn. And I really feel grateful that I chose the right travelling community. Our entire trip was very smooth. Our captains - our Heroes Aaliya and Nitin executed everything very efficiently.',
-      avatar: '/path/to/avatar1.jpg',
-    },
-    {
-      name: 'Prachi Singhal',
-      date: 'Dec 25, 2024',
-      rating: 5,
-      review:
-        'We went on a trekking trip to Tungnath and Deoriatal with WanderOn, and it was just amazing. It was my 2nd experience with these guys, and this time again, their planning and arrangements were perfect.',
-      avatar: '/path/to/avatar2.jpg',
-    },
-  ]
+  
 
   return (
     <div className="w-full max-w-screen-xl mx-auto p-6 space-y-8">
@@ -982,61 +1016,57 @@ const Testimonials = () => {
       </div>
 
       {/* Rating Icons */}
-      <div className="flex justify-center space-x-6">
+      <div className="flex justify-around md:justify-center md:space-x-10 items-center py-4">
         {[
-          { icon: '/path/to/google-icon.png', rating: 4.9, reviews: 12300 },
           {
-            icon: '/path/to/tripadvisor-icon.png',
-            rating: 5.0,
-            reviews: 12300,
+            icon: '/images/google_logo.webp',
+            rating: 4.9,
+            reviews: 120,
           },
-          { icon: '/path/to/facebook-icon.png', rating: 4.9, reviews: 12300 },
+          {
+            icon: '/images/trip_logo.webp',
+            rating: 4.9,
+            reviews: 40,
+          },
+          {
+            icon: '/images/facebook_logo.webp',
+            rating: 5.0,
+            reviews: 89,
+          },
         ].map((item, index) => (
-          <div key={index} className="flex flex-col items-center text-center">
-            <Image src={item.icon} width={40} height={40} alt="Rating Icon" />
-            <p className="font-semibold">{item.rating}</p>
-            <p className="text-gray-500">({item.reviews} reviews)</p>
+          <div
+            key={index}
+            className="flex flex-col items-center text-center gap-2 w-24 md:w-28"
+          >
+            <Image
+              src={item.icon}
+              width={100}
+              height={100}
+              alt="Rating Icon"
+              className="w-auto h-12 md:h-16 object-contain"
+            />
+            <p className="font-semibold text-black text-sm md:text-base">
+              {item.rating} 🌟
+            </p>
+            <p className="text-gray-500 text-xs md:text-sm">
+              ({item.reviews} reviews)
+            </p>
           </div>
         ))}
       </div>
 
       {/* Review Cards */}
-      <div className="grid gap-6 md:grid-cols-2">
-        {reviews.map((review, index) => (
-          <div
-            key={index}
-            className="relative flex flex-col bg-white p-6 rounded-lg shadow-lg border border-gray-100 transition-transform hover:scale-105 duration-300"
-          >
-            <div className="flex items-center mb-4">
-              <Image
-                src={review.avatar}
-                width={50}
-                height={50}
-                alt="Avatar"
-                className="w-14 h-14 rounded-full border-2 border-gray-200"
-              />
-              <div className="ml-4">
-                <h4 className="font-semibold text-gray-800">{review.name}</h4>
-                <div className="flex items-center space-x-1 text-yellow-500">
-                  {Array(review.rating)
-                    .fill()
-                    .map((_, i) => (
-                      <span key={i}>★</span>
-                    ))}
-                </div>
-              </div>
-            </div>
-
-            <p className="text-gray-600 italic mb-6">{review.review}</p>
-            <div className="flex justify-between items-center mt-auto">
-              <p className="text-gray-400 text-sm">{review.date}</p>
-              <a href="#" className="text-blue-600 font-semibold text-sm">
-                Read more
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+      <section>
+        <div className="w-full max-w-lg mx-auto p-6 space-y-8">
+          <Image
+            src="/images/reviews/review1.webp"
+            alt="testimonial"
+            width={1000}
+            height={1000}
+            className="w-full h-full object-cover rounded-lg shadow-lg"
+          />
+        </div>
+      </section>
     </div>
   )
 }
@@ -1145,6 +1175,15 @@ const Content = () => {
       </section>
       <section className="my-12 w-full">
         <Itinerary />
+      </section>
+      <section className=" w-full">
+        <Image
+          src="/images/homepage/gallery_font.svg"
+          width={1000}
+          height={1000}
+          alt="gallery"
+          className="w-full h-full object-cover p-4 max-w-screen-xl mx-auto"
+        />
       </section>
       <section className="my-12 w-full hidden md:block">
         <ImagesGrid />

@@ -6,8 +6,7 @@ import Image from 'next/image'
 import { Trips } from '@/data/destinations/details'
 import { CiCircleChevDown } from 'react-icons/ci'
 import { IoClose } from 'react-icons/io5'
-
-
+import { FaCaretDown } from 'react-icons/fa'
 
 const destination = {
   id: 'spiti-high-11d',
@@ -33,158 +32,195 @@ const destination = {
   metaDescription:
     'Ready to explore Spiti Valley in 2024? Join Travel Chapes for an unforgettable journey through stunning landscapes, ancient villages, and rich culture.',
   headline: 'Discover Spiti Valley: The Hidden Himalayan Wonder',
-  description:
-    "Spiti Valley is located between Kunzum La and the lush Lahaul Valley. Some people may call it a mini-Ladakh. It's a very high-altitude desert and is a haven for all nature lovers, adventure maniacs, and culture explorers. Spiti is a truly offbeat escape from crowds as it has Unique Tibetan Buddhist monasteries, picturesque villages, and barren landscapes. The Spiti River breeze past whitewashed mud-brick homes and thriving barley fields, while monasteries cling to cliffs high above. The journey through the valley, including the dramatic Spiti-Kinnaur road trip, is one of the most scenic and thrilling in Asia. /n So it is an ideal escape for those who want to explore an unbelievably serene, unspoiled destination. The magic of Spiti Valley,its rugged beauty and ancient Tibetan culture is waiting for you.",
+  detailDescription: [
+    {
+      title: 'Spiti Valley Winter Expedition',
+      description:
+        'Embark on the adventure of a lifetime with the Spiti Valley Winter Expedition 4x4. This 10N/11D journey is a mesmerizing odyssey through the rugged and snow-clad landscapes of Himachal Pradesh. The expedition kicks off from Delhi, with a comfortable Volvo bus ride to Shimla, where the real thrill awaits.',
+    },
+    {
+      title: '4x4 Adventure awaits you.',
+      description:
+        'In a Mahindra Camper 4x4, youll explore a host of awe-inspiring destinations. From the picturesque Chitkul and Sangla valleys to the ancient Kamru Fort, each day unfolds a new adventure. Traverse serene villages like Nako and Kakti, behold the breathtaking confluence of the Spiti and Sutlej rivers at Khab Sangam, and visit the unique Gue Monastery.',
+    },
+    {
+      title: 'The Best Mountain Locations',
+      description:
+        'The journey continues through charming villages of Rangrik, Lalung, Hikkim, Komic, Langza, Key, Kibber, Tashigang, Chickam, and Langti Waterfall, providing glimpses into the unspoiled beauty of Spiti. Discover ancient treasures in Tabo, experience serenity in Kalpa, pay your respects at the Bhimakali Temple, and create some amazing memories in Badhal.',
+    },
+    {
+      title: 'Shimla Arrival',
+      description:
+        'Finally, the expedition circles back to Shimla, leaving you with memories that will last a lifetime. Get ready for an adventure that seamlessly combines adrenaline, culture,and natural beauty, the way only the Spiti Valley can provide.',
+    },
+  ],
+
   shortItinerary: [
     {
       day: 'Day 1',
-      description: 'Delhi to Jibhi | Overnight Journey',
+      description: 'Delhi to Shimla | Overnight Adventure',
     },
     {
       day: 'Day 2',
-      description: 'Jibhi Arrival | Bike Introduction | Day at Leisure',
+      description: 'Shimla to Chitkul/Sangla - Christmas Eve',
     },
     {
       day: 'Day 3',
-      description: 'Jibhi to Chitkul | Jalori Pass (214 Kms) 8hrs',
+      description: 'Chitkul/Sangla to Nako via Raksham & Kamru Fort',
     },
     {
       day: 'Day 4',
-      description:
-        'Chitkul to Kalpa | sucide point | kinner kailash view (60Kms) 4 hrs',
+      description: 'Nako to Kaza via Gue Monastery & Lingti Waterfall',
     },
     {
       day: 'Day 5',
-      description:
-        'Kalpa to Dhankar | Khab Sangam | Nako Village | Tabo monastery (200 Kms) 8 hrs',
+      description: 'Spiti Sightseeing via Key, Kibber, Chicham, & Tashi Gang',
     },
     {
       day: 'Day 6',
-      description: 'Dhankar to Kaza | Pin Valley | Local Market (40 Kms) 5 hrs',
+      description:
+        'Spiti Sightseeing Day (Hikkim, Komik, Langza, Kakti Village)',
     },
     {
       day: 'Day 7',
-      description:
-        'Spiti Sightseeing Day | Hikkim, Komic, langza | Key Monastery, Chicham Bridge',
+      description: 'Kaza to Tabo via Pin Valley, Dhankar, & Lalung Village',
     },
     {
       day: 'Day 8',
-      description: 'Kaza to Chandratal | Kunzum Pass | (90 Kms)',
+      description: 'Tabo to Kalpa via Reckong Peo',
     },
     {
       day: 'Day 9',
-      description: 'Chandratal to Manali (125 Kms)',
+      description: 'Kalpa to Badhal New Years Eve Bash in Badhal',
     },
     {
       day: 'Day 10',
-      description: 'Manali Leisure Day | Old Manali ',
+      description: 'Badhal to Shimla via Bhimakal',
     },
     {
       day: 'Day 11',
-      description: 'Delhi Arrival | Tour Ends ',
+      description: 'Delhi Arrival | Tour Ends',
     },
   ],
   fullItinerary: [
     {
       day: 'Day 1',
-      title: 'Delhi to Jibhi | Overnight Journey',
+      title: 'Delhi to Shimla | Overnight Journey (350km, Around 8 hours)',
       description: `
-- By around 7:00 PM, we'll gather at the pickup point.
-- The anticipation rises as we introduce the team captains, setting the stage for an exciting journey.
-- Embarking on an overnight adventure to Jibhi awaits us, with Majnu Ka Tila as our tentative pickup point.
+      - We embark on an exciting journey, starting from a meet-up at the designated pickup point at 07:00 PM.
+      - Our trip leader briefs us on what lies ahead.
+      - The adventure begins with an overnight drive to Shimla, offering us ample time to rest up for what is to come.
       `,
     },
     {
       day: 'Day 2',
-      title: 'Jibhi Arrival | Bike Introduction | Day at Leisure',
+      title: 'Shimla to Sangla/Chitkul (240km, Around 9 hours)',
 
       description: `
-- Travelers opting for the Tempo Traveller will disembark at Aut Tunnel, making their way directly to Jibhi.
-- Meanwhile, those on the Bike Trip will head to Manali, where bikes await them for a test run before joining us in Jibhi.
-- Upon arriving at Jibhi, the welcoming embrace of our designated hotel awaits, promising a night of camaraderie, dinner, and relaxation.
-      `,
+- We leave behind the city hustle and head to Sangla/Chitkul, known as the last village of India.
+- En route, we traverse numerous underpasses, treating ourselves to breathtaking vistas of mountains, valleys, and lush meadows.
+- Upon reaching Chitkul, we check into our respective rooms or camps.
+- The evening brings an unforgettable Christmas Eve celebration, complete with bonfire and music.
+`,
     },
     {
       day: 'Day 3',
-      title: '',
+      title:
+        'Chitkul/Sangla to Nako via Raksham and Kamru Fort (150km, Around 5 hours)',
       description: `
-     - Awaking to the melody of birdsong after a serene night, we indulge in a delightful breakfast.
-     - Checking out, we set forth toward Chitkul, the Last Village on the India-China Border, passing through the enchanting Jalori Pass.
-     - Nestling into our respective hotels in Chitkul, we cap off the day with dinner and an overnight stay.
-       `,
+      - Our journey continues as we make our way to Nako, renowned for its Star Lake.
+      - Along the route, keep your eyes peeled for a potential glimpse of the majestic Chitkul Peak.
+      - We indulge in a hike to Kamru Fort, a historical gem in the region.
+      - En route to Nako, we pass through Malling Nala and visit the Nako Monastery.
+      - We settle into our accommodations, enjoy our dinner, and prepare for a restful night in Nako.
+      `,
     },
     {
       day: 'Day 4',
       title:
-        'Chitkul to Kalpa | sucide point | kinner kailash view (60Kms) 4 hrs',
+        'Nako to Kaza Via Gue Monastery and Lingti Waterfall (150km, Around 5 hours)',
       description: `
-     - Following breakfast, our journey unfolds towards Kalpa, famed for its scenic vistas.
-     - En route, Reckong Peo beckons, offering a potential glimpse of the majestic Kinner Kailash Peak if the weather permits.
-     - Kalpa welcomes us with leisure moments, followed by a visit to the ancient Kalpa Monastery and the awe-inspiring Suicide Point.
-     - Dinner and an overnight stay in the tranquil ambiance of Kalpa conclude the day.
+     - We start the day with an early breakfast as we prepare for our journey to Kaza.
+     - Before reaching our destination, we embark on a hike to Chos Khor and walk on the frozen Nako Lake.
+     - Our adventure includes a visit to the intriguing Gue Monastery, where a mummified monk resides.
+    - While traveling from Gue to Kaza, we take a pause to marvel at the Frozen Lingti Waterfall.
+    - Arriving at our accommodations in Kaza, were treated to breathtaking night views.
       `,
     },
     {
       day: 'Day 5',
       title:
-        'Kalpa to Dhankar | Khab Sangam | Nako Village | Tabo monastery (200 Kms) 8 hrs',
+        'Spiti Sightseeing Day (Key, Kibber, Chicham, and Tashigang) (50km, Full Day of Sightseeing)',
       description: `
-      - With an early morning start, we venture toward Dhankar, the historical capital of Spiti Valley.
-      - Halting at Khab, the confluence of Sutlej and Spiti rivers, and passing through Nako Village and Tabo Monastery, our journey unfolds.
-      - Upon reaching Dhankar, we delve into its rich history and culture through an enlightening session with a local guide, followed by dinner and a night's stay.
+      - The day begins with breakfast as we prepare to explore the heart of Spiti.
+      - Our first stop is Key Monastery, a remarkable place of serenity.
+      - We proceed to the awe-inspiring Chicham Bridge, Asias highest bridge, and the charming Kibber Village, known as the Snow Leopards second home.
+      - Our journey also includes a visit to Tashigang, a village with just 33 residents and the capital of Ibex.
+      - We return to Kaza, indulge in a delectable dinner, and then prepare for a cozy night&s rest.
       `,
     },
     {
       day: 'Day 6',
-      title: 'Dhankar to Kaza | Pin Valley | Local Market (40 Kms) 5 hrs',
+      title:
+        'Spiti Sightseeing Day (Hikkim, Komik, Langza, and Kakti Village) (60km, Full Day of Sightseeing)',
       description: `
-- After a nourishing breakfast, we explore the wonders of Dhankar Monastery and Fort, offering mesmerizing valley views.
-- Journeying towards Kaza, our route includes a visit to Mud village in Pin Valley.
-- Upon arriving in Kaza, we check into our stay, inviting travelers to partake in the delightful cafe scene in Kaza Market.
-- The day concludes with dinner and an overnight stay in Kaza.    `,
+- After breakfast, were all set for another day of exploration. 
+- Our adventures take us to Hikkim, home to the worlds highest post office.
+- We then drive to Komic Village, one of the worlds highest motorable village.
+- A visit to Langza Village offers a chance to admire its iconic Buddha statue.
+- Next is Kakti Village, the worlds smallest village, housing just one family of five, providing an intimate glimpse into the regions unique way of life.
+- We return to Kaza, savor dinner, & enjoy a comfortable nights sleep.
+`,
     },
+
     {
       day: 'Day 7',
       title:
-        'Spiti Sightseeing Day | Hikkim, Komic, langza | Key Monastery, Chicham Bridge',
+        'Kaza to Tabo via Dhankar, Pin Valley, and Lalung Village (70km, Around 3 hours',
       description: `
-- Post breakfast, our exploration takes us to Key Monastery, Chicham Bridge, and the record-holding Hikkim post office.
-- Continuing our adventure, we visit Komic village, Langza, and the captivating Buddha statue atop a hill.
-- Returning to Kaza, we wrap up the day with dinner and an overnight stay, reveling in the day's discoveries.
- `,
-    },
-    {
-      day: 'Day 8',
-      title: 'Kaza to Chandratal | Kunzum Pass | (90 Kms)',
-      description: `
-- After breakfast, we set out for the pristine Chandratal, a crescent-shaped lake resembling the moon, traversing the iconic Kunzum Pass.
-- Upon reaching our designated campsites, we check in, spending leisure time by the enchanting Chandratal Lake.
-- The evening brings dinner, creating lasting memories amidst the natural beauty, or an alternative stay if weather conditions close the roads to Chandratal.
-    `,
-    },
-    {
-      day: 'Day 9',
-      title: 'Chandratal to Manali (125 Kms)',
-      description: `
-- Checking out from our campsites, we head to Manali via the iconic Atal Tunnel.
-- On reaching Manali, we bid farewell to our bikes and settle into our designated stay, followed by dinner and a night's rest.
+- After breakfast, we head to Dhankar, which is famous for its ancient Fort, and spend time exploring its historical treasures.
+- Our journey continues to Pin Valley, where were advised to bring warm clothing as Lalung Village can get chilly in the evenings.
+- Arrangements for accommodations in Tabo have been made in advance for our convenience.
 `,
     },
     {
-      day: 'Day 10',
-      title: 'Manali Leisure Day | Old Manali',
+      day: 'Day 8',
+      title: 'Tabo to Kalpa via Reckong Peo (165km, Around 5 hours)',
       description: `
-- A leisurely morning breakfast paves the way for a day at leisure.
-- Travelers are encouraged to explore the vibrant cafe culture, local market, and Mall Road.
-- As evening falls, an overnight bus journey from Manali to Delhi awaits, concluding our time in Manali    `,
+      - We begin the day with breakfast and then immerse our selves in the breathtaking views of the Tabo mountains.
+     - Prior to setting off, we explore Tabo Monastery and shop for unique souvenirs in Monastery Market.
+     - We conclude the day with an overnight stay in Kalpa.
+     `,
+    },
+    {
+      day: 'Day 9',
+      title: 'Kalpa to Badhal via Kalpa Suicide Point (90km, Around 3 hours)',
+      description: `
+- After a delicious breakfast, we prepare to visit view points like Kalpa Suicide Point, following safety guidelines to ensure an enjoyable experience.
+- We savor the serene surroundings and appreciate the scenic beauty, always showing respect for the local flora and fauna by avoiding littering.
+- As we embark on our journey to Badhal, were in for a memorable New Years party.
+- Dinner is served, and we spend the night in Badhal.
+      `,
+    },
+    {
+      day: 'Day 10',
+      title: 'Badhal to Shimla via Bhima Devi Temple  (157km, Around 6 hours)',
+      description: `
+- After a fulfilling breakfast, we have another opportunity to take in the stunning views of Bhima Devi temple enroute.
+- We enjoy the serene atmosphere and the captivating scenic beauty while respecting the local environment.
+- Our journey leads us back to Shimla.
+- Catch an overnight volvo bus back to delhi.
+      `,
     },
     {
       day: 'Day 11',
       title: 'Delhi Arrival | Tour Ends',
       description: `
-      - Reaching Delhi, we part ways, cherishing the camaraderie forged during this unforgettable journey.
-      - The echoes of our shared adventures linger as the tour gracefully comes to an end.
-    `,
+      - We arrive in Delhi early in the morning, bringing with us cherished memories & unforgettable experiences.
+      - Its not just the end of the tour; its the beginning of sharing the incredible stories & moments weve created.
+      - Get ready to relive and recount these adventures with your friends, and stay tuned for more epic journeys to come!
+
+      `,
     },
   ],
 
@@ -306,43 +342,76 @@ const destination = {
   ],
 }
 
-const DescriptionWithReadMore = ({ description }) => {
+const batch = [
+  {
+    date: '23 Dec - 2 Jan',
+    transports: [
+      {
+        type: 'Volvo Bus/4x4 Vehicle',
+
+        costTripleSharing: '35000/-',
+        costDoubleSharing: '38000/-',
+      },
+    ],
+  },
+]
+
+const DescriptionWithReadMore = () => {
   const [isExpanded, setIsExpanded] = useState(false)
 
-  // Truncate the text to 200 characters
-  const truncatedDescription = description.slice(0, 200)
+  const handleToggleExpand = () => {
+    setIsExpanded(!isExpanded)
+  }
 
-  // Display either the full or truncated description
-  const displayText =
-    isExpanded || description.length <= 200 ? description : truncatedDescription
-
-  return (
-    <div>
-      <p className="text-black">
-        {displayText.split('/n').map((paragraph, index) => (
-          <React.Fragment key={index}>
-            {index > 0 && <br />} {/* Add a line break between paragraphs */}
-            {paragraph}
-          </React.Fragment>
-        ))}
-        {!isExpanded && description.length > 200 && (
-          <span className="text-black">...</span>
+  // Render when `detailDescription` exists
+  if (
+    destination.detailDescription &&
+    destination.detailDescription.length > 0
+  ) {
+    const firstDetail = destination.detailDescription[0]
+    const truncatedDetail = `${
+      firstDetail.title
+    }: ${firstDetail.description.slice(0, 200)}...`
+    const fullDetail = destination.detailDescription.map((item, index) => (
+      <div key={index} className="mb-4">
+        {item.title && (
+          <h3 className="font-semibold text-xl text-black mb-2">
+            {item.title}
+          </h3>
         )}
-        {description.length > 200 && (
-          <span
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="text-blue-500 hover:text-blue-700 mt-2 cursor-pointer ml-4 whitespace-nowrap"
-          >
-            {isExpanded ? 'Read Less' : 'Read More'}
-          </span>
+        <p className="text-black">{item.description}</p>
+      </div>
+    ))
+
+    return (
+      <div>
+        {!isExpanded && (
+          <p className="text-black">
+            {truncatedDetail}
+            <span
+              onClick={handleToggleExpand}
+              className="text-blue-500 hover:text-blue-700 cursor-pointer ml-2"
+            >
+              Read More
+            </span>
+          </p>
         )}
-      </p>
+        {isExpanded && (
+          <div>
+            {fullDetail}
+            <span
+              onClick={handleToggleExpand}
+              className="text-blue-500 hover:text-blue-700 cursor-pointer mt-2 block"
+            >
+              Read Less
+            </span>
+          </div>
+        )}
+      </div>
+    )
+  }
 
-      {/* Show "Read More" button */}
-
-      {/* Show "..." when description is truncated */}
-    </div>
-  )
+  return null
 }
 
 const TripModal = ({ onClose }) => {
@@ -523,6 +592,103 @@ Number of Travelers: ${formData.travelers}`
   )
 }
 
+const BookingTable = () => {
+  const [sharingType, setSharingType] = useState('triple')
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen)
+
+  const handleSelection = (type) => {
+    setSharingType(type)
+    setDropdownOpen(false)
+  }
+
+  return (
+    <div>
+      {/* Main Section */}
+      <div className="bg-gray-100 h-56 mb-4 rounded-lg overflow-hidden">
+        {/* Header
+        {details?.optionSec && (
+          <div className="text-black text-lg p-2">{details?.route}</div>
+        )} */}
+        <div className="flex bg-blue-600 text-white sticky top-0 gap-2 text-sm w-full">
+          {/* Batches */}
+          <div className="flex-1 p-2 rounded-tl-lg flex justify-start items-center">
+            Batches
+          </div>
+
+          {/* Mode of Vehicle */}
+          <div className="flex-1 p-2 whitespace-nowrap flex justify-start items-center">
+            Mode of Vehicle
+          </div>
+
+          {/* Price with Custom Dropdown */}
+          <div className="flex-1 p-2 whitespace-nowrap relative">
+            <div
+              className="bg-blue-600 text-white px-2 py-1 rounded-md flex items-center cursor-pointer justify-between"
+              onClick={toggleDropdown}
+            >
+              {sharingType === 'triple' ? 'Triple Sharing' : 'Double Sharing'}
+              <FaCaretDown className="ml-2" />
+            </div>
+            {dropdownOpen && (
+              <div className="absolute bg-white text-black mt-2 rounded-md shadow-md w-full z-10">
+                <div
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                  onClick={() => handleSelection('triple')}
+                >
+                  Triple Sharing
+                </div>
+                <div
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                  onClick={() => handleSelection('double')}
+                >
+                  Double Sharing
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Scrollable content */}
+        <div className="h-48 overflow-y-auto text-sm">
+          {batch.map((tour, index) => (
+            <div
+              key={index}
+              className="grid grid-cols-4 text-black border-b gap-2 md:gap-4"
+            >
+              <div className="p-2 col-span-1 text-black flex flex-col items-center">
+                <p>{tour.date}</p>
+                <p className="text-orange-500 whitespace-nowrap text-xs md:text-sm bg-orange-200 w-fit px-2 rounded md:rounded-md mt-2">
+                  Filling Fast
+                </p>
+              </div>
+              <div className="p-2 col-span-3 text-black">
+                {tour.transports.map((vehicle, index) => (
+                  <div
+                    key={index}
+                    className="grid grid-cols-2 text-black gap-2"
+                  >
+                    <div className="mb-2 w-full flex justify-start items-center">
+                      {vehicle.type}
+                    </div>
+                    <div className="mb-2 w-full flex justify-center items-center">
+                      ₹
+                      {sharingType === 'triple'
+                        ? vehicle.costTripleSharing
+                        : vehicle.costDoubleSharing}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const TravelPackage = ({ destination }) => {
   const [isModalOpen, setModalOpen] = useState(false)
   const [randomImages, setRandomImages] = useState([])
@@ -565,25 +731,9 @@ const TravelPackage = ({ destination }) => {
         <h2 className="text-3xl font-semibold mb-4 text-black">
           {destination.title} Overview
         </h2>
-        {/* If description exists, render the DescriptionWithReadMore component */}
-        {destination.description && (
-          <DescriptionWithReadMore description={destination.description} />
-        )}
-
-        {/* If detailDescription exists, render it as a list of titles and descriptions */}
-        {destination.detailDescription &&
-          destination.detailDescription.length > 0 && (
-            <div>
-              {destination.detailDescription.map((item, index) => (
-                <div key={index} className="mb-4">
-                  <h3 className="font-semibold text-xl text-black">
-                    {item.title}
-                  </h3>
-                  <DescriptionWithReadMore description={item.description} />
-                </div>
-              ))}
-            </div>
-          )}
+        <section className="my-12">
+          <DescriptionWithReadMore destination={destination} />
+        </section>
       </div>
       {/* Left Section */}
       <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -610,41 +760,37 @@ const TravelPackage = ({ destination }) => {
           <div className="grid grid-cols-2 gap-4 mb-6 text-center">
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
               <p className="text-sm font-medium text-gray-800">Pickup & Drop</p>
-              <p className="text-blue-600">Dehradun & Dehradun</p>
+              <p className="text-blue-600">Delhi & Delhi</p>
             </div>
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
               <p className="text-sm font-medium text-gray-800">Category</p>
-              <p className="text-blue-600">Treks</p>
+              <p className="text-blue-600">Special Flagship Trip</p>
             </div>
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
               <p className="text-sm font-medium text-gray-800">Duration</p>
-              <p className="text-blue-600">5 Days</p>
+              <p className="text-blue-600">11D & 10N</p>
             </div>
+
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
-              <p className="text-sm font-medium text-gray-800">Altitude</p>
-              <p className="text-blue-600">12500 Ft.</p>
-            </div>
-            <div className="bg-gray-100 rounded-lg p-2 md:p-4">
-              <p className="text-sm font-medium text-gray-800">Difficulty</p>
-              <p className="text-blue-600">Easy to Moderate</p>
-            </div>
-            <div className="bg-gray-100 rounded-lg p-2 md:p-4">
-              <p className="text-sm font-medium text-gray-800">Trek Length</p>
-              <p className="text-blue-600">20 Km.</p>
+              <p className="text-sm font-medium text-gray-800">Age Group</p>
+              <p className="text-blue-600">20-40</p>
             </div>
           </div>
 
           {/* Inclusions */}
-          <p className="my-4 ">Inclusions</p>
-          <div className="flex space-x-4 mb-6">
-            <div className="bg-gray-700 p-2 rounded-md text-center">
+          <p className="my-4 text-black">Inclusions</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div className="bg-yellow-600 p-4 flex justify-center items-center rounded-md text-center text-sm min-h-[80px]">
               <p>Meals</p>
             </div>
-            <div className="bg-gray-700 p-2 rounded-md text-center">
+            <div className="bg-yellow-600 p-4 flex justify-center items-center rounded-md text-center text-sm min-h-[80px]">
               <p>Stays</p>
             </div>
-            <div className="bg-gray-700 p-2 rounded-md text-center">
+            <div className="bg-yellow-600 p-4 flex justify-center items-center rounded-md text-center text-sm min-h-[80px]">
               <p>Transfers</p>
+            </div>
+            <div className="bg-yellow-600 p-4 flex justify-center items-center rounded-md text-center text-sm min-h-[80px]">
+              <p>Qualified Captains</p>
             </div>
           </div>
 
@@ -660,7 +806,9 @@ const TravelPackage = ({ destination }) => {
             </div>
             <div className="flex flex-col gap-2  items-center">
               <div className="bg-blue-100 p-2 w-16 h-16 flex justify-center items-center rounded-full">
-                <p className="text-3xl">💳</p>
+                <p className="text-3xl flex justify-center items-center mb-3">
+                  💳
+                </p>
               </div>
               <p className="text-sm">
                 Flexible <br /> Cancellation
@@ -671,7 +819,7 @@ const TravelPackage = ({ destination }) => {
                 <p className="text-3xl">💸</p>
               </div>
               <p className="text-sm">
-                Easy <br /> EMI
+                Affordable <br /> Prices
               </p>
             </div>
             <div className="flex flex-col gap-2  items-center">
@@ -697,24 +845,8 @@ const TravelPackage = ({ destination }) => {
                 20% Off
               </span>
             </div> */}
-            <p className="text-4xl font-bold text-blue-600 mt-2">
-              ₹{details?.minPrice}{' '}
-              {details?.optionSec && (
-                <span className="text-sm text-black font-normal">
-                  /{details.route}
-                </span>
-              )}
-            </p>
-            {details?.optionSec && (
-              <p className="text-4xl font-bold text-blue-600 mt-2">
-                ₹{details?.optionSec.minPriceSec}{' '}
-                {details?.optionSec && (
-                  <span className="text-sm text-black font-normal">
-                    /{details?.optionSec.routeSec}
-                  </span>
-                )}
-              </p>
-            )}
+            <p className="text-4xl font-bold text-blue-600 mt-2">₹35,000</p>
+
             <p className="text-sm text-gray-500">Per Person</p>
           </div>
 
@@ -727,112 +859,7 @@ const TravelPackage = ({ destination }) => {
           </button>
 
           {/* Availability Table */}
-          <div className="bg-gray-100 h-56 mb-4 rounded-lg overflow-hidden">
-            {/* Header */}
-            {details?.optionSec && (
-              <div className="text-black text-lg p-2">{details?.route}</div>
-            )}
-            <div className="grid grid-cols-4 bg-blue-600 text-white sticky top-0 gap-2 text-sm">
-              <div className="p-2 rounded-tl-lg">Batches</div>
-              <div className="p-2 whitespace-nowrap">Mode of Vehicle</div>
-              <div className="p-2 whitespace-nowrap">Triple Sharing</div>
-              <div className="p-2 rounded-tr-lg whitespace-nowrap">
-                Double Sharing
-              </div>
-            </div>
-
-            {/* Scrollable content */}
-            <div className="h-48 overflow-y-auto text-sm">
-              {details &&
-                details.batch.map((tour, index) => (
-                  <div
-                    key={index}
-                    className="grid grid-cols-4  text-black border-b gap-4"
-                  >
-                    <div className="p-2 col-span-1 text-black flex flex-col items-center">
-                      <p>{tour.date}</p>
-                      <p className="text-orange-500 text-sm bg-orange-200 w-fit px-2 rounded-md mt-2">
-                        Filling Fast
-                      </p>
-                    </div>
-                    <div className="p-2 col-span-3 text-black">
-                      {tour.transports.map((vehicle, index) => {
-                        return (
-                          <div
-                            key={index}
-                            className="grid grid-cols-3 text-black gap-2"
-                          >
-                            <div className="mb-2  w-full flex justify-start items-center">
-                              {vehicle.type}
-                            </div>
-                            <div className="mb-2  w-full flex justify-center items-center">
-                              ₹{vehicle.costTripleSharing}
-                            </div>
-                            <div className="mb-2  w-full flex justify-center items-center">
-                              ₹{vehicle.costDoubleSharing}
-                            </div>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
-          {details?.optionSec && (
-            <div className="bg-gray-100 h-56 mt-4 rounded-lg overflow-hidden">
-              {/* Header */}
-              {details?.optionSec && (
-                <div className="text-black text-lg p-2">
-                  {details?.optionSec.routeSec}
-                </div>
-              )}
-              <div className="grid grid-cols-4 bg-blue-600 text-white sticky top-0 gap-2 text-sm">
-                <div className="p-2 rounded-tl-lg">Batches</div>
-                <div className="p-2">Mode of Vehicle</div>
-                <div className="p-2">Triple Sharing</div>
-                <div className="p-2 rounded-tr-lg">Double Sharing</div>
-              </div>
-
-              {/* Scrollable content */}
-              <div className="h-40 overflow-y-auto text-sm">
-                {details?.optionSec &&
-                  details.optionSec.batchSec.map((tour, index) => (
-                    <div
-                      key={index}
-                      className="grid grid-cols-4  text-black border-b gap-4"
-                    >
-                      <div className="p-2 col-span-1 text-black flex flex-col items-center">
-                        <p>{tour.date}</p>
-                        <p className="text-orange-500 text-sm bg-orange-200 w-fit px-2 rounded-md mt-2">
-                          Filling Fast
-                        </p>
-                      </div>
-                      <div className="p-2 col-span-3 text-black">
-                        {tour.transports.map((vehicle, index) => {
-                          return (
-                            <div
-                              key={index}
-                              className="grid grid-cols-3 text-black gap-2"
-                            >
-                              <div className="mb-2  w-full flex justify-start items-center">
-                                {vehicle.type}
-                              </div>
-                              <div className="mb-2  w-full flex justify-center items-center">
-                                ₹{vehicle.costTripleSharing}
-                              </div>
-                              <div className="mb-2  w-full flex justify-center items-center">
-                                ₹{vehicle.costDoubleSharing}
-                              </div>
-                            </div>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  ))}
-              </div>
-            </div>
-          )}
+          <BookingTable />
         </div>
       </div>
       {isModalOpen && <TripModal onClose={closeModal} />}
@@ -1042,25 +1069,6 @@ const ImportantPoints = ({ points }) => {
 }
 
 const Testimonials = () => {
-  const reviews = [
-    {
-      name: 'Priyanka Kashyap',
-      date: 'Dec 25, 2024',
-      rating: 5,
-      review:
-        'I took the Christmas package of Chopta-Tungnath trek through WanderOn. And I really feel grateful that I chose the right travelling community. Our entire trip was very smooth. Our captains - our Heroes Aaliya and Nitin executed everything very efficiently.',
-      avatar: '/path/to/avatar1.jpg',
-    },
-    {
-      name: 'Prachi Singhal',
-      date: 'Dec 25, 2024',
-      rating: 5,
-      review:
-        'We went on a trekking trip to Tungnath and Deoriatal with WanderOn, and it was just amazing. It was my 2nd experience with these guys, and this time again, their planning and arrangements were perfect.',
-      avatar: '/path/to/avatar2.jpg',
-    },
-  ]
-
   return (
     <div className="w-full max-w-screen-xl mx-auto p-6 space-y-8">
       {/* Testimonials Header */}
@@ -1070,61 +1078,57 @@ const Testimonials = () => {
       </div>
 
       {/* Rating Icons */}
-      <div className="flex justify-center space-x-6">
+      <div className="flex justify-around md:justify-center md:space-x-10 items-center py-4">
         {[
-          { icon: '/path/to/google-icon.png', rating: 4.9, reviews: 12300 },
           {
-            icon: '/path/to/tripadvisor-icon.png',
-            rating: 5.0,
-            reviews: 12300,
+            icon: '/images/google_logo.webp',
+            rating: 4.9,
+            reviews: 120,
           },
-          { icon: '/path/to/facebook-icon.png', rating: 4.9, reviews: 12300 },
+          {
+            icon: '/images/trip_logo.webp',
+            rating: 4.9,
+            reviews: 40,
+          },
+          {
+            icon: '/images/facebook_logo.webp',
+            rating: 5.0,
+            reviews: 89,
+          },
         ].map((item, index) => (
-          <div key={index} className="flex flex-col items-center text-center">
-            <Image src={item.icon} width={40} height={40} alt="Rating Icon" />
-            <p className="font-semibold">{item.rating}</p>
-            <p className="text-gray-500">({item.reviews} reviews)</p>
+          <div
+            key={index}
+            className="flex flex-col items-center text-center gap-2 w-24 md:w-28"
+          >
+            <Image
+              src={item.icon}
+              width={100}
+              height={100}
+              alt="Rating Icon"
+              className="w-auto h-12 md:h-16 object-contain"
+            />
+            <p className="font-semibold text-black text-sm md:text-base">
+              {item.rating} 🌟
+            </p>
+            <p className="text-gray-500 text-xs md:text-sm">
+              ({item.reviews} reviews)
+            </p>
           </div>
         ))}
       </div>
 
       {/* Review Cards */}
-      <div className="grid gap-6 md:grid-cols-2">
-        {reviews.map((review, index) => (
-          <div
-            key={index}
-            className="relative flex flex-col bg-white p-6 rounded-lg shadow-lg border border-gray-100 transition-transform hover:scale-105 duration-300"
-          >
-            <div className="flex items-center mb-4">
-              <Image
-                src={review.avatar}
-                width={50}
-                height={50}
-                alt="Avatar"
-                className="w-14 h-14 rounded-full border-2 border-gray-200"
-              />
-              <div className="ml-4">
-                <h4 className="font-semibold text-gray-800">{review.name}</h4>
-                <div className="flex items-center space-x-1 text-yellow-500">
-                  {Array(review.rating)
-                    .fill()
-                    .map((_, i) => (
-                      <span key={i}>★</span>
-                    ))}
-                </div>
-              </div>
-            </div>
-
-            <p className="text-gray-600 italic mb-6">{review.review}</p>
-            <div className="flex justify-between items-center mt-auto">
-              <p className="text-gray-400 text-sm">{review.date}</p>
-              <a href="#" className="text-blue-600 font-semibold text-sm">
-                Read more
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+      <section>
+        <div className="w-full max-w-lg mx-auto p-6 space-y-8">
+          <Image
+            src="/images/reviews/review1.webp"
+            alt="testimonial"
+            width={1000}
+            height={1000}
+            className="w-full h-full object-cover rounded-lg shadow-lg"
+          />
+        </div>
+      </section>
     </div>
   )
 }
@@ -1230,13 +1234,13 @@ const Page = () => {
           fullItinerary={destination.fullItinerary}
         />
       </section>
-      <section className="my-12 w-full">
+      <section className=" w-full">
         <Image
           src="/images/homepage/gallery_font.svg"
           width={1000}
           height={1000}
           alt="gallery"
-          className="w-full h-full object-cover p-4 max-w-screen-xl"
+          className="w-full h-full object-cover p-4 max-w-screen-xl mx-auto"
         />
       </section>
       <section className="my-12 w-full hidden md:block">

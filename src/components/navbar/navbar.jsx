@@ -71,6 +71,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
+          {/* Logo Section */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex justify-center items-center">
               <Image
@@ -78,70 +79,51 @@ const Navbar = () => {
                 alt=""
                 width={1000}
                 height={1000}
-                className="h-14  w-auto "
+                className="h-14 w-auto"
                 priority
               />
-              <h1 className="font-bold text-lg text-yellow-500 hidden md:block">
+              <h1 className="font-bold text-lg text-yellow-500 hidden sm:block">
                 TRAVEL CHAPES
               </h1>
             </Link>
           </div>
 
-          <div className="hidden md:flex space-x-4 lg:space-x-6">
+          {/* Links Section */}
+          <div className="hidden lg:flex space-x-4 lg:space-x-6">
             <Link
               href="/christmas-new-year-special"
               className={`border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
-             hover:bg-red-500 hover:text-white active:scale-95 ${
-               isChristmasPage ? 'animate-glow bg-red-500' : ''
-             }`}
+        hover:bg-red-500 hover:text-white active:scale-95 ${
+          isChristmasPage ? 'animate-glow bg-red-500' : ''
+        }`}
             >
               X Max & New Year
             </Link>
-
-            <style jsx global>{`
-              @keyframes glow {
-                0%,
-                100% {
-                  box-shadow: 0 0 10px rgba(255, 0, 0, 0.6),
-                    0 0 20px rgba(255, 255, 0, 0.6),
-                    0 0 30px rgba(255, 0, 0, 0.6);
-                }
-                50% {
-                  box-shadow: 0 0 20px rgba(255, 0, 0, 0.8),
-                    0 0 30px rgba(255, 255, 0, 0.8),
-                    0 0 40px rgba(255, 0, 0, 0.8);
-                }
-              }
-
-              .animate-glow {
-                animation: glow 1.5s infinite alternate;
-              }
-            `}</style>
-
             <Link
               href="/#backpacking"
               className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
-             hover:bg-gray-300 hover:text-black active:scale-95"
+        hover:bg-gray-300 hover:text-black active:scale-95"
             >
               Backpacking Trips
             </Link>
             <Link
               href="/#treks"
               className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
-             hover:bg-gray-300 hover:text-black active:scale-95"
+        hover:bg-gray-300 hover:text-black active:scale-95"
             >
               Treks
             </Link>
             <Link
               href="/#weekend-fun"
               className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
-             hover:bg-gray-300 hover:text-black active:scale-95"
+        hover:bg-gray-300 hover:text-black active:scale-95"
             >
               Weekend Fun
             </Link>
           </div>
 
-          <div className="flex space-x-4">
+          {/* Social Icons Section */}
+          <div className="flex space-x-4 items-center">
             <a
               href="https://wa.me/+918650500202"
               target="_blank"
@@ -150,8 +132,6 @@ const Navbar = () => {
             >
               <FaWhatsapp className="h-6 w-6 text-gray-100" />
             </a>
-
-            {/* Call Button */}
             <a
               href="tel:+918851629108"
               target="_blank"
@@ -160,8 +140,6 @@ const Navbar = () => {
             >
               <IoIosCall className="h-6 w-6 text-gray-100" />
             </a>
-
-            {/* Email Button */}
             <a
               href="mailto:contact@travelchapes.com"
               target="_blank"
@@ -171,9 +149,10 @@ const Navbar = () => {
               <IoMailOutline className="h-6 w-6 text-gray-100" />
             </a>
 
+            {/* Hamburger Menu */}
             <button
               onClick={toggleMenu}
-              className="menu-button focus:outline-none md:hidden"
+              className="menu-button focus:outline-none lg:hidden"
             >
               {isMenuOpen ? (
                 <IoClose className="h-6 w-6 text-gray-100" />
@@ -183,6 +162,42 @@ const Navbar = () => {
             </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="flex flex-col space-y-4 mt-4 lg:hidden">
+            <Link
+              href="/christmas-new-year-special"
+              className={`border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
+        hover:bg-red-500 hover:text-white active:scale-95 ${
+          isChristmasPage ? 'animate-glow bg-red-500' : ''
+        }`}
+            >
+              X Max & New Year
+            </Link>
+            <Link
+              href="/#backpacking"
+              className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
+        hover:bg-gray-300 hover:text-black active:scale-95"
+            >
+              Backpacking Trips
+            </Link>
+            <Link
+              href="/#treks"
+              className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
+        hover:bg-gray-300 hover:text-black active:scale-95"
+            >
+              Treks
+            </Link>
+            <Link
+              href="/#weekend-fun"
+              className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
+        hover:bg-gray-300 hover:text-black active:scale-95"
+            >
+              Weekend Fun
+            </Link>
+          </div>
+        )}
       </div>
 
       {isMenuOpen && (

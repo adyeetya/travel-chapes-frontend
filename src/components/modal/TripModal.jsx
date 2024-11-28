@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect  } from 'react'
+import { useState, useEffect } from 'react'
 import { IoClose } from 'react-icons/io5'
 import Image from 'next/image'
 const TripModal = ({ onClose }) => {
@@ -7,7 +7,7 @@ const TripModal = ({ onClose }) => {
     name: '',
     destination: '',
     phone: '',
-    email:'',
+    email: '',
     travelers: '',
   })
   useEffect(() => {
@@ -177,13 +177,13 @@ Number of Travelers: ${formData.travelers}`
         {/* Right Image Section */}
         <div className="md:w-1/2 h-56 md:h-full relative">
           <Image
-            src="/images/homepage/modalimg.jpg" // Replace with your image URL
+            src="/images/homepage/automodal.webp" // Replace with your image URL
             alt="Trip Preview"
             width={1000}
             height={1000}
             className="object-cover w-full h-full rounded-lg md:rounded-l-none md:rounded-r-lg"
           />
-          <div className="absolute bottom-0 w-full p-4 bg-black bg-opacity-50 text-white text-center">
+          <div className="absolute bottom-0 w-full p-4 md:ml-1 bg-black bg-opacity-50 text-white text-center">
             <h3 className="text-sm md:text-lg font-semibold">
               We are a Family
             </h3>

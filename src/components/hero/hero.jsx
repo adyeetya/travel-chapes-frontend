@@ -7,7 +7,7 @@ import {
   BrandsCarouselContent,
   BrandsCarouselItem,
 } from '../../components/ui/bannerCarousel'
-import { destinations } from '@/data/destinations/destinations'
+// import { destinations } from '@/data/destinations/destinations'
 import { IoIosSearch } from 'react-icons/io'
 const webBanners = [
   { id: 1, image: '/images/homepage/banner1.webp' },
@@ -21,26 +21,39 @@ const phoneBanners = [
   { id: 3, image: '/images/homepage/phonebanner3.webp' },
   { id: 4, image: '/images/homepage/phonebanner4.webp' },
 ]
+
+const debounce = (func, delay) => {
+  let timer
+  return (...args) => {
+    clearTimeout(timer)
+    timer = setTimeout(() => func(...args), delay)
+  }
+}
 const Banner = () => {
   const [isInView, setIsInView] = useState(true)
+  const [visibleBanners, setVisibleBanners] = useState(webBanners.slice(0, 2))
   const bannerRef = useRef(null)
 
   useEffect(() => {
-    const handleScroll = () => {
+    // Set a timer to update visible banners after 2 seconds
+    const timer = setTimeout(() => {
+      setVisibleBanners(webBanners) // Show all banners
+    }, 2000)
+
+    // Cleanup the timer when the component unmounts or the effect re-runs
+    return () => clearTimeout(timer)
+  }, [webBanners])
+
+  useEffect(() => {
+    const handleScroll = debounce(() => {
       if (bannerRef.current) {
         const { top, bottom } = bannerRef.current.getBoundingClientRect()
-        const inView = top < window.innerHeight && bottom >= 0
-        setIsInView(inView)
+        setIsInView(top < window.innerHeight && bottom >= 0)
       }
-    }
+    }, 100)
 
-    // Set up the scroll listener
     window.addEventListener('scroll', handleScroll)
-
-    // Clean up listener on unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
@@ -54,7 +67,7 @@ const Banner = () => {
         className="w-full"
       >
         <BrandsCarouselContent className="">
-          {webBanners.map((card) => (
+          {visibleBanners.map((card) => (
             <BrandsCarouselItem key={card.id} className="basis-full">
               <div className="relative w-full">
                 <Image
@@ -76,24 +89,29 @@ const Banner = () => {
 
 const PhoneBanner = () => {
   const [isInView, setIsInView] = useState(true)
+  const [visibleBanners, setVisibleBanners] = useState(webBanners.slice(0, 2))
   const bannerRef = useRef(null)
 
   useEffect(() => {
-    const handleScroll = () => {
+    // Set a timer to update visible banners after 2 seconds
+    const timer = setTimeout(() => {
+      setVisibleBanners(webBanners) // Show all banners
+    }, 2000)
+
+    // Cleanup the timer when the component unmounts or the effect re-runs
+    return () => clearTimeout(timer)
+  }, [webBanners])
+
+  useEffect(() => {
+    const handleScroll = debounce(() => {
       if (bannerRef.current) {
         const { top, bottom } = bannerRef.current.getBoundingClientRect()
-        const inView = top < window.innerHeight && bottom >= 0
-        setIsInView(inView)
+        setIsInView(top < window.innerHeight && bottom >= 0)
       }
-    }
+    }, 100)
 
-    // Set up the scroll listener
     window.addEventListener('scroll', handleScroll)
-
-    // Clean up listener on unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
@@ -107,7 +125,7 @@ const PhoneBanner = () => {
         className="w-full h-screen"
       >
         <BrandsCarouselContent className="">
-          {phoneBanners.map((card) => (
+          {visibleBanners.map((card) => (
             <BrandsCarouselItem key={card.id} className="basis-full">
               <div className="relative w-full">
                 <Image
@@ -131,6 +149,17 @@ const Hero = () => {
   // console.log(product)
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState([])
+  const [destinations, setDestinations] = useState(null)
+
+  useEffect(() => {
+    // Asynchronously load destinations data
+    const loadDestinations = async () => {
+      const { destinations } = await import('@/data/destinations/destinations')
+      setDestinations(destinations)
+    }
+
+    loadDestinations()
+  }, [])
 
   // Function to handle the search
   const handleSearch = (event) => {
@@ -229,7 +258,7 @@ const Hero = () => {
         {/* explore products */}
 
         <div className="absolute bottom-0 left-0 md:ml-auto flex items-center w-full h-16 mx-auto border-none shadow-none">
-          <div className="z-50 flex flex-1 w-full md:w-[calc(100vw-4rem)] shadow-none justify-end items-center h-16 bg-white rounded-bl-none rounded-[2rem] p-2">
+          <div className="z-50 flex flex-1 w-[calc(100vw-4rem)] shadow-none justify-end items-center h-16 bg-white rounded-bl-none rounded-[2rem] p-2">
             <div className="flex flex-col w-[18rem] gap-1">
               {/* Circles with Background Images */}
               <div className="z-50 flex flex-row justify-center gap-3 items-center w-full ">

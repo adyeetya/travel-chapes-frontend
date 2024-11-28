@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
-        <TripModalWrapper />
+        {/* <TripModalWrapper /> */}
       </body>
     </html>
   )

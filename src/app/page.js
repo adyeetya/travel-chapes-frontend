@@ -9,6 +9,7 @@ import About from '@/components/aboutSection/About'
 import InternationalTours from '@/components/internationalTours/InternationalTours'
 import Feedback from '@/components/feedback/Feedback'
 import BlogsSection from '@/components/blogsSections/BlogsSection'
+import TripModalWrapper from '@/components/modal/ModalWrapper'
 import { destinations } from '@/data/destinations/destinations'
 export default function Home() {
   return (
@@ -27,7 +28,7 @@ export default function Home() {
       </section>
       <About />
       <InternationalTours />
-      {/* <Feedback /> */}
+      <TripModalWrapper />
       {/* <BlogsSection /> */}
     </div>
   )

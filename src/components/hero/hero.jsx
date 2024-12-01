@@ -266,8 +266,7 @@ const Hero = () => {
                   <div
                     className="w-10 h-10 bg-cover bg-center border bg-white border-gray-400 rounded-full"
                     style={{
-                      backgroundImage:
-                        'url("/images/homepage/treks/chopta 2.webp")',
+                      backgroundImage: 'url("/images/circle1.webp")',
                     }}
                   ></div>
                   <div
@@ -279,7 +278,7 @@ const Hero = () => {
                   <div
                     className="w-10 h-10 bg-cover bg-center bg-white border border-gray-400 rounded-full flex items-center justify-center"
                     style={{
-                      backgroundImage: 'url("/images/mountain.jpg")',
+                      backgroundImage: 'url("/images/circle2.jpg")',
                     }}
                   ></div>
                   <div

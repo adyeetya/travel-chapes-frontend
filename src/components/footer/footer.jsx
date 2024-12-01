@@ -103,6 +103,14 @@ const Footer = () => {
                     <FaChevronRight className="mr-2 w-2" /> Christmas Special
                   </Link>
                 </li>
+                <li className="my-2">
+                  <Link
+                    href="/blogs/the-ultimate-guide-to-a-himachal-trip"
+                    className="hover:underline flex items-center whitespace-nowrap"
+                  >
+                    <FaChevronRight className="mr-2 w-2" /> Blogs
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>

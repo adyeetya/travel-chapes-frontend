@@ -13,9 +13,6 @@ import { useState, useEffect } from 'react'
 import { destinations } from '@/data/destinations/destinations'
 import { IoStarSharp, IoStarHalfSharp } from 'react-icons/io5'
 
-
-
-
 const treks = [
   {
     id: '1',
@@ -238,7 +235,7 @@ const PlacesCarousel = () => {
     const hasHalfStar = rating % 1 !== 0
 
     return (
-      <div className="flex items-center ml-2">
+      <div className="flex items-center my-2">
         {Array.from({ length: fullStars }).map((_, index) => (
           <IoStarSharp key={index} className="text-yellow-500 w-3 h-3" />
         ))}
@@ -248,7 +245,7 @@ const PlacesCarousel = () => {
   }
 
   return (
-    <div className="p-4 bg-red-600">
+    <div className="p-4 py-12 my-12 bg-red-600">
       <div className="max-w-screen-xl mx-auto">
         <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
           <h1 className="text-4xl font-semibold text-white md:whitespace-nowrap">
@@ -263,33 +260,38 @@ const PlacesCarousel = () => {
                   key={trip.id}
                   className="w-full sm:basis-1/2 md:basis-1/3 flex-shrink-0"
                 >
-                  <div
-                    className="border-2 rounded-xl relative h-[450px] flex flex-col justify-end bg-cover bg-center"
-                    style={{
-                      backgroundImage: `url('${
-                        trip.images
-                          ? trip.images[0]
-                          : '/images/homepage/phonebanner1.webp'
-                      }')`,
-                    }}
-                  >
-                    <Link
-                      href={`/destination/${trip.id}`}
-                      className="absolute inset-0 z-10"
-                    />
+                  <div className="relative w-full h-[450px] p-4">
+                    {/* Christmas Border */}
 
-                    {/* Glass effect text overlay */}
-                    <div className="relative z-20 bg-black/10 brightness-90 backdrop-blur-md rounded-b-xl p-4">
-                      <Link href={`/destination/${trip.id}`} className="z-10">
-                        <h3 className="text-md font-semibold text-white hover:underline">
-                          {trip.title}
-                        </h3>
-                      </Link>
-                      {renderStars(4.5)}
-                      <p className="text-sm  text-white overflow-hidden text-ellipsis">
-                        {trip.metaDescription.slice(0, 50)}
-                        {trip.metaDescription.length > 50 && '...'}
-                      </p>
+                    {/* Inner Card */}
+                    <div
+                      className="relative z-0 border-2 rounded-xl flex flex-col justify-end bg-cover bg-center h-full"
+                      style={{
+                        backgroundImage: `url('${
+                          trip.images
+                            ? trip.images[0]
+                            : '/images/homepage/phonebanner1.webp'
+                        }')`,
+                      }}
+                    >
+                      <Link
+                        href={`/destination/${trip.id}`}
+                        className="absolute inset-0 z-30"
+                      />
+
+                      {/* Glass effect text overlay */}
+                      <div className="relative z-40 bg-black/10 brightness-90 backdrop-blur-md rounded-b-xl p-4">
+                        <Link href={`/destination/${trip.id}`} className="z-50">
+                          <h3 className="text-md font-semibold text-white hover:underline">
+                            {trip.title}
+                          </h3>
+                        </Link>
+                        {renderStars(4.5)}
+                        <p className="text-sm text-white overflow-hidden text-ellipsis">
+                          {trip.metaDescription.slice(0, 50)}
+                          {trip.metaDescription.length > 50 && '...'}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </CarouselItem>

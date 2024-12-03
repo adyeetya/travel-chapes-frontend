@@ -9,6 +9,13 @@ const blogs = [
       'Plan an unforgettable journey through the paradise of the northern Himalayas.',
     slug: 'the-ultimate-guide-to-a-himachal-trip',
   },
+  {
+    id: 2,
+    title: 'A Spiritual Journey to Kedarnath: Everything You Need to Know!',
+    description:
+      'Discover the spiritual and adventurous journey to Kedarnath, nestled in the Himalayas of Uttarakhand.',
+    slug: 'a-spiritual-journey-to-kedarnath',
+  },
 ]
 
 const BlogList = () => {

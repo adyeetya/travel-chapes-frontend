@@ -105,7 +105,7 @@ const Footer = () => {
                 </li>
                 <li className="my-2">
                   <Link
-                    href="/blogs/the-ultimate-guide-to-a-himachal-trip"
+                    href="/blogs"
                     className="hover:underline flex items-center whitespace-nowrap"
                   >
                     <FaChevronRight className="mr-2 w-2" /> Blogs

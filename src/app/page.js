@@ -29,7 +29,7 @@ export default function Home() {
       <About />
       <InternationalTours />
       <TripModalWrapper />
-      {/* <BlogsSection /> */}
+      <BlogsSection />
     </div>
   )
 }

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { Poppins } from 'next/font/google'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 
@@ -13,33 +14,19 @@ const Carousel = () => {
   const slides = [
     {
       id: 1,
-      title: 'Gym Benefits 1',
-      description: 'Stay fit and healthy with regular exercise.',
-      img: '/images/blog1.jpg',
+      title: 'A Spiritual Journey to Kedarnath: Everything You Need to Know!',
+      description:
+        'Embark on a transformative journey to one of India&apos;s most sacred destinations. Find everything you need to plan your trip to Kedarnath.',
+      link: '/blogs/a-spiritual-journey-to-kedarnath',
+      img: '/images/blogs/kedarnath.webp',
     },
     {
       id: 2,
-      title: 'Testosterone: What it is and how it affects your health',
-      description: 'Boost your energy levels with daily workouts.',
-      img: '/images/blog2.jpg',
-    },
-    {
-      id: 3,
-      title: 'Testosterone: What it is and how it affects your health',
-      description: 'Improve mental health through physical activity.',
-      img: '/images/blog1.jpg',
-    },
-    {
-      id: 4,
-      title: 'Gym Benefits 4',
-      description: 'Improve mental health through physical activity.',
-      img: '/images/blog2.jpg',
-    },
-    {
-      id: 5,
-      title: 'Gym Benefits 5',
-      description: 'Improve mental health through physical activity.',
-      img: '/images/blog1.jpg',
+      title: 'The Ultimate Guide to a Himachal Trip',
+      description:
+        ' Plan an unforgettable journey through the paradise of the northern Himalayas.',
+      link: '/blogs/the-ultimate-guide-to-a-himachal-trip',
+      img: 'https://travelchapes.s3.eu-north-1.amazonaws.com/images/manali/manali1.webp',
     },
   ]
 
@@ -80,15 +67,17 @@ const Carousel = () => {
 
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 w-full h-full z-0">
-          <Image
-            src={slides[currentSlide].img} // Use the same image as the slide
-            alt={slides[currentSlide].title}
-            width={100}
-            height={100}
-            quality={20} // Reduce quality for faster load
-            className="filter blur-[2px] brightness-[0.3] object-cover bg-cover bg-center h-full w-full" // Apply blur and darken effect
-            priority // Optional: for preloading this image
-          />
+          <Link href={slides[currentSlide].link}>
+            <Image
+              src={slides[currentSlide].img} // Use the same image as the slide
+              alt={slides[currentSlide].title}
+              width={100}
+              height={100}
+              quality={20} // Reduce quality for faster load
+              className="filter blur-[2px] brightness-[0.3] object-cover bg-cover bg-center h-full w-full" // Apply blur and darken effect
+              priority // Optional: for preloading this image
+            />
+          </Link>
         </div>
         {/* Progress Bar */}
         <div className="relative z-20">
@@ -101,7 +90,10 @@ const Carousel = () => {
         <div className="px-4 max-w-screen-xl mx-auto">
           <div className="flex flex-col gap-8 md:flex-row my-6 z-10">
             <div className="w-full h-full flex flex-col my-auto justify-center md:w-1/2 z-10 text-white">
-              <h2 className="text-2xl">{slides[currentSlide].title}</h2>
+              <Link href={slides[currentSlide].link} prefetch={true}>
+                {' '}
+                <h2 className="text-2xl">{slides[currentSlide].title}</h2>
+              </Link>
               <p>{slides[currentSlide].description}</p>
             </div>
             <div className="w-full md:w-1/2 relative">
@@ -124,13 +116,15 @@ const Carousel = () => {
                       }}
                     >
                       <div className="h-80 w-60 rounded-3xl bg-gray-400">
-                        <Image
-                          src={slide.img}
-                          alt={slide.title}
-                          width={1000}
-                          height={1000}
-                          className="object-cover w-full h-full rounded-3xl "
-                        />
+                        <Link href={slides[currentSlide].link}>
+                          <Image
+                            src={slide.img}
+                            alt={slide.title}
+                            width={1000}
+                            height={1000}
+                            className="object-cover w-full h-full rounded-3xl "
+                          />
+                        </Link>
                       </div>
                     </div>
                   ))}

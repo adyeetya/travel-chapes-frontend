@@ -10,7 +10,7 @@ const KedarnathBlog = () => {
           A Spiritual Journey to Kedarnath: Everything You Need to Know!
         </h1>
         <p className="text-lg text-gray-700">
-          Embark on a transformative journey to one of India'\&apos;s most sacred
+          Embark on a transformative journey to one of India&apos;s most sacred
           destinations. Find everything you need to plan your trip to Kedarnath.
         </p>
         <div className="mt-6">

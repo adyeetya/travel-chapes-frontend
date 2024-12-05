@@ -79,8 +79,6 @@ const DescriptionWithReadMore = () => {
   )
 }
 
-
-
 const BookingTable = () => {
   const [sharingType, setSharingType] = useState('triple')
   const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -830,8 +828,6 @@ const ImportantPoints = () => {
 }
 
 const Testimonials = () => {
-  
-
   return (
     <div className="w-full max-w-screen-xl mx-auto p-6 space-y-8">
       {/* Testimonials Header */}

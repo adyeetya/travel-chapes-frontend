@@ -92,7 +92,7 @@ const Carousel = () => {
             <div className="w-full h-full flex flex-col my-auto justify-center md:w-1/2 z-10 text-white">
               <Link href={slides[currentSlide].link} prefetch={true}>
                 {' '}
-                <h2 className="text-2xl">{slides[currentSlide].title}</h2>
+                <h2 className="text-2xl mb-4">{slides[currentSlide].title}</h2>
               </Link>
               <p>{slides[currentSlide].description}</p>
             </div>

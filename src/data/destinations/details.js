@@ -257,6 +257,7 @@ export const Trips = [
       },
     ],
   },
+  // issue
   {
     id: 'kashmir-backpacking-trip-srinagar-gulmarg-pahalgam-sonmarg-6d',
     name: 'Kashmir (Delhi To Delhi)',
@@ -290,7 +291,7 @@ export const Trips = [
     ],
   },
   {
-    id: 5,
+    id: 'kashmir-backpacking-trip-srinagar-gulmarg-pahalgam-sonmarg-6d',
     name: 'Kashmir (Srinagar to Srinagar)',
     route: 'Srinagar to Srinagar',
     duration: '6D & 5N',

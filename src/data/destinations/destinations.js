@@ -4,6 +4,7 @@ export const destinations = [
   {
     id: 'chopta-tungnath',
     title: 'Chopta Tungnath Trek',
+    duration: '3D & 2N',
     category: ['weekend'],
     banners: {
       phone: '/images/chopta/chopta_banner_phone.webp',
@@ -211,6 +212,7 @@ export const destinations = [
   {
     id: 'jibhi-tirthan-valley',
     title: 'Jibhi & Tirthan Valley Tour',
+    duration: '3D & 2N',
     category: ['weekend'],
     banners: {
       phone: '/images/jibhi/jibbhi-web.webp',
@@ -420,6 +422,7 @@ export const destinations = [
   {
     id: 'kasol-to-tosh',
     title: 'Jibhi & Tirthan Valley Tour',
+    duration: '3D & 2N',
     category: ['trek'],
     banners: {
       phone: '/images/kasol/kasol_phone.webp',
@@ -654,6 +657,7 @@ export const destinations = [
   {
     id: 'manali-to-sissu',
     title: 'Manali to Sissu Road Trip Package',
+    duration: '3D & 2N',
     category: ['trek', 'roadtrip'],
     banners: {
       phone: '/images/manali/manali_banner_phone.webp',
@@ -815,6 +819,7 @@ export const destinations = [
   {
     id: 'nag-tibba-trek-from-delhi',
     title: 'Nag Tibba Trek from Delhi !',
+    duration: '3D & 2N',
     category: ['trek', 'weekend'],
     banners: {
       phone: '/images/nag-tibba/ntbanner-phone.jpg',
@@ -1015,6 +1020,7 @@ export const destinations = [
   {
     id: 'himachal-backpacking-trip-manali-kasol-jibhi',
     title: 'Himachal Backpacking Trip Manali-Kasol-Jibhi',
+    duration: '7D & 6N',
     category: ['trek', 'backpacking', 'christmas'],
     banners: {
       phone: '/images/himachal/himachal_banner_both.webp',
@@ -1303,6 +1309,7 @@ export const destinations = [
   {
     id: 'meghalaya-backpacking-trip',
     title: 'Meghalaya Backpacking Trip | Explore Waterfalls, Hills & Culture',
+    duration: '7D & 6N',
     category: ['trek', 'backpacking', 'christmas'],
     banners: {
       phone: '/images/meghalaya/meghalaya_banner.jpg',
@@ -1598,6 +1605,7 @@ export const destinations = [
   {
     id: 'meghalaya-backpacking-trip-5n-6d',
     title: 'Meghalaya Backpacking Trip 5N 6D',
+    duration: '6D & 5N',
     category: ['trek', 'backpacking', 'christmas'],
     banners: {
       phone: '/images/meghalaya/meghalaya_banner.jpg',
@@ -1887,6 +1895,7 @@ export const destinations = [
   {
     id: 'leh-ladakh-road-trip-from-delhi',
     title: 'Leh Ladakh Road Trip from Delhi ',
+    duration: '7D & 6N',
     category: ['trek', 'roadtrip', 'christmas'],
     banners: {
       phone: '/images/ladakh/ladakh_banner_both.webp',
@@ -2160,6 +2169,7 @@ export const destinations = [
   {
     id: 'kashmir-backpacking-trip-srinagar-gulmarg-pahalgam-sonmarg-6d',
     title: 'Kashmir Backpacking Trip Srinagar-Gulmarg-Pahalgam-Sonmarg',
+    duration: '6D & 5N',
     category: ['trek', 'backpacking', 'christmas'],
     banners: {
       phone: '/images/kashmir/kashmir_banner_phone.webp',
@@ -2438,6 +2448,7 @@ export const destinations = [
   {
     id: 'nepal-backpacking-trip',
     title: 'Backpacking Trip to Nepal',
+    duration: '8N & 9D / 6N & 7D',
     category: ['trek', 'backpacking', 'christmas'],
     banners: {
       phone: '/images/nepal/nepal_banner_phone.jpg',
@@ -2742,6 +2753,7 @@ export const destinations = [
   {
     id: 'spiti-valley',
     title: 'Spiti Valley -A Winter Paradise',
+    duration: '9D & 8N',
     category: ['backpacking', 'christmas', 'trek'],
     banners: {
       phone: '/images/spiti/spiti-banner-both.webp',
@@ -3026,7 +3038,7 @@ export const destinations = [
     ],
   },
   // 12 spiti
-  
+
   // spiti, kashmir 7n8d
   // Other destinations...
 ]

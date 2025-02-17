@@ -177,7 +177,7 @@ Number of Travelers: ${formData.travelers}`
         {/* Right Image Section */}
         <div className="md:w-1/2 h-56 md:h-full relative">
           <Image
-            src="/images/homepage/automodal.webp" // Replace with your image URL
+            src="/images/holi-modal.jpg" // Replace with your image URL
             alt="Trip Preview"
             width={1000}
             height={1000}

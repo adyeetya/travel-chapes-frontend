@@ -14,13 +14,14 @@ const images = [
   "/images/sanghla/sangla_1.webp",
   "/images/sanghla/sangla2.webp",
     "https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti4.webp",
+    'https://travelchapes.s3.eu-north-1.amazonaws.com/images/meghalya/meghalaya_7.webp',
+
   "https://travelchapes.s3.eu-north-1.amazonaws.com/images/CHOPTA_TUNGNATH/ct7.jpg",
   'https://travelchapes.s3.eu-north-1.amazonaws.com/images/jibhitirthan/jt4.png',
   'https://travelchapes.s3.eu-north-1.amazonaws.com/images/kasol_rudrarg/kasol4.webp',
   'https://travelchapes.s3.eu-north-1.amazonaws.com/images/manali/manali2.webp',
   'https://travelchapes.s3.eu-north-1.amazonaws.com/images/nag-tibba/nt3.webp',
   'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Himachal/himachal5.webp',
-  'https://travelchapes.s3.eu-north-1.amazonaws.com/images/meghalya/meghalaya_7.webp',
   'https://travelchapes.s3.eu-north-1.amazonaws.com/images/meghalya/Meghalaya2.jpg',
 
 ];

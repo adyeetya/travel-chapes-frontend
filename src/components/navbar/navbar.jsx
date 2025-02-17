@@ -97,7 +97,7 @@ const Navbar = () => {
           isChristmasPage ? 'animate-glow bg-red-500' : ''
         }`}
             >
-              X Max & New Year
+              Holi Special
             </Link>
             <Link
               href="/#backpacking"

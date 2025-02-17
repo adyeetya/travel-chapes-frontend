@@ -65,44 +65,44 @@ const StatsSection = () => {
   )
 }
 
-const Xmas = () => {
-  return (
-    <div className="relative w-full min-h-[400px] max-w-screen-xl mx-auto">
-      <Image
-        src="/images/homepage/xmasnewyearbanner.webp" // Replace with your image path
-        alt="Christmas Image"
-        className="w-full h-auto object-cover min-h-[400px] max-h-screen"
-        height={1000}
-        width={1000}
-      />
-      <a
-        href="/christmas-new-year-special" // Replace with your target link
-        className="absolute bottom-2 md:bottom-8 left-1/2 transform -translate-x-1/2 px-2 py-1 md:px-6 md:py-3 bg-red-500 text-white text-sm md:text-lg md:font-semibold rounded-full shadow-lg hover:bg-red-600 transition-all duration-300 ease-in-out animate-glow"
-      >
-        Discover Holiday Deals
-      </a>
+// const Xmas = () => {
+//   return (
+//     <div className="relative w-full min-h-[400px] max-w-screen-xl mx-auto">
+//       <Image
+//         src="/images/homepage/xmasnewyearbanner.webp" // Replace with your image path
+//         alt="Christmas Image"
+//         className="w-full h-auto object-cover min-h-[400px] max-h-screen"
+//         height={1000}
+//         width={1000}
+//       />
+//       <a
+//         href="/christmas-new-year-special" // Replace with your target link
+//         className="absolute bottom-2 md:bottom-8 left-1/2 transform -translate-x-1/2 px-2 py-1 md:px-6 md:py-3 bg-red-500 text-white text-sm md:text-lg md:font-semibold rounded-full shadow-lg hover:bg-red-600 transition-all duration-300 ease-in-out animate-glow"
+//       >
+//         Discover Holiday Deals
+//       </a>
 
-      {/* Keyframes for glowing effect */}
-      <style jsx>{`
-        @keyframes glow {
-          0%,
-          100% {
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.6),
-              0 0 20px rgba(255, 255, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.6);
-          }
-          50% {
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8),
-              0 0 30px rgba(255, 255, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.8);
-          }
-        }
+//       {/* Keyframes for glowing effect */}
+//       <style jsx>{`
+//         @keyframes glow {
+//           0%,
+//           100% {
+//             box-shadow: 0 0 10px rgba(255, 0, 0, 0.6),
+//               0 0 20px rgba(255, 255, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.6);
+//           }
+//           50% {
+//             box-shadow: 0 0 20px rgba(255, 0, 0, 0.8),
+//               0 0 30px rgba(255, 255, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.8);
+//           }
+//         }
 
-        .animate-glow {
-          animation: glow 1.5s infinite alternate;
-        }
-      `}</style>
-    </div>
-  )
-}
+//         .animate-glow {
+//           animation: glow 1.5s infinite alternate;
+//         }
+//       `}</style>
+//     </div>
+//   )
+// }
 
 const TripCarousel = ({ destinations }) => {
   // Filter destinations by the "weekend" category
@@ -120,9 +120,9 @@ const TripCarousel = ({ destinations }) => {
       </div>
 
       <StatsSection />
-      <section className="my-12">
+      {/* <section className="my-12">
         <Xmas />
-      </section>
+      </section> */}
     </div>
   )
 }

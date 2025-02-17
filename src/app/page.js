@@ -11,6 +11,7 @@ import Feedback from '@/components/feedback/Feedback'
 import BlogsSection from '@/components/blogsSections/BlogsSection'
 import TripModalWrapper from '@/components/modal/ModalWrapper'
 import { destinations } from '@/data/destinations/destinations'
+import ImageSlider from '@/components/imagesSlider'
 export default function Home() {
   return (
     <div className="min-h-screen">
@@ -22,6 +23,7 @@ export default function Home() {
       <section id="treks">
         <TrekCarousel destinations={destinations} />
       </section>
+      <ImageSlider />
       <PlacesCarousel destinations={destinations} />
       <section id="backpacking">
         <BackpackingCarousel destinations={destinations} />

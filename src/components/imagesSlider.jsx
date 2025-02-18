@@ -30,9 +30,12 @@ export default function ImageSlider() {
       style={{ backgroundImage: `url('/images/kashmir/kashmir_banner_phone.webp')` }}
     >
       {/* Heading */}
-      <h2 className={`${pacifico.className} text-4xl sm:text-5xl md:text-6xl text-yellow-500 mb-8 sm:mb-12`}>
+      <h2 className={`${pacifico.className} text-4xl sm:text-5xl md:text-6xl text-yellow-500 mb-4 sm:mb-8`}>
         Wall of Memories
       </h2>
+      <p className="text-white text-center text-lg md:text-xl max-w-2xl mb-12">
+      Preserving moments, cherishing memories—one wall at a time.
+      </p>
 
       {/* Image Slider */}
       <Swiper

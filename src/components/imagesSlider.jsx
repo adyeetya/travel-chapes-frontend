@@ -70,7 +70,7 @@ export default function ImageSlider() {
     stretch: 0,
     depth: 150,
     modifier: 1,
-    slideShadows: true,
+    slideShadows: false,
   }}
   navigation={false}
   modules={[EffectCoverflow, Navigation]}

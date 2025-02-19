@@ -70,7 +70,7 @@ const SectionWithCarousel = () => {
   }, [currentIndex])
 
   return (
-    <div className="my-12 flex flex-col md:flex-row items-center justify-between p-4 max-w-screen-xl mx-auto">
+    <div className=" flex flex-col md:flex-row items-center justify-between p-4 max-w-screen-xl mx-auto">
       <div className="md:w-1/2 mb-4 md:mb-0">
         <h2 className="text-3xl text-left font-bold my-4">
           What Our Customers Say

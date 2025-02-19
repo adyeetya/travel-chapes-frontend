@@ -50,7 +50,7 @@ const AnimatedStat = ({ label, value, suffix }) => {
 
 const StatsSection = () => {
   return (
-    <div className="my-20 p-4 max-w-screen-xl mx-auto">
+    <div className="mb-12 mt-16 p-4 max-w-screen-xl mx-auto">
       <div className="grid gap-8 grid-cols-2 md:grid-cols-4">
         {stats.map((stat) => (
           <AnimatedStat

@@ -76,7 +76,7 @@ const Banner = () => {
                   width={2000}
                   height={0}
                   priority
-                  className="w-full h-auto object-contain"
+                  className="w-full h-screen object-cover"
                 />
               </div>
             </BrandsCarouselItem>
@@ -89,7 +89,7 @@ const Banner = () => {
 
 const PhoneBanner = () => {
   const [isInView, setIsInView] = useState(true)
-  const [visibleBanners, setVisibleBanners] = useState(webBanners.slice(0, 2))
+  const [visibleBanners, setVisibleBanners] = useState(phoneBanners.slice(0, 2))
   const bannerRef = useRef(null)
 
   useEffect(() => {
@@ -174,23 +174,32 @@ const Hero = () => {
   }
 
   return (
-    <div className="relative z-0 w-full h-[100vh]  rounded-br-[2rem] -mt-16 overflow-hidden customCurve">
+    <div className="relative z-0 w-full h-[100vh] md:min-h-screen rounded-br-[2rem] -mt-16 overflow-hidden customCurve">
       {/* Desktop Image */}
-      <div className="hidden md:block absolute inset-0 overflow-hidden">
-        <Banner />
+      <div className=" absolute inset-0 overflow-hidden rounded-b-3xl">
+        {/* <Banner /> */}
+        <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/images/videos/Main_banner.webm" type="video/mp4" />
+      </video>
       </div>
 
       {/* Mobile Image */}
-      <div className="block md:hidden absolute inset-0 rounded-b-3xl">
+      {/* <div className="block md:hidden absolute inset-0 rounded-b-3xl">
         <PhoneBanner />
-      </div>
+      </div> */}
 
       <div className="absolute mt-16 inset-0 z-10 flex flex-col justify-between items-start px-4">
         {/* texts */}
         <div className="flex w-full md:mt-12 mb-20 py-4 h-full justify-start items-end md:items-center overflow-hidden max-w-screen-xl mx-auto">
           <div className="text-gray-100 text-left z-10">
             <h1
-              className="text-4xl mb-1 2xl:text-6xl text-left text-gray-100 tracking-wide 2xl:tracking-widest"
+              className="text-4xl md:text-6xl mb-1 2xl:text-6xl text-left text-gray-100 tracking-wide 2xl:tracking-widest"
               style={{
                 textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
                 WebkitTextStroke: '0.1px #b8b8b8',
@@ -199,7 +208,7 @@ const Hero = () => {
               Chase Adventures
             </h1>
             <h1
-              className="text-4xl 2xl:text-6xl text-left text-gray-100 tracking-wide 2xl:tracking-widest"
+              className="text-4xl md:text-6xl text-left text-gray-100 tracking-wide 2xl:tracking-widest"
               style={{
                 textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
                 WebkitTextStroke: '0.1px #b8b8b8',
@@ -208,7 +217,7 @@ const Hero = () => {
               Create Memories
             </h1>
             <p
-              className="text-lg mb-12"
+              className="text-lg md:text-2xl mb-12"
               style={{
                 textShadow: '1px 1px 3px rgba(0, 0, 0, 0.5)',
               }}
@@ -223,14 +232,14 @@ const Hero = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search for destinations"
-                  className="bg-white focus:outline-none backdrop-filter backdrop-blur-lg border border-white/30 z-50 w-fit text-gray-900 py-1 px-6 rounded-full text-[17px] md:text-base"
+                  className="bg-white focus:outline-none backdrop-filter backdrop-blur-lg border border-white/30 z-50 w-full text-gray-900 py-1 px-6 md:px-12 rounded-full text-[17px] md:text-lg"
                 />
                 <button
                   type="submit"
                   disabled={!searchQuery.trim()}
                   className="bg-white backdrop-filter backdrop-blur-lg border border-white/30 z-50 w-fit text-gray-700 p-1 rounded-full text-sm hover:bg-black hover:text-gray-100"
                 >
-                  <IoIosSearch className="w-6 h-6" />
+                  <IoIosSearch className="w-6 md:w-8 md:h-8 h-6" />
                 </button>
               </form>
             </div>

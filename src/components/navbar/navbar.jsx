@@ -91,7 +91,7 @@ const Navbar = () => {
           {/* Links Section */}
           <div className="hidden lg:flex space-x-4 lg:space-x-6">
             <Link
-              href="/coming-soon"
+              href="/holi-special"
               className={`border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
         hover:bg-red-500 hover:text-white active:scale-95 ${
           isChristmasPage ? 'animate-glow bg-red-500' : ''

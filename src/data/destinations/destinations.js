@@ -3041,4 +3041,173 @@ export const destinations = [
 
   // spiti, kashmir 7n8d
   // Other destinations...
+
+  // Sagla Holi
+  {
+    "id": "sangla-holi",
+    "title": "Sangla Holi Adventure",
+    "duration": "6D & 5N",
+    "category": ["festival", "cultural", "holi"],
+    "banners": {
+      "phone": "/images/sangla-holi/sangla_holi_banner_phone.webp",
+      "web": "/images/sangla-holi/sangla_holi_banner_web.webp"
+    },
+    "images": [
+      "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla-holi/sangla1.webp",
+      "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla-holi/sangla2.webp",
+      "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla-holi/sangla3.webp",
+      "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla-holi/sangla4.webp",
+      "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla-holi/sangla5.webp"
+    ],
+    "metaTitle": "Sangla Holi: A Himalayan Twist to the Festival of Colors",
+    "metaDescription": "Celebrate Holi in the serene Himalayas with Sangla Holi Adventure. Experience traditional Kinnauri culture, folk dances, bonfires, and vibrant colors amidst snow-capped peaks and lush valleys.",
+    "headline": "Dive into the Colors of Joy – Celebrate Sangla Holi!",
+    "description": "Imagine celebrating Holi in the Himalayas, surrounded by snow-capped peaks, lush apple orchards, and crisp mountain air. Sangla’s Holi offers a soulful, vibrant, and mystical experience, deeply rooted in Kinnauri culture. Witness traditional folk dances, bonfires, and a peaceful yet vibrant color play. Savor authentic Himachali cuisine and create unforgettable memories in the heart of the Himalayas.",
+    "shortItinerary": [
+      {
+        "day": "Day 1 | 12th March",
+        "description": "Overnight journey from Delhi to Shimla."
+      },
+      {
+        "day": "Day 2 | 13th March",
+        "description": "Shimla to Chitkul – Scenic drive to India’s last village."
+      },
+      {
+        "day": "Day 3 | 14th March",
+        "description": "Holi celebrations in Sangla & Chitkul – Traditional Kinnauri festivities."
+      },
+      {
+        "day": "Day 4 | 15th March",
+        "description": "Chitkul to Kalpa – Explore apple orchards and Kinnaur Kailash views."
+      },
+      {
+        "day": "Day 5 | 16th March",
+        "description": "Kalpa to Shimla to Delhi – Begin the journey back."
+      },
+      {
+        "day": "Day 6 | 17th March",
+        "description": "Early morning arrival in Delhi – End of the trip."
+      }
+    ],
+    "fullItinerary": [
+      {
+        "day": "Day 1 | 12th March",
+        "title": "Delhi to Shimla | Overnight Journey",
+        "description": `
+          - Meet and greet in Delhi by evening.
+          - Board a semi-sleeper Volvo bus for an overnight journey to Shimla.
+          - Rest and prepare for the adventure ahead.
+        `
+      },
+      {
+        "day": "Day 2 | 13th March",
+        "title": "Shimla to Chitkul | Scenic Himalayan Road Trip",
+        "description": `
+          - Arrive in Shimla, freshen up, and enjoy breakfast.
+          - Begin a picturesque drive to Chitkul, passing through Kufri, Narkanda, and the Sutlej River.
+          - Stop for lunch at Rampur, a historic town.
+          - Reach Chitkul, the last inhabited village near the Indo-China border.
+          - Check-in at a riverside campsite or hotel.
+          - Enjoy a hot Himachali dinner and relax under the starlit sky.
+        `
+      },
+      {
+        "day": "Day 3 | 14th March",
+        "title": "Holi Celebration in Sangla & Chitkul",
+        "description": `
+          - Wake up to a mesmerizing sunrise over the Baspa River.
+          - Drive to Sangla for Holi celebrations with organic colors, folk music, and dance.
+          - Visit Kamru Fort, a 1,000-year-old architectural marvel.
+          - Return to Chitkul for a bonfire night with music and storytelling.
+        `
+      },
+      {
+        "day": "Day 4 | 15th March",
+        "title": "Chitkul to Kalpa | Apple Orchards & Kinnaur Kailash Views",
+        "description": `
+          - Depart for Kalpa, stopping at Reckong Peo for stunning views.
+          - Check-in at a cozy homestay with panoramic mountain views.
+          - Explore monasteries, local markets, and apple orchards.
+          - Visit Suicide Point and Roghi Village for breathtaking views.
+          - Enjoy a bonfire night with Kinnauri folk music.
+        `
+      },
+      {
+        "day": "Day 5 | 16th March",
+        "title": "Kalpa to Shimla to Delhi | The Journey Back",
+        "description": `
+          - Witness a Himalayan sunrise and enjoy breakfast.
+          - Begin the scenic drive back to Shimla.
+          - Stop at picturesque viewpoints and enjoy lunch at a local dhaba.
+          - Board the overnight Volvo bus to Delhi.
+        `
+      },
+      {
+        "day": "Day 6 | 17th March",
+        "title": "Reach Back to Delhi | Journey Ends",
+        "description": `
+          - Arrive in Delhi early morning.
+          - Bid farewell to your trip family, taking home unforgettable memories.
+        `
+      }
+    ],
+    "inclusions": [
+      {
+        "title": "Transportation",
+        "description": "Semi-sleeper Volvo bus for Delhi to Shimla and back."
+      },
+      {
+        "title": "Accommodation",
+        "description": "3 nights stay – 2 nights in Chitkul & 1 night in Kalpa at cozy accommodations."
+      },
+      {
+        "title": "Meals",
+        "description": "Daily breakfast and dinner at all accommodation stays."
+      },
+      {
+        "title": "Holi Festivities",
+        "description": "Organic colors, festive snacks, thandai, and cultural celebrations in Sangla and Chitkul."
+      },
+      {
+        "title": "Sightseeing",
+        "description": "Visits to Kamru Fort, Suicide Point, Roghi Village, and more."
+      },
+      {
+        "title": "Bonfire Nights",
+        "description": "Evening bonfires with music and storytelling."
+      }
+    ],
+    "exclusions": [
+      {
+        "title": "GST",
+        "description": "5% GST will be added to the total package cost."
+      },
+      {
+        "title": "Personal Expenses",
+        "description": "Expenses for food, beverages, or snacks beyond the package."
+      },
+      {
+        "title": "Unforeseen Costs",
+        "description": "Expenses due to natural calamities, roadblocks, or other unexpected circumstances."
+      },
+      {
+        "title": "Airport Transfers",
+        "description": "Pick-up and drop-off from the airport are not included."
+      }
+    ],
+    "importantPoints": [
+      {
+        "title": "Weather Conditions",
+        "description": "March in Sangla Valley can be chilly, with possible snowfall. Be prepared for cold weather."
+      },
+      {
+        "title": "Travel Arrangements",
+        "description": "Travelers from outside Delhi should arrive by 3 PM on the trip start date and book return flights/trains after 1 PM on the last day."
+      },
+      {
+        "title": "Itinerary Adjustments",
+        "description": "The itinerary may be adjusted due to weather, road conditions, or participant limitations. Safety and comfort are our top priorities."
+      }
+    ]
+  }
 ]

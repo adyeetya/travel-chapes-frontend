@@ -8,56 +8,7 @@ import { destinations } from '@/data/destinations/destinations'
 
 import Card from '@/components/common/Card'
 
-const treks = [
-  {
-    id: '1',
-    name: 'Trek 1',
-    image: 'https://via.placeholder.com/200',
-    description: 'Description of Trek 1',
-    link: '#',
-    rating: 4.5,
-  },
-  {
-    id: '2',
-    name: 'Trek 2',
-    image: 'https://via.placeholder.com/200',
-    description: 'Description of Trek 2',
-    link: '#',
-    rating: 4,
-  },
-  {
-    id: '3',
-    name: 'Trek 3',
-    image: 'https://via.placeholder.com/200',
-    description: 'Description of Trek 3',
-    link: '#',
-    rating: 3.5,
-  },
-  {
-    id: '4',
-    name: 'Trek 4',
-    image: 'https://via.placeholder.com/200',
-    description: 'Description of Trek 4',
-    link: '#',
-    rating: 5,
-  },
-  {
-    id: '5',
-    name: 'Trek 5',
-    image: 'https://via.placeholder.com/200',
-    description: 'Description of Trek 5',
-    link: '#',
-    rating: 4.5,
-  },
-  {
-    id: '6',
-    name: 'Trek 6',
-    image: 'https://via.placeholder.com/200',
-    description: 'Description of Trek 6',
-    link: '#',
-    rating: 4,
-  },
-]
+
 const Snowflakes = () => {
   const [snowflakes, setSnowflakes] = useState([])
 

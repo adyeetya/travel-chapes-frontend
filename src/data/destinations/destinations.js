@@ -3049,8 +3049,8 @@ export const destinations = [
     "duration": "6D & 5N",
     "category": ["festival", "cultural", "holi"],
     "banners": {
-      "phone": "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla_1+(1).webp",
-      "web": "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla2+(1).webp"
+      "phone": "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla5.webp",
+      "web": "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla5.webp"
     },
     "images": [
     "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla_1+(1).webp",

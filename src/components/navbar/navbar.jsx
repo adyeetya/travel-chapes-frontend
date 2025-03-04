@@ -65,9 +65,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`${
-        !isScrolled && isHomePage ? 'bg-[#000]' : 'bg-[#000]'
-      } text-gray-100 sticky inset-x-0 top-0 z-30 transition-all duration-300 ease-in-out`}
+      className={`${!isScrolled && isHomePage ? 'bg-[#000]' : 'bg-[#000]'
+        } text-gray-100 sticky inset-x-0 top-0 z-30 transition-all duration-300 ease-in-out`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
@@ -93,9 +92,8 @@ const Navbar = () => {
             <Link
               href="/holi-special"
               className={`border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
-        hover:bg-red-500 hover:text-white active:scale-95 ${
-          isChristmasPage ? 'animate-glow bg-red-500' : ''
-        }`}
+        hover:bg-red-500 hover:text-white active:scale-95 ${isChristmasPage ? 'animate-glow bg-red-500' : ''
+                }`}
             >
               Holi Special
             </Link>
@@ -169,9 +167,8 @@ const Navbar = () => {
             <Link
               href="/christmas-new-year-special"
               className={`border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
-        hover:bg-red-500 hover:text-white active:scale-95 ${
-          isChristmasPage ? 'animate-glow bg-red-500' : ''
-        }`}
+        hover:bg-red-500 hover:text-white active:scale-95 ${isChristmasPage ? 'animate-glow bg-red-500' : ''
+                }`}
             >
               X Max & New Year
             </Link>
@@ -207,10 +204,10 @@ const Navbar = () => {
         >
           <div className="px-4 py-4 space-y-2">
             <Link
-              href="/coming-soon"
+              href="/holi-special"
               className="block px-4 py-3 text-lg font-semibold border-b border-gray-600"
             >
-             Holi Special
+              Holi Special
             </Link>
             <Link
               href="/#backpacking"

@@ -74,7 +74,7 @@ export function HoliPage() {
     </motion.div>
 
     {/* Space for Carousel */}
-    <div id='holi-destinations' className="py-32 bg-white text-center">
+    <div id='holi-destinations' className="py-12 md:py-32 bg-white text-center">
       <h2 className="text-5xl font-extrabold text-yellow-500">Explore Our Holi Trips</h2>
       <p className="text-xl text-gray-700">Colorful destinations filled with vibrant festivities and adventure!</p>
       <div className="mt-16"> <PlacesCarousel /></div>
@@ -103,7 +103,7 @@ export function HoliPage() {
     </div> */}
 
     {/* About Holi Section */}
-    <div className="relative py-40 bg-white text-center text-black overflow-hidden">
+    <div className="relative py-12 md:py-40 bg-white text-center text-black overflow-hidden">
   {/* Animated Color Blobs */}
   <motion.div
     className="absolute inset-0 flex justify-around opacity-50 -z-10"
@@ -129,7 +129,7 @@ export function HoliPage() {
   </motion.div>
 
   {/* Title & Description */}
-  <h2 className="text-7xl font-extrabold text-pink-600 drop-shadow-md relative z-10">
+  <h2 className="text-4xl md:text-7xl font-extrabold text-pink-600 drop-shadow-md relative z-10">
     Holi: The Ultimate Travel Experience
   </h2>
   <p className="text-2xl mt-6 max-w-4xl mx-auto relative z-10 text-gray-800">

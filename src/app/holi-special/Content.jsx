@@ -5,9 +5,179 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { destinations } from '@/data/destinations/destinations'
+import { motion } from 'framer-motion'
 
 import Card from '@/components/common/Card'
 
+
+const PlacesCarousel = () => {
+  const tours = destinations.filter((trip) =>
+    trip.category.includes('holi')
+  )
+
+  return (
+    <div className="p-4 py-12 my-12 bg-yellow-200">
+      <div className="max-w-screen-xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
+          <h1 className="text-4xl font-semibold text-white md:whitespace-nowrap">
+            12th March - 17th March
+          </h1>
+        </div>
+        <div className="my-12">
+          <Card data={tours} />
+        </div>
+        <div className="w-full flex justify-center">
+          <a
+            href="https://wa.me/+918650500202"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="menu-button"
+          >
+            <button className="bg-white text-red-500 px-4 py-2 rounded-full border border-white mx-auto hover:bg-red-800 hover:text-white transition-colors duration-300">
+              Contact
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function HoliPage() {
+  return (
+    <div className="min-h-screen">
+    {/* Banner Section */}
+    <motion.div
+      className="relative h-screen w-full flex items-center justify-center bg-cover bg-center"
+      style={{ backgroundImage: "url('https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla5.webp')" }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+    >
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      <motion.div
+        className="text-center text-white relative z-10 p-10"
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <h1 className="text-6xl md:text-8xl font-extrabold text-yellow-300 drop-shadow-lg">Celebrate Holi with Us!</h1>
+        <p className="text-2xl md:text-4xl mt-6 text-pink-300 drop-shadow-lg">Join us for an unforgettable Holi getaway with colors, music, and adventure! 🎨✨</p>
+        <motion.button
+          className="mt-8 px-8 py-4 bg-white text-pink-600 font-bold text-xl rounded-full shadow-2xl hover:bg-pink-500 hover:text-white transition"
+          whileHover={{ scale: 1.1 }}
+
+        >
+          <Link href='#holi-destinations'>Book Now</Link> 
+        </motion.button>
+      </motion.div>
+    </motion.div>
+
+    {/* Space for Carousel */}
+    <div id='holi-destinations' className="py-32 bg-white text-center">
+      <h2 className="text-5xl font-extrabold text-yellow-500">Explore Our Holi Trips</h2>
+      <p className="text-xl text-gray-700">Colorful destinations filled with vibrant festivities and adventure!</p>
+      <div className="mt-16"> <PlacesCarousel /></div>
+    </div>
+
+    {/* Holi Offers Section */}
+    {/* <div className="py-20 bg-gradient-to-r from-yellow-400 to-pink-500 text-center text-white">
+      <h2 className="text-5xl font-extrabold drop-shadow-lg">Special Holi Offers 🎁</h2>
+      <div className="mt-10 flex flex-wrap justify-center gap-10">
+        <motion.div
+          className="p-8 bg-white text-pink-600 rounded-3xl shadow-2xl w-96 text-center"
+          whileHover={{ scale: 1.1 }}
+        >
+          <h3 className="text-3xl font-bold">Flat 20% Off</h3>
+          <p className="text-xl text-gray-700">On all Holi trips booked before March 10th</p>
+        </motion.div>
+
+        <motion.div
+          className="p-8 bg-white text-yellow-600 rounded-3xl shadow-2xl w-96 text-center"
+          whileHover={{ scale: 1.1 }}
+        >
+          <h3 className="text-3xl font-bold">Buy 2 Get 1 Free</h3>
+          <p className="text-xl text-gray-700">Bring your friends and enjoy more!</p>
+        </motion.div>
+      </div>
+    </div> */}
+
+    {/* About Holi Section */}
+    <div className="relative py-40 bg-white text-center text-black overflow-hidden">
+  {/* Animated Color Blobs */}
+  <motion.div
+    className="absolute inset-0 flex justify-around opacity-50 -z-10"
+    initial={{ scale: 0 }}
+    animate={{ scale: 1.1 }}
+    transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
+  >
+    <motion.div
+      className="w-64 h-64 bg-pink-500 rounded-full blur-[120px] mix-blend-screen"
+      animate={{ y: [0, 30, 0], x: [-20, 20, -20] }}
+      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+    ></motion.div>
+    <motion.div
+      className="w-96 h-96 bg-yellow-400 rounded-full blur-[140px] mix-blend-screen"
+      animate={{ y: [20, -20, 20], x: [10, -10, 10] }}
+      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+    ></motion.div>
+    <motion.div
+      className="w-64 h-64 bg-blue-500 rounded-full blur-[120px] mix-blend-screen"
+      animate={{ y: [-30, 10, -30], x: [-10, 10, -10] }}
+      transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+    ></motion.div>
+  </motion.div>
+
+  {/* Title & Description */}
+  <h2 className="text-7xl font-extrabold text-pink-600 drop-shadow-md relative z-10">
+    Holi: The Ultimate Travel Experience
+  </h2>
+  <p className="text-2xl mt-6 max-w-4xl mx-auto relative z-10 text-gray-800">
+    Holi isn&apos;t just about colors; it&apos;s about unforgettable journeys! Join us for an
+    exciting travel experience filled with scenic beauty, thrilling adventure, and cultural festivities.
+    Dance to the beats of traditional Holi music, explore vibrant streets covered in color, and immerse
+    yourself in the festive chaos.
+  </p>
+
+  {/* Subtle Grid Pattern Overlay */}
+  <div className="absolute inset-0 flex justify-center items-center">
+    <div className="w-full h-full bg-[url('https://www.transparenttextures.com/patterns/bright-squares.png')] opacity-10"></div>
+  </div>
+
+  {/* Floating Colorful Circles */}
+  <motion.div
+    className="mt-16 flex justify-center gap-4 md:gap-10"
+    initial={{ opacity: 0, y: 50 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 1.5 }}
+  >
+    {["pink-500", "yellow-400", "blue-500", "red-500", "purple-500"].map(
+      (color, index) => (
+        <motion.div
+          key={index}
+          className={`md:w-24 md:h-24 w-16 h-16 bg-${color} rounded-full shadow-xl`}
+          animate={{
+            y: [0, -10, 0],
+          }}
+          transition={{
+            duration: 2 + index * 0.3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      )
+    )}
+  </motion.div>
+</div>
+
+
+    {/* Sangla Holi Trip Section */}
+    <div className="py-20 bg-gradient-to-r from-purple-400 to-orange-500 text-center text-white">
+      <h2 className="text-5xl font-extrabold drop-shadow-lg">Sangla Holi Trip 🌄</h2>
+      <p className="text-xl mt-4 max-w-4xl mx-auto">Celebrate Holi in the stunning valley of Sangla! Surrounded by snow-capped peaks and breathtaking landscapes, this exclusive getaway offers bonfire nights, vibrant Holi celebrations, and adventure-packed days in nature.</p>
+    </div>
+  </div>
+  )}
 
 const Snowflakes = () => {
   const [snowflakes, setSnowflakes] = useState([])
@@ -172,38 +342,7 @@ const Heading = () => {
   )
 }
 
-const PlacesCarousel = () => {
-  const tours = destinations.filter((trip) =>
-    trip.category.includes('christmas')
-  )
 
-  return (
-    <div className="p-4 py-12 my-12 bg-red-600">
-      <div className="max-w-screen-xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
-          <h1 className="text-4xl font-semibold text-white md:whitespace-nowrap">
-            20th December - 4th January
-          </h1>
-        </div>
-        <div className="my-12">
-          <Card data={tours} />
-        </div>
-        <div className="w-full flex justify-center">
-          <a
-            href="https://wa.me/+918650500202"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="menu-button"
-          >
-            <button className="bg-white text-red-500 px-4 py-2 rounded-full border border-white mx-auto hover:bg-red-800 hover:text-white transition-colors duration-300">
-              Contact
-            </button>
-          </a>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 const page = () => {
   return (

@@ -1,5 +1,5 @@
-import HoliThemePage from './HoliContent'; // Ensure the path is correct
 
+import { HoliPage } from './Content';
 export const metadata = {
   title: 'Travel Chapes | Holi Special | Spring Tours | Backpacking',
   description:
@@ -9,7 +9,7 @@ export const metadata = {
 export default function Page() {
   return (
     <div>
-      <HoliThemePage />
+      <HoliPage />
     </div>
   );
 }

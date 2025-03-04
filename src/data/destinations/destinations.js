@@ -2170,7 +2170,7 @@ export const destinations = [
     id: 'kashmir-backpacking-trip-srinagar-gulmarg-pahalgam-sonmarg-6d',
     title: 'Kashmir Backpacking Trip Srinagar-Gulmarg-Pahalgam-Sonmarg',
     duration: '6D & 5N',
-    category: ['trek', 'backpacking', 'christmas'],
+    category: ['trek', 'backpacking', 'holi'],
     banners: {
       phone: '/images/kashmir/kashmir_banner_phone.webp',
       web: '/images/kashmir/kashmir_banner_web.jpg',
@@ -3049,15 +3049,17 @@ export const destinations = [
     "duration": "6D & 5N",
     "category": ["festival", "cultural", "holi"],
     "banners": {
-      "phone": "/images/sangla-holi/sangla_holi_banner_phone.webp",
-      "web": "/images/sangla-holi/sangla_holi_banner_web.webp"
+      "phone": "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla_1+(1).webp",
+      "web": "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla2+(1).webp"
     },
     "images": [
-      "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla-holi/sangla1.webp",
-      "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla-holi/sangla2.webp",
-      "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla-holi/sangla3.webp",
-      "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla-holi/sangla4.webp",
-      "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla-holi/sangla5.webp"
+    "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla_1+(1).webp",
+    "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla2+(1).webp",
+    "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla3.webp",
+    "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla4.webp",
+    "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla5.webp" ,
+    "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla_1+(1).webp",
+
     ],
     "metaTitle": "Sangla Holi: A Himalayan Twist to the Festival of Colors",
     "metaDescription": "Celebrate Holi in the serene Himalayas with Sangla Holi Adventure. Experience traditional Kinnauri culture, folk dances, bonfires, and vibrant colors amidst snow-capped peaks and lush valleys.",

@@ -5,7 +5,7 @@ export const destinations = [
     id: 'chopta-tungnath',
     title: 'Chopta Tungnath Trek',
     duration: '3D & 2N',
-    category: ['weekend'],
+    category: ['weekend', 'holi'],
     banners: {
       phone: '/images/chopta/chopta_banner_phone.webp',
       web: '/images/chopta/chopta_banner_web.webp',
@@ -2170,7 +2170,7 @@ export const destinations = [
     id: 'kashmir-backpacking-trip-srinagar-gulmarg-pahalgam-sonmarg-6d',
     title: 'Kashmir Backpacking Trip Srinagar-Gulmarg-Pahalgam-Sonmarg',
     duration: '6D & 5N',
-    category: ['trek', 'backpacking', 'holi'],
+    category: ['trek', 'backpacking'],
     banners: {
       phone: '/images/kashmir/kashmir_banner_phone.webp',
       web: '/images/kashmir/kashmir_banner_web.jpg',

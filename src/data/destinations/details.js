@@ -684,4 +684,26 @@ export const Trips = [
       },
     ],
   },
+  {
+    id: 'sangla-holi',
+    name: 'Sangla Holi Adventure',
+    route: 'Delhi To Delhi',
+    duration: '6D & 5N',
+    category: 'Backpacking Trip, Holi Special',
+    ageGroup: '18-40',
+    minPrice: '14000/-',
+    batch: [
+      {
+        date: '12 Mar - 17 Mar',
+        transports: [
+          {
+            type: 'Vehicle',
+            costTripleSharing: '14000/-',
+            costDoubleSharing: '15500/-',
+          },
+       
+        ],
+      },
+    ],
+  },
 ]

@@ -46,72 +46,52 @@ const PlacesCarousel = () => {
 
 export function HoliPage() {
   return (
-    <div className={`min-h-screen ${poppins.className}`}>
+    <div className={`${poppins.className}`}>
     {/* Banner Section */}
     <motion.div
-      className="relative h-screen w-full flex items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: "url('/images/sanghla/Holi_page_banner.webp')" }}
+      className="relative w-full flex items-center justify-center overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
     >
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      {/* Image with Mobile Handling */}
+      <picture>
+        <source
+          media="(max-width: 640px)"
+          srcSet="/images/sanghla/Holi_page_banner_phone.webp"
+        />
+        <img
+          src="/images/sanghla/Holi_page_banner.webp"
+          alt="Holi Banner"
+          className="w-full h-auto object-contain"
+        />
+      </picture>
+  
+      {/* Content */}
       <motion.div
-        className="text-center text-white relative z-10 p-10"
+        className="absolute text-center text-white z-10 p-10"
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <h1 className="text-6xl md:text-8xl font-extrabold text-yellow-300 drop-shadow-lg">Celebrate Holi with Us!</h1>
-        <p className="text-2xl md:text-4xl mt-6 text-pink-300 drop-shadow-lg">Join us for an unforgettable Holi getaway with colors, music, and adventure! 🎨✨</p>
+        {/* Button */}
         <motion.button
-          className="mt-8 px-8 py-4 bg-white text-pink-600 font-bold text-xl rounded-full shadow-2xl hover:bg-pink-500 hover:text-white transition"
+          className="mt-20 px-8 py-4 bg-white text-pink-600 font-bold text-xl rounded-full shadow-2xl hover:bg-pink-500 hover:text-white transition"
           whileHover={{ scale: 1.1 }}
-
         >
-          <Link href='#holi-destinations'>Book Now</Link> 
+          <Link href='#holi-destinations'>Book Now</Link>
         </motion.button>
       </motion.div>
     </motion.div>
-
+  
     {/* Space for Carousel */}
     <div id='holi-destinations' className="py-12 md:py-32 bg-white text-center">
       <h2 className="text-5xl font-extrabold text-yellow-500">Explore Our Holi Trips</h2>
       <p className="text-xl text-gray-700">Colorful destinations filled with vibrant festivities and adventure!</p>
-      <div className="mt-16"> <PlacesCarousel /></div>
-    </div>
-
-    {/* Holi Offers Section */}
-    {/* <div className="py-20 bg-gradient-to-r from-yellow-400 to-pink-500 text-center text-white">
-      <h2 className="text-5xl font-extrabold drop-shadow-lg">Special Holi Offers 🎁</h2>
-      <div className="mt-10 flex flex-wrap justify-center gap-10">
-        <motion.div
-          className="p-8 bg-white text-pink-600 rounded-3xl shadow-2xl w-96 text-center"
-          whileHover={{ scale: 1.1 }}
-        >
-          <h3 className="text-3xl font-bold">Flat 20% Off</h3>
-          <p className="text-xl text-gray-700">On all Holi trips booked before March 10th</p>
-        </motion.div>
-
-        <motion.div
-          className="p-8 bg-white text-yellow-600 rounded-3xl shadow-2xl w-96 text-center"
-          whileHover={{ scale: 1.1 }}
-        >
-          <h3 className="text-3xl font-bold">Buy 2 Get 1 Free</h3>
-          <p className="text-xl text-gray-700">Bring your friends and enjoy more!</p>
-        </motion.div>
+      <div className="mt-16">
+        <PlacesCarousel />
       </div>
-    </div> */}
-
-    {/* About Holi Section */}
-    
-
-
-    {/* Sangla Holi Trip Section */}
-    {/* <div className="py-20 bg-gradient-to-r from-purple-400 to-orange-500 text-center text-white">
-      <h2 className="text-5xl font-extrabold drop-shadow-lg">Sangla Holi Trip 🌄</h2>
-      <p className="text-xl mt-4 max-w-4xl mx-auto">Celebrate Holi in the stunning valley of Sangla! Surrounded by snow-capped peaks and breathtaking landscapes, this exclusive getaway offers bonfire nights, vibrant Holi celebrations, and adventure-packed days in nature.</p>
-    </div> */}
+    </div>
   </div>
   )}
 

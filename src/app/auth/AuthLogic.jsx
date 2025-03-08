@@ -1,5 +1,5 @@
-'use client'
-import { useState } from "react";
+"use client";
+import { useState , useCallback} from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -9,6 +9,7 @@ export function useAuth() {
   const [loading, setLoading] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [mobileNumber, setMobileNumber] = useState("");
+  const [user, setUser] = useState(null);
 
   const signup = async (data) => {
     setLoading(true);
@@ -18,8 +19,13 @@ export function useAuth() {
       setMobileNumber(data.mobileNumber);
       alert("OTP sent successfully");
     } catch (error) {
-        console.log(error)
-      alert(error.response?.data?.responseMessage || "Something went wrong");
+      console.log(error);
+      if (error.message === "Network Error") {
+        alert("Network error. Please check your internet connection.");
+      } else {
+        alert(error.response?.data?.responseMessage || "Something went wrong");
+      }
+      // alert(error.response?.data?.responseMessage || "Something went wrong");
     }
     setLoading(false);
   };
@@ -27,17 +33,20 @@ export function useAuth() {
   const verifyOtp = async (otp) => {
     setLoading(true);
     try {
-      const response = await axios.put(`${API_BASE_URL}/verifyOtp`, { mobileNumber, otp });
+      const response = await axios.put(`${API_BASE_URL}/verifyOtp`, {
+        mobileNumber,
+        otp,
+      });
       Cookies.set("jwt", token, {
         expires: 1, // 1 day expiration
         secure: false,
         sameSite: "Lax",
       });
-  
+
       console.log("Login successful:", response.data);
       alert("OTP verified successfully");
     } catch (error) {
-      console.log(error)
+      console.log(error);
       alert(error.response?.data?.responseMessage || "Invalid OTP");
     }
     setLoading(false);
@@ -51,7 +60,12 @@ export function useAuth() {
       setMobileNumber(data.mobileNumber);
       alert("OTP sent for login");
     } catch (error) {
-      alert(error.response?.data?.responseMessage || "Something went wrong");
+      if (error.message === "Network Error") {
+        alert("Network error. Please check your internet connection.");
+      } else {
+        alert(error.response?.data?.responseMessage || "Something went wrong");
+      }
+      // alert(error.response?.data?.responseMessage || "Something went wrong");
     }
     setLoading(false);
   };
@@ -59,19 +73,36 @@ export function useAuth() {
   const verifyLoginOtp = async (otp) => {
     setLoading(true);
     try {
-      const response = await axios.put(`${API_BASE_URL}/verifyLoginOtp`, { mobileNumber, otp });
-      console.log("Login successful:", response.data);
-      const token = response.data.result.token
+      const response = await axios.put(`${API_BASE_URL}/verifyLoginOtp`, {
+        mobileNumber,
+        otp,
+      });
+      // console.log("Login successful:", response.data);
+      const token = response.data.result.token;
       Cookies.set("jwt", token, {
-        expires: 30, // 1 day expiration
+        expires: 30,
+        path: "/",
         secure: false,
         sameSite: "Lax",
       });
-  
-      
+      // console.log("Cookie set:", Cookies.get("jwt"));
+      const user = {
+        name: response.data.result.name,
+        number: response.data.result.mobileNumber,
+        email: response.data.result.email,
+      };
+      // console.log(user, token)
+      setUser(user);
+      await validateToken();
+      window.location.href = "/";
       alert("Login successful");
     } catch (error) {
-      alert(error.response?.data?.responseMessage || "Invalid OTP");
+      // alert(error.response?.data?.responseMessage || "Invalid OTP");
+      if (error.message === "Network Error") {
+        alert("Network error. Please check your internet connection.");
+      } else {
+        alert(error.response?.data?.responseMessage || "Something went wrong");
+      }
     }
     setLoading(false);
   };
@@ -81,7 +112,9 @@ export function useAuth() {
 
     setLoading(true);
     try {
-      const response = await axios.post(`${API_BASE_URL}/resendOtp`, { mobileNumber });
+      const response = await axios.post(`${API_BASE_URL}/resendOtp`, {
+        mobileNumber,
+      });
 
       if (response.status === 200) {
         alert("OTP resent successfully!");
@@ -89,9 +122,109 @@ export function useAuth() {
         alert(response.data.responseMessage || "Failed to resend OTP");
       }
     } catch (error) {
-      alert(error.response?.data?.responseMessage || "Error resending OTP. Please try again.");
+      if (error.message === "Network Error") {
+        alert("Network error. Please check your internet connection.");
+      } else {
+        alert(error.response?.data?.responseMessage || "Something went wrong");
+      }
+      // alert(
+      //   error.response?.data?.responseMessage ||
+      //     "Error resending OTP. Please try again."
+      // );
     }
     setLoading(false);
   };
-  return { signup, verifyOtp, login, verifyLoginOtp, loading, otpSent, mobileNumber, resendOtp , setOtpSent};
+
+  // const validateToken = async () => {
+  //   const token = Cookies.get("jwt");
+  //   if (!token) return;
+
+  //   setLoading(true);
+  //   try {
+  //     // const response = await axios.get(`${API_BASE_URL}/validateToken`, {
+  //     //   headers: {
+  //     //     Authorization: `Bearer ${token}`,
+  //     //   },
+  //     // });
+  //     // const user = {
+  //     //   name: response.data.result.name,
+  //     //   number: response.data.result.mobileNumber,
+  //     //   email: response.data.result.email,
+  //     // };
+  //     const user = {
+  //       name: "adi",
+  //       number: "89809809",
+  //       email: "sdassd@gmail.com",
+  //     };
+  //     setUser(user);
+  //   } catch (error) {
+  //     console.error("Token validation failed:", error);
+  //     Cookies.remove("jwt");
+  //   }
+  //   setLoading(false);
+  // };
+
+
+  const validateToken = useCallback(async () => {
+    const token = Cookies.get("jwt");
+    // console.log('token', token)
+    if (!token) return;
+
+    setLoading(true);
+    try {
+      const response = await axios.get(`${API_BASE_URL}/validateToken`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      // console.log('user validate', response.data)
+      const user = {
+        name: response.data.result.name,
+        number: response.data.result.mobileNumber,
+        email: response.data.result.email,
+      };
+
+      // const user ={
+      //   name:'adi',
+      //   number:'2312312',
+      //   email:'dad@gmail.com'
+      // }
+      setUser(user);
+      // console.log('user in validate:',user)
+    } catch (error) {
+      console.error("Token validation failed:", error);
+      if (error.message === "Network Error") {
+        alert("Network error. Please check your internet connection.");
+      } else {
+        alert(error.response?.data?.responseMessage || "Something went wrong");
+      }
+      Cookies.remove("jwt");
+    }
+    setLoading(false);
+  }, []); // Empty dependency array to ensure the function is stable
+
+
+
+  const logout = () => {
+    Cookies.remove("jwt"); // Remove the correct cookie
+    setUser(null); // Clear the user state
+    window.location.href = "/"; // Redirect to the home page
+  };
+
+  return {
+    signup,
+    user,
+    setUser,
+    verifyOtp,
+    logout,
+    login,
+    verifyLoginOtp,
+    loading,
+    otpSent,
+    mobileNumber,
+    resendOtp,
+    setOtpSent,
+    validateToken,
+  };
 }

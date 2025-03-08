@@ -1,72 +1,79 @@
-'use client'
-import { useState, useRef, useEffect, useCallback } from 'react'
-import { IoIosSearch } from 'react-icons/io'
-import { RxHamburgerMenu } from 'react-icons/rx'
-import { IoClose } from 'react-icons/io5'
+"use client";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { IoIosSearch } from "react-icons/io";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { IoClose } from "react-icons/io5";
+import { useAuthContext } from "@/app/AuthProvider";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { FaWhatsapp } from "react-icons/fa";
+import { IoIosCall } from "react-icons/io";
+import { IoMailOutline } from "react-icons/io5";
 
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { FaWhatsapp } from 'react-icons/fa'
-import { IoIosCall } from 'react-icons/io'
-import { IoMailOutline } from 'react-icons/io5'
-
-import React from 'react'
+import React from "react";
 
 const Navbar = () => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [isScrolled, setIsScrolled] = useState(false)
-  const menuRef = useRef(null)
-  const pathname = usePathname()
-  const isHomePage = pathname === '/'
-  const isChristmasPage = pathname === '/christmas-new-year-special'
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isScrolled, setIsScrolled] = useState(false);
+  const menuRef = useRef(null);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+  const isChristmasPage = pathname === "/christmas-new-year-special";
+  const { user, logout } = useAuthContext(); 
+
+
+  // useEffect(()=>{
+  //   console.log('user_',user)
+  // },[user])
 
   const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev)
-  }
+    setIsMenuOpen((prev) => !prev);
+  };
 
   const handleClickOutside = useCallback((event) => {
     if (
       menuRef.current &&
       !menuRef.current.contains(event.target) &&
-      !event.target.closest('.menu-button')
+      !event.target.closest(".menu-button")
     ) {
-      setIsMenuOpen(false)
+      setIsMenuOpen(false);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [handleClickOutside])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [handleClickOutside]);
 
   useEffect(() => {
-    setIsMenuOpen(false)
-  }, [pathname])
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
-    console.log('Search query:', searchQuery)
-  }, [searchQuery])
+    console.log("Search query:", searchQuery);
+  }, [searchQuery]);
 
   useEffect(() => {
     const handleScrollChange = () => {
-      setIsScrolled(window.scrollY > 0)
-    }
+      setIsScrolled(window.scrollY > 0);
+    };
 
-    document.addEventListener('scroll', handleScrollChange)
+    document.addEventListener("scroll", handleScrollChange);
     return () => {
-      document.removeEventListener('scroll', handleScrollChange)
-    }
-  }, [])
+      document.removeEventListener("scroll", handleScrollChange);
+    };
+  }, []);
 
   return (
     <nav
-      className={`${!isScrolled && isHomePage ? 'bg-[#000]' : 'bg-[#000]'
-        } text-gray-100 sticky inset-x-0 top-0 z-30 transition-all duration-300 ease-in-out`}
+      className={`${
+        !isScrolled && isHomePage ? "bg-[#000]" : "bg-[#000]"
+      } text-gray-100 sticky inset-x-0 top-0 z-30 transition-all duration-300 ease-in-out`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
@@ -92,8 +99,9 @@ const Navbar = () => {
             <Link
               href="/holi-special"
               className={`border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
-        hover:bg-red-500 hover:text-white active:scale-95 ${isChristmasPage ? 'animate-glow bg-red-500' : ''
-                }`}
+        hover:bg-red-500 hover:text-white active:scale-95 ${
+          isChristmasPage ? "animate-glow bg-red-500" : ""
+        }`}
             >
               Holi Special
             </Link>
@@ -147,6 +155,25 @@ const Navbar = () => {
               <IoMailOutline className="h-6 w-6 text-gray-100" />
             </a>
 
+            {/* Conditional Sign Up / Logout Button */}
+            {user ? (
+              <button
+                onClick={logout}
+                className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
+                  hover:bg-red-600 hover:text-white active:scale-95"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                href="/auth/signup"
+                className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
+                  hover:bg-yellow-600 hover:text-white active:scale-95"
+              >
+                Sign Up
+              </Link>
+            )}
+
             {/* Hamburger Menu */}
             <button
               onClick={toggleMenu}
@@ -160,43 +187,9 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="flex flex-col space-y-4 mt-4 lg:hidden">
-            <Link
-              href="/christmas-new-year-special"
-              className={`border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
-        hover:bg-red-500 hover:text-white active:scale-95 ${isChristmasPage ? 'animate-glow bg-red-500' : ''
-                }`}
-            >
-              X Max & New Year
-            </Link>
-            <Link
-              href="/#backpacking"
-              className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
-        hover:bg-gray-300 hover:text-black active:scale-95"
-            >
-              Backpacking Trips
-            </Link>
-            <Link
-              href="/#treks"
-              className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
-        hover:bg-gray-300 hover:text-black active:scale-95"
-            >
-              Treks
-            </Link>
-            <Link
-              href="/#weekend-fun"
-              className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
-        hover:bg-gray-300 hover:text-black active:scale-95"
-            >
-              Weekend Fun
-            </Link>
-          </div>
-        )}
       </div>
 
+      {/* Mobile Menu */}
       {isMenuOpen && (
         <div
           ref={menuRef}
@@ -227,11 +220,27 @@ const Navbar = () => {
             >
               Weekend Fun
             </Link>
+            {/* Conditional Sign Up / Logout Button in Mobile Menu */}
+            {user ? (
+              <button
+                onClick={logout}
+                className="block px-4 py-3 text-lg font-semibold border-b border-gray-600 w-full text-left"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                href="/auth/signup"
+                className="block px-4 py-3 text-lg font-semibold border-b border-gray-600"
+              >
+                Sign Up
+              </Link>
+            )}
           </div>
         </div>
       )}
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

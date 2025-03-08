@@ -24,6 +24,14 @@ export default function SignupPage() {
 
   return (
     <div className="min-h-screen items-center justify-center flex bg-amber-50 flex-col md:flex-row">
+      <div className="md:hidden absolute inset-0 z-0">
+        <img
+          src="/images/holi-modal.jpg"
+          alt="Background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      </div>
       {/* Left Side - Image */}
       <div className="hidden md:flex md:w-1/2  justify-center items-center">
         <img
@@ -34,7 +42,7 @@ export default function SignupPage() {
       </div>
 
       {/* Right Side - Form */}
-      <div className="flex w-full md:w-1/2 justify-center items-center">
+      <div className="flex w-full md:w-1/2 justify-center items-center relative z-10">
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
           {!otpSent ? (
             <form

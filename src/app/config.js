@@ -1,0 +1,1 @@
+export const ServerUrl = 'http://13.49.44.64:5009/api/v1';

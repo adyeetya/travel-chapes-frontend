@@ -2,8 +2,8 @@
 import { useState , useCallback} from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-
-const API_BASE_URL = "http://localhost:5009/api/v1/user"; // Update with your backend URL
+import { ServerUrl } from "../config";
+const API_BASE_URL = `${ServerUrl}/user`; // Update with your backend URL
 
 export function useAuth() {
   const [loading, setLoading] = useState(false);

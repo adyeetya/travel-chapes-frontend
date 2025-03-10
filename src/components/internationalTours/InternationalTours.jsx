@@ -93,7 +93,7 @@ Number of Days: ${formData.days}`
             className="relative group cursor-pointer"
           >
             <div className="h-64 w-full overflow-hidden rounded-lg shadow-lg relative">
-              <Image
+              <img
                 src={tour.image}
                 alt={tour.name}
                 width={1000}

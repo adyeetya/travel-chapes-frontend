@@ -7,7 +7,7 @@ import { useEffect } from "react";
 export default function SignupPage() {
   const signupForm = useForm();
   const otpForm = useForm();
-  const { signup, verifyOtp, loading, otpSent, resendOtp, setOtpSent } =
+  const { signup, verifyLoginOtp, loading, otpSent, resendOtp, setOtpSent } =
     useAuth();
 
   // Reset signup form when OTP is sent
@@ -89,7 +89,7 @@ export default function SignupPage() {
             </form>
           ) : (
             <form
-              onSubmit={otpForm.handleSubmit((data) => verifyOtp(data.otp))}
+              onSubmit={otpForm.handleSubmit((data) => verifyLoginOtp(data.otp))}
               className="flex flex-col"
             >
               <h2 className="text-2xl font-semibold mb-4 text-center">

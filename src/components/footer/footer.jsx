@@ -19,7 +19,7 @@ const Footer = () => {
           <div className="flex flex-col gap-4 w-3/4">
             {/* Images and Text Section */}
             <div className="flex justify-start items-center gap-2 z-10">
-              <Image
+              <img
                 src="/images/logo.png"
                 width={1000}
                 height={1000}
@@ -135,7 +135,7 @@ const Footer = () => {
 
                 <li className="my-2">
                   <Link
-                    href="/christmas-special/himachal-high"
+                    href="/himachal-high"
                     className="hover:underline flex items-center"
                   >
                     <FaChevronRight className="mr-2 w-2 whitespace-nowrap" />{' '}
@@ -159,7 +159,7 @@ const Footer = () => {
               Accepted Payments
             </p>
             <div className="flex flex-row gap-4">
-              <Image
+              <img
                 src="/images/payments.webp"
                 width={1000}
                 height={1000}

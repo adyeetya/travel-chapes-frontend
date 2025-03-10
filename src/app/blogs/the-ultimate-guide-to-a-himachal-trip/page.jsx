@@ -66,7 +66,7 @@ export default function HimachalTripGuide() {
               },
               {
                 title: 'Dharamshala and McLeod Ganj',
-                url: '/christmas-special/himachal-high',
+                url: '/himachal-high',
                 description:
                   "Spiritual havens with attractions like the Dalai Lama's residence, Bhagsu Waterfall, and Triund Trek.",
                 img: 'https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/Spiti2.webp',
@@ -91,7 +91,7 @@ export default function HimachalTripGuide() {
                 className="bg-gray-100 shadow-md rounded-lg overflow-hidden"
               >
                 <div className="h-48 bg-cover bg-center relative">
-                  <Image
+                  <img
                     src={img}
                     alt={title}
                     layout="fill"

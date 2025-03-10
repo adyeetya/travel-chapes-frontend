@@ -202,7 +202,7 @@ const TravelPackage = () => {
           {/* Image Gallery */}
           <div className="flex space-x-4 mb-6">
             <div className="w-24 h-36 md:w-32 md:h-48 rounded-full overflow-hidden">
-              <Image
+              <img
                 src="https://travelchapes.s3.eu-north-1.amazonaws.com/images/Himachal_exclusive/hh5.jpg"
                 alt="img1"
                 width={200}
@@ -211,7 +211,7 @@ const TravelPackage = () => {
               />
             </div>
             <div className="w-24 h-36 md:w-32 md:h-48 rounded-full overflow-hidden">
-              <Image
+              <img
                 src="https://travelchapes.s3.eu-north-1.amazonaws.com/images/Himachal_exclusive/hh6.jpg"
                 alt="img2"
                 width={200}
@@ -589,14 +589,14 @@ const ImagesGrid = () => {
                 playsInline
               />
             ) : (
-              <Image
+              <img
                 src={media}
                 width={1000}
                 height={1000}
                 alt={`Media item ${index + 1}`}
                 className="object-cover w-full h-full"
-                quality={80}
-                priority
+                // quality={80}
+                // priority
               />
             )}
           </div>
@@ -640,7 +640,7 @@ const ImagesSlider = () => {
                   playsInline
                 />
               ) : (
-                <Image
+                <img
                   src={media}
                   width={1000}
                   height={1000}
@@ -859,7 +859,7 @@ const Testimonials = () => {
             key={index}
             className="flex flex-col items-center text-center gap-2 w-24 md:w-28"
           >
-            <Image
+            <img
               src={item.icon}
               width={100}
               height={100}
@@ -879,7 +879,7 @@ const Testimonials = () => {
       {/* Review Cards */}
       <section>
         <div className="w-full max-w-lg mx-auto p-6 space-y-8">
-          <Image
+          <img
             src="/images/reviews/review1.webp"
             alt="testimonial"
             width={1000}
@@ -933,7 +933,7 @@ const Content = () => {
 
         {/* Top right overlayed image */}
         <div className="absolute top-16 right-4 md:top-16 md:right-16 h-1/3 w-1/2 md:h-1/2 md:w-1/3 bg-cover rounded-lg overflow-hidden">
-          <Image
+          <img
             src="https://travelchapes.s3.eu-north-1.amazonaws.com/images/manali/manali3.webp"
             alt="Place"
             width={400}
@@ -945,7 +945,7 @@ const Content = () => {
         {/* Overlapping circular images */}
         <div className="absolute bottom-40 md:bottom-12 right-4  md:right-16 flex -space-x-2">
           <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-400 rounded-full overflow-hidden">
-            <Image
+            <img
               src="https://travelchapes.s3.eu-north-1.amazonaws.com/images/Himachal_exclusive/hh1.jpg"
               alt="Circle 1"
               width={200}
@@ -954,7 +954,7 @@ const Content = () => {
             />
           </div>
           <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-300 rounded-full overflow-hidden">
-            <Image
+            <img
               src="https://travelchapes.s3.eu-north-1.amazonaws.com/images/Himachal_exclusive/hh2.jpg"
               alt="Circle 2"
               width={200}
@@ -973,7 +973,7 @@ const Content = () => {
             />
           </div>
           <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-300 rounded-full overflow-hidden">
-            <Image
+            <img
               src="https://travelchapes.s3.eu-north-1.amazonaws.com/images/Himachal_exclusive/hh8.webp"
               alt="Circle 2"
               width={200}
@@ -998,7 +998,7 @@ const Content = () => {
         <Itinerary />
       </section>
       <section className=" w-full">
-        <Image
+        <img
           src="/images/homepage/gallery_font.svg"
           width={1000}
           height={1000}

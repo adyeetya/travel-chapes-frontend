@@ -45,9 +45,8 @@ const DescriptionWithReadMore = ({ destination }) => {
     destination.detailDescription.length > 0
   ) {
     const firstDetail = destination.detailDescription[0]
-    const truncatedDetail = `${
-      firstDetail.title
-    }: ${firstDetail.description.slice(0, 200)}...`
+    const truncatedDetail = `${firstDetail.title
+      }: ${firstDetail.description.slice(0, 200)}...`
     const fullDetail = destination.detailDescription.map((item, index) => (
       <div key={index} className="mb-4">
         {item.title && (
@@ -244,7 +243,7 @@ const TravelPackage = ({ destination }) => {
                 key={index}
                 className="w-24 h-36 md:w-32 md:h-48 rounded-full overflow-hidden"
               >
-                <Image
+                <img
                   src={image}
                   alt={`Image ${index + 1}`}
                   width={200}
@@ -424,19 +423,17 @@ const Itinerary = ({ shortItinerary, fullItinerary }) => {
                   {expandedDay === item.day ? 'Show Less' : 'Show More'}
                 </span>
                 <CiCircleChevDown
-                  className={`ml-1 transform transition-transform ${
-                    expandedDay === item.day ? 'rotate-180' : 'rotate-0'
-                  } w-8 h-8`}
+                  className={`ml-1 transform transition-transform ${expandedDay === item.day ? 'rotate-180' : 'rotate-0'
+                    } w-8 h-8`}
                 />
               </button>
             </div>
 
             <div
-              className={`transition-all duration-1000 ease-in-out overflow-hidden ${
-                expandedDay === item.day
+              className={`transition-all duration-1000 ease-in-out overflow-hidden ${expandedDay === item.day
                   ? 'max-h-[1000px] opacity-100'
                   : 'max-h-0 opacity-0'
-              }`}
+                }`}
             >
               {expandedDay === item.day && (
                 <div className="mt-3 p-1 md:p-4 bg-gray-50 border border-gray-200 rounded-lg text-gray-700">
@@ -473,7 +470,7 @@ const ImagesGrid = ({ images }) => {
                 playsInline
               />
             ) : (
-              <Image
+              <img
                 src={media}
                 width={1000}
                 height={1000}
@@ -526,7 +523,7 @@ const ImagesSlider = ({ images }) => {
                   playsInline
                 />
               ) : (
-                <Image
+                <img
                   src={media}
                   width={1000}
                   height={1000}
@@ -658,7 +655,7 @@ const Testimonials = () => {
             key={index}
             className="flex flex-col items-center text-center gap-2 w-24 md:w-28"
           >
-            <Image
+            <img
               src={item.icon}
               width={100}
               height={100}
@@ -714,7 +711,7 @@ const Testimonials = () => {
       </div> */}
       <section>
         <div className="w-full max-w-lg mx-auto p-6 space-y-8">
-          <Image
+          <img
             src="/images/reviews/review1.webp"
             alt="testimonial"
             width={1000}
@@ -770,7 +767,7 @@ const Page = ({ destination }) => {
 
         {/* Top right overlayed image */}
         <div className="absolute top-16 right-4 md:top-16 md:right-4 h-1/3 w-1/2 md:h-1/2 md:w-1/3 bg-cover rounded-lg overflow-hidden">
-          <Image
+          <img
             src={destination.images[2]}
             alt="Place"
             width={400}
@@ -791,16 +788,15 @@ const Page = ({ destination }) => {
             return (
               <div
                 key={index}
-                className={`w-10 h-10 md:w-12 md:h-12 ${
-                  index === 0
+                className={`w-10 h-10 md:w-12 md:h-12 ${index === 0
                     ? 'bg-gray-400'
                     : index === 1
-                    ? 'bg-gray-300'
-                    : 'bg-gray-200'
-                } rounded-full overflow-hidden`}
+                      ? 'bg-gray-300'
+                      : 'bg-gray-200'
+                  } rounded-full overflow-hidden`}
               >
                 {isImage ? (
-                  <Image
+                  <img
                     src={url}
                     alt={`Media ${index + 1}`}
                     width={200}
@@ -844,7 +840,7 @@ const Page = ({ destination }) => {
         />
       </section>
       <section className=" w-full">
-        <Image
+        <img
           src="/images/homepage/gallery_font.svg"
           width={1000}
           height={1000}

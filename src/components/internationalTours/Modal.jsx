@@ -30,7 +30,7 @@ const TourModal = ({
         </button>
         {/* Left Image Section */}
         <div className="relative h-48 md:h-full md:w-1/2">
-          <Image
+          <img
             src={selectedTour.image}
             alt={selectedTour.name}
             width={1000}

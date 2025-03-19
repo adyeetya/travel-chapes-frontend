@@ -5,7 +5,7 @@ export const destinations = [
     id: 'chopta-tungnath',
     title: 'Chopta Tungnath Trek',
     duration: '3D & 2N',
-    category: ['weekend', 'holi'],
+    category: ['weekend', 'holi', 'trending'],
     banners: {
       phone: '/images/chopta/chopta_banner_phone.webp',
       web: '/images/chopta/chopta_banner_web.webp',
@@ -423,7 +423,7 @@ export const destinations = [
     id: 'kasol-to-tosh',
     title: 'Jibhi & Tirthan Valley Tour',
     duration: '3D & 2N',
-    category: ['trek'],
+    category: ['trek','trending'],
     banners: {
       phone: '/images/kasol/kasol_phone.webp',
       web: '/images/kasol/kasol_web_banner.webp',
@@ -1021,7 +1021,7 @@ export const destinations = [
     id: 'himachal-backpacking-trip-manali-kasol-jibhi',
     title: 'Himachal Backpacking Trip Manali-Kasol-Jibhi',
     duration: '7D & 6N',
-    category: ['trek', 'backpacking', 'christmas'],
+    category: ['trek', 'backpacking', 'christmas','trending'],
     banners: {
       phone: '/images/himachal/himachal_banner_both.webp',
       web: '/images/himachal/himachal_banner_both.webp',
@@ -1896,7 +1896,7 @@ export const destinations = [
     id: 'leh-ladakh-road-trip-from-delhi',
     title: 'Leh Ladakh Road Trip from Delhi ',
     duration: '7D & 6N',
-    category: ['trek', 'roadtrip', 'christmas'],
+    category: ['trek', 'roadtrip', 'christmas','trending'],
     banners: {
       phone: '/images/ladakh/ladakh_banner_both.webp',
       web: '/images/ladakh/ladakh_banner_both.webp',
@@ -2754,7 +2754,7 @@ export const destinations = [
     id: 'spiti-valley',
     title: 'Spiti Valley -A Winter Paradise',
     duration: '9D & 8N',
-    category: ['backpacking', 'christmas', 'trek'],
+    category: ['backpacking', 'christmas', 'trek','trending'],
     banners: {
       phone: '/images/spiti/spiti-banner-both.webp',
       web: '/images/spiti/spiti-banner-both.webp',
@@ -3047,7 +3047,7 @@ export const destinations = [
     "id": "sangla-holi",
     "title": "Sangla Holi Adventure",
     "duration": "6D & 5N",
-    "category": ["festival", "cultural", "holi"],
+    "category": ["festival", "cultural", "holi", 'trending'],
     "banners": {
       "phone": "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla5.webp",
       "web": "https://travelchapes.s3.eu-north-1.amazonaws.com/images/sangla/sangla5.webp"

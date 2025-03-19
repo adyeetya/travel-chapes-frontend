@@ -9,6 +9,7 @@ import About from '@/components/aboutSection/About'
 import InternationalTours from '@/components/internationalTours/InternationalTours'
 import Feedback from '@/components/feedback/Feedback'
 import BlogsSection from '@/components/blogsSections/BlogsSection'
+import TrendingDestinations from '@/components/trendingDestinations'
 import TripModalWrapper from '@/components/modal/ModalWrapper'
 import { destinations } from '@/data/destinations/destinations'
 import ImageSlider from '@/components/imagesSlider'
@@ -17,6 +18,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Hero />
+      <TrendingDestinations destinations={destinations}/>
       <ReviewCarousel />
       <section id="weekend-fun">
         <TripCarousel destinations={destinations} />

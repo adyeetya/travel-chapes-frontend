@@ -35,23 +35,23 @@ const AnimatedStat = ({ label, value, suffix }) => {
   }, [isInView, count, value])
 
   return (
-    <h1 ref={ref} className="md:text-center">
-      <span className="text-xl md:text-2xl whitespace-nowrap">{label}</span>
+    <h1 ref={ref} className="md:text-center text-white">
+      <span className="text-xs sm:text-base md:text-xl whitespace-nowrap">{label}</span>
       <br />
-      <motion.span className="text-2xl md:text-4xl font-semibold md:font-bold">
+      <motion.span className="text-xl md:text-2xl sm:font-semibold md:font-bold">
         {roundedCount}
       </motion.span>
-      <span className="text-2xl md:text-4xl font-semibold md:font-bold">
+      <span className="text-xl md:text-2xl sm:font-semibold md:font-bold">
         {suffix}
       </span>
     </h1>
   )
 }
 
-const StatsSection = () => {
+export const StatsSection = () => {
   return (
-    <div className="mb-12 mt-16 p-4 max-w-screen-xl mx-auto">
-      <div className="grid gap-8 grid-cols-2 md:grid-cols-4">
+    <div className="mt-16  md:p-4 max-w-screen-xl mx-auto">
+      <div className="grid gap-2 sm:gap-4 md:gap-8 grid-cols-4">
         {stats.map((stat) => (
           <AnimatedStat
             key={stat.label}
@@ -119,7 +119,7 @@ const TripCarousel = ({ destinations }) => {
         <Card data={weekendTrips} noOfCards={3} />
       </div>
 
-      <StatsSection />
+      {/* <StatsSection /> */}
       {/* <section className="my-12">
         <Xmas />
       </section> */}

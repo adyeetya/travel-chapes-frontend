@@ -20,7 +20,18 @@ const TrendingDestinations = ({ destinations }) => {
       <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         {trendingTrips.map((trip) => (
           <Link key={trip.id} href={`destination/${trip.id}`} passHref>
-            {/* ... desktop item ... */}
+            <div className="flex flex-col items-center cursor-pointer">
+              <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-200">
+                <img
+                  src={trip.banners.web}
+                  alt={trip.title}
+                  width={128}
+                  height={128}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <p className="mt-4 text-sm font-semibold text-center">{trip.title}</p>
+            </div>
           </Link>
         ))}
       </div>

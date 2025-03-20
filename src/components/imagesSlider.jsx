@@ -34,7 +34,7 @@ export default function ImageSlider() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/images/videos/Memories_gif.webm" type="video/mp4" />
+        <source src="/images/videos/Memories_gif.webm" type="video/webm" />
       </video>
 
       {/* Overlay for better contrast */}

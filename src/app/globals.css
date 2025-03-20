@@ -84,3 +84,14 @@
 @import "swiper/css";
 @import "swiper/css/effect-coverflow";
 @import "swiper/css/pagination";
+
+
+.no-scrollbar {
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Hides scrollbar on iOS */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Hides scrollbar for WebKit browsers */
+}

@@ -22,8 +22,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const isChristmasPage = pathname === "/christmas-new-year-special";
-  const { user, logout } = useAuthContext(); 
-
+  const { user, logout } = useAuthContext();
 
   // useEffect(()=>{
   //   console.log('user_',user)
@@ -134,7 +133,7 @@ const Navbar = () => {
               href="https://wa.me/+918650500202"
               target="_blank"
               rel="noopener noreferrer"
-              className="menu-button"
+              className="menu-button hidden md:block"
             >
               <FaWhatsapp className="h-6 w-6 text-gray-100" />
             </a>
@@ -142,7 +141,7 @@ const Navbar = () => {
               href="tel:+918851629108"
               target="_blank"
               rel="noopener noreferrer"
-              className="menu-button"
+              className="menu-button hidden md:block"
             >
               <IoIosCall className="h-6 w-6 text-gray-100" />
             </a>
@@ -150,7 +149,7 @@ const Navbar = () => {
               href="mailto:contact@travelchapes.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="menu-button"
+              className="menu-button hidden md:block"
             >
               <IoMailOutline className="h-6 w-6 text-gray-100" />
             </a>
@@ -193,7 +192,7 @@ const Navbar = () => {
       {isMenuOpen && (
         <div
           ref={menuRef}
-          className="z-50 md:hidden absolute top-12 right-0 bg-[#080808] text-white shadow-lg w-full"
+          className="z-50 md:hidden absolute pb-8 top-12 right-0 bg-[#080808] text-white shadow-lg w-full"
         >
           <div className="px-4 py-4 space-y-2">
             <Link
@@ -221,7 +220,7 @@ const Navbar = () => {
               Weekend Fun
             </Link>
             {/* Conditional Sign Up / Logout Button in Mobile Menu */}
-            {user ? (
+            {/* {user ? (
               <button
                 onClick={logout}
                 className="block px-4 py-3 text-lg font-semibold border-b border-gray-600 w-full text-left"
@@ -235,7 +234,33 @@ const Navbar = () => {
               >
                 Sign Up
               </Link>
-            )}
+            )} */}
+            <div className="flex justify-evenly space-x-4 items-center">
+              <a
+                href="https://wa.me/+918650500202"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="menu-button"
+              >
+                <FaWhatsapp className="h-8 w-8 text-gray-100" />
+              </a>
+              <a
+                href="tel:+918851629108"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="menu-button"
+              >
+                <IoIosCall className="h-8 w-8 text-gray-100" />
+              </a>
+              <a
+                href="mailto:contact@travelchapes.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="menu-button"
+              >
+                <IoMailOutline className="h-8 w-8 text-gray-100" />
+              </a>
+            </div>
           </div>
         </div>
       )}

@@ -198,7 +198,7 @@ const Hero = () => {
 const HimachalHigh = () => {
   return (
     <div className="relative w-full max-w-screen-xl mx-auto">
-      <Image
+      <img
         src="/images/homepage/himachalhigh.webp" // Replace with your image path
         alt="Christmas Image"
         className="w-full h-auto object-cover  max-h-screen"
@@ -206,7 +206,7 @@ const HimachalHigh = () => {
         width={1000}
       />
       <Link
-        href="/christmas-special/himachal-high" // Replace with your target link
+        href="/himachal-high" // Replace with your target link
         className="absolute bottom-2 md:bottom-8 left-1/2 transform -translate-x-1/2 px-2 py-1 md:px-6 md:py-3 bg-black text-white text-sm md:text-lg md:font-semibold rounded-full shadow-lg hover:bg-red-600 transition-all duration-300 ease-in-out animate-glow"
       >
         Start Adventure
@@ -237,7 +237,7 @@ const HimachalHigh = () => {
 const XmasBanner = () => {
   return (
     <div className="relative w-full max-w-screen-xl mx-auto">
-      <Image
+      <img
         src="/images/christmas/xmasbanner.webp" // Replace with your image path
         alt="Christmas Image"
         className="w-full h-auto object-cover  max-h-screen"

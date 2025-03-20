@@ -568,7 +568,7 @@ const TravelPackage = ({ destination }) => {
                 key={index}
                 className="w-24 h-36 md:w-32 md:h-48 rounded-full overflow-hidden"
               >
-                <Image
+                <img
                   src={image}
                   alt={`Image ${index + 1}`}
                   width={200}
@@ -772,14 +772,14 @@ const ImagesGrid = ({ images }) => {
                 playsInline
               />
             ) : (
-              <Image
+              <img
                 src={media}
                 width={1000}
                 height={1000}
                 alt={`Media item ${index + 1}`}
                 className="object-cover w-full h-full"
-                quality={80}
-                priority
+                // quality={80}
+                // priority
               />
             )}
           </div>
@@ -809,14 +809,14 @@ const ImagesSlider = ({ images }) => {
                   playsInline
                 />
               ) : (
-                <Image
+                <img
                   src={media}
                   width={1000}
                   height={1000}
                   alt={`Media item ${index + 1}`}
                   className="object-cover w-full h-auto rounded-lg min-h-[400px]"
-                  quality={80}
-                  priority
+                  // quality={80}
+                  // priority
                 />
               )}
             </div>
@@ -923,7 +923,7 @@ const Testimonials = () => {
             key={index}
             className="flex flex-col items-center text-center gap-2 w-24 md:w-28"
           >
-            <Image
+            <img
               src={item.icon}
               width={100}
               height={100}
@@ -943,7 +943,7 @@ const Testimonials = () => {
       {/* Review Cards */}
       <section>
         <div className="w-full max-w-lg mx-auto p-6 space-y-8">
-          <Image
+          <img
             src="/images/reviews/review1.webp"
             alt="testimonial"
             width={1000}
@@ -989,7 +989,7 @@ const Page = () => {
 
         {/* Top right overlayed image */}
         <div className="absolute top-16 right-4 md:top-16 md:right-4 h-1/3 w-1/2 md:h-1/2 md:w-1/3 bg-cover rounded-lg overflow-hidden">
-          <Image
+          <img
             src={destination.images[2]}
             alt="Place"
             width={400}
@@ -1019,7 +1019,7 @@ const Page = () => {
                 } rounded-full overflow-hidden`}
               >
                 {isImage ? (
-                  <Image
+                  <img
                     src={url}
                     alt={`Media ${index + 1}`}
                     width={200}
@@ -1058,7 +1058,7 @@ const Page = () => {
         />
       </section>
       <section className=" w-full">
-        <Image
+        <img
           src="/images/homepage/gallery_font.svg"
           width={1000}
           height={1000}

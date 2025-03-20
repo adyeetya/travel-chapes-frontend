@@ -68,14 +68,14 @@ const Carousel = () => {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 w-full h-full z-0">
           <Link href={slides[currentSlide].link}>
-            <Image
+            <img
               src={slides[currentSlide].img} // Use the same image as the slide
               alt={slides[currentSlide].title}
               width={100}
               height={100}
-              quality={20} // Reduce quality for faster load
+              // Reduce quality for faster load
               className="filter blur-[2px] brightness-[0.3] object-cover bg-cover bg-center h-full w-full" // Apply blur and darken effect
-              priority // Optional: for preloading this image
+              // Optional: for preloading this image
             />
           </Link>
         </div>
@@ -117,7 +117,7 @@ const Carousel = () => {
                     >
                       <div className="h-80 w-60 rounded-3xl bg-gray-400">
                         <Link href={slides[currentSlide].link}>
-                          <Image
+                          <img
                             src={slide.img}
                             alt={slide.title}
                             width={1000}

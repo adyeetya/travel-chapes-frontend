@@ -14,7 +14,7 @@ const KedarnathBlog = () => {
           destinations. Find everything you need to plan your trip to Kedarnath.
         </p>
         <div className="mt-6">
-          <Image
+          <img
             src="/images/blogs/kedarnath.webp"
             alt="Kedarnath Temple"
             width={1200}
@@ -89,7 +89,7 @@ const KedarnathBlog = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
             <div>
-              <Image
+              <img
                 src="/images/blogs/kaal-bhairav.webp"
                 alt="Bhairav Temple"
                 width={600}
@@ -103,7 +103,7 @@ const KedarnathBlog = () => {
               </p>
             </div>
             <div>
-              <Image
+              <img
                 src="/images/blogs/vasuki-Tal.webp"
                 alt="Vasuki Tal"
                 width={600}
@@ -116,7 +116,7 @@ const KedarnathBlog = () => {
               </p>
             </div>
             <div>
-              <Image
+              <img
                 src="/images/blogs/gauri-kund.webp"
                 alt="Gauri Kund"
                 width={600}

@@ -94,8 +94,10 @@ Number of Days: ${formData.days}`;
             onClick={() => setSelectedTour(tour)}
             className="relative group cursor-pointer transform hover:scale-105 transition-transform duration-300"
           >
-            <div className="h-64 w-full overflow-hidden rounded-xl shadow-lg relative">
-              <Image
+
+            <div className="h-64 w-full overflow-hidden rounded-lg shadow-lg relative">
+              <img
+
                 src={tour.image}
                 alt={tour.name}
                 width={1000}

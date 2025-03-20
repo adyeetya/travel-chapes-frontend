@@ -18,7 +18,7 @@ const ContactUs = () => {
       <div className="flex flex-col md:flex-row w-full  justify-between gap-4">
         {/* left img */}
         <div className="w-full md:w-[35%] ">
-          <Image
+          <img
             src="/images/contact/banner.webp"
             width={1000}
             height={1000}
@@ -66,7 +66,7 @@ const ContactUs = () => {
                 </p>
               </div>
               <div className="absolute bottom-0 right-0">
-                <Image
+                <img
                   src="/images/contact/vector1.webp"
                   width={200}
                   height={200}

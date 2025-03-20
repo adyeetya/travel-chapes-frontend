@@ -188,7 +188,8 @@ const Hero = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover brightness-50"
         >
-          <source src="/images/videos/Main_banner.webm" type="video/mp4" />
+          <source src="/images/videos/Main_banner.webm" type="video/webm" />
+
         </video>
       </div>
 

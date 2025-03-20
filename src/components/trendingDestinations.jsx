@@ -33,24 +33,33 @@ const TrendingDestinations = ({ destinations }) => {
 
       {/* Horizontal scrolling carousel for mobile screens */}
       <div className="sm:hidden overflow-x-auto whitespace-nowrap py-4">
-        {trendingTrips.map((trip) => (
-          <div key={trip.id} className="inline-block mx-2">
-            <Link href={`destination/${trip.id}`} passHref>
-              <div className="flex flex-col items-center cursor-pointer">
-                <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-200">
-                  <img
-                    src={trip.banners.web}
-                    alt={trip.title}
-                    width={128}
-                    height={128}
-                    className="object-cover w-full h-full"
-                  />
+        <div className="flex flex-col flex-wrap h-[360px] w-max">
+          {trendingTrips.map((trip, index) => (
+            <div
+              key={trip.id}
+              className="inline-block  mx-2 max-w-[150px] h-[170px]"
+              style={{
+                width: '35%', // Adjust width for 2 columns
+                marginBottom: index % 2 === 0 ? '1rem' : '0', // Add margin between rows
+              }}
+            >
+              <Link href={`destination/${trip.id}`} passHref>
+                <div className="flex flex-col items-center h-full p-2 justify-between cursor-pointer">
+                  <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-200">
+                    <img
+                      src={trip.banners.web}
+                      alt={trip.title}
+                      width={128}
+                      height={128}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <p className="mt-4 text-sm text-center whitespace-normal">{trip.title}</p>
                 </div>
-                <p className="mt-4 text-sm font-semibold text-center">{trip.title}</p>
-              </div>
-            </Link>
-          </div>
-        ))}
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

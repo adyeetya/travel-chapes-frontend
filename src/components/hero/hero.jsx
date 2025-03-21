@@ -231,13 +231,13 @@ const Hero = () => {
 
             <div className="flex justify-center gap-4 items-center">
               <form onSubmit={handleSearch} className="flex gap-4 items-center">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search for destinations"
-                  className="bg-white/20 backdrop-blur-xl border border-white/40 shadow-lg w-full md:w-96 text-black py-3 px-8 md:px-14 rounded-full text-lg md:text-xl focus:outline-none focus:ring-2 focus:ring-white/50"
-                />
+              <input
+  type="text"
+  value={searchQuery}
+  onChange={(e) => setSearchQuery(e.target.value)}
+  placeholder="Search for destinations"
+  className="bg-white/20 backdrop-blur-xl border border-white/40 shadow-lg w-full md:w-96 text-black py-3 px-8 md:px-14 rounded-full text-lg md:text-xl focus:outline-none focus:ring-2 focus:ring-white/50 placeholder-gray-300"
+/>
                 <button
                   type="submit"
                   disabled={!searchQuery.trim()}

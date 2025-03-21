@@ -59,7 +59,7 @@ const TrendingDestinations = ({ destinations }) => {
                       />
                     </div>
                     <p className="mt-2 text-sm text-center font-medium w-full line-clamp-2 overflow-hidden text-ellipsis">
-                      {trip.title}
+                    {trip.title.split(' ').slice(0, 2).join(' ')}
                     </p>
                   </div>
                 </Link>

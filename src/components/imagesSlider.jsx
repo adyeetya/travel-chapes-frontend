@@ -80,13 +80,12 @@ export default function ImageSlider() {
         {images.map((src, index) => (
           <SwiperSlide key={index} className="relative">
             <div className="relative w-full max-w-[350px] md:max-w-[400px] aspect-[3/4] rounded-lg overflow-hidden shadow-lg">
-              <Image
+              <img
                 src={src}
                 alt={`Slide ${index}`}
-                fill
-                quality={90}
-                priority={index < 3}
-                className="object-cover rounded-lg"
+                
+              
+                className="object-cover rounded-lg w-full h-full"
               />
             </div>
           </SwiperSlide>

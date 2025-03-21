@@ -8,8 +8,8 @@ const TrendingDestinations = ({ destinations }) => {
   );
 
   return (
-    <div className="trending-destinations my-16 p-4 md:p-6">
-      <h2 className="text-left text-2xl font-bold mb-12">Trending Destinations</h2>
+    <div className="trending-destinations mb-16 md:-mt-2 p-4 pt-0 md:p-6">
+      <h2 className="text-left text-2xl md:text-3xl font-bold mb-8">Trending Destinations</h2>
 
       {/* Grid layout for larger screens */}
       <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -25,7 +25,9 @@ const TrendingDestinations = ({ destinations }) => {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <p className="mt-4 text-sm font-semibold text-center">{trip.title}</p>
+              <p className="mt-4 text-sm font-semibold text-center">
+  {trip.title.split(' ').slice(0, 2).join(' ')}
+</p>
             </div>
           </Link>
         ))}
@@ -54,7 +56,7 @@ const TrendingDestinations = ({ destinations }) => {
                       className="object-cover w-full h-full"
                     />
                   </div>
-                  <p className="mt-4 text-sm text-center whitespace-normal">{trip.title}</p>
+                  <p className="mt-4 text-sm text-center whitespace-normal">{trip.title.split(' ').slice(0, 2).join(' ')}</p>
                 </div>
               </Link>
             </div>

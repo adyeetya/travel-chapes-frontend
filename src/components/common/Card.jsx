@@ -59,27 +59,27 @@ const Card = ({ data, noOfCards }) => {
                   <div className="p-4 flex flex-col justify-between h-[40%]">
                     {/* Name and Rating */}
                     <div className="flex justify-between items-center">
-                      <h3 className="text-xl font-semibold text-blue-900 line-clamp-2 overflow-hidden text-ellipsis">
+                      <h3 className="text-xl font-semibold text-black line-clamp-2 overflow-hidden text-ellipsis">
                         {trip.title}
                       </h3>
-                      <span className="text-sm text-blue-700 bg-blue-200 px-2 py-1 rounded-full">
+                      <span className="text-sm text-black bg-blue-200 px-2 py-1 rounded-full">
                         {trip.rating ||
                           (Math.random() * (5 - 3.9) + 3.9).toFixed(1)}
                       </span>
                     </div>
 
                     {/* Description */}
-                    <p className="text-sm text-blue-800 mt-2">
+                    <p className="text-sm text-black mt-2">
                       {trip.metaDescription?.slice(0, 70)}
                       {trip.metaDescription?.length > 70 && "..."}
                     </p>
 
                     {/* Price and Duration */}
                     <div className="flex justify-between items-center mt-4">
-                      <span className="text-base font-semibold text-blue-900">
+                      <span className="text-base font-semibold text-black">
                         <span className="text-xs">From</span> ₹{trip.minPrice}
                       </span>
-                      <div className="flex items-center gap-2 text-sm text-blue-800">
+                      <div className="flex items-center gap-2 text-sm text-black">
                         <LuCalendarClock />
                         <span>{trip.duration}</span>
                       </div>

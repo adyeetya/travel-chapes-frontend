@@ -13,7 +13,7 @@ const TrendingDestinations = ({ destinations }) => {
   }
 
   return (
-    <div className="trending-destinations mb-16 md:-mt-2 p-4 pt-0 md:p-6">
+    <div className="trending-destinations mb-16 mt-4 p-4 md:pt-2 md:p-6">
       <h2 className="text-left text-2xl md:text-3xl font-bold mb-8">Trending Destinations</h2>
 
       {/* Desktop grid */}

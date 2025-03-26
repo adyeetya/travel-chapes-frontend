@@ -13,12 +13,14 @@ import TrendingDestinations from '@/components/trendingDestinations'
 import TripModalWrapper from '@/components/modal/ModalWrapper'
 import { destinations } from '@/data/destinations/destinations'
 import ImageSlider from '@/components/imagesSlider'
+import WhyChooseUs from '@/components/WhyChooseUs'
 export default function Home() {
   // todo - move the videos to s3 and update the links the hero vid and the memories one
   return (
     <div className="min-h-screen">
       <Hero />
       <TrendingDestinations destinations={destinations}/>
+      <WhyChooseUs />
       <ReviewCarousel />
       <section id="weekend-fun">
         <TripCarousel destinations={destinations} />

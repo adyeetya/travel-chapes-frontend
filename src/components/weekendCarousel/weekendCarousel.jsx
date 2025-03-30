@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   motion,
   useMotionValue,
@@ -7,7 +7,7 @@ import {
   animate,
   useInView,
 } from 'framer-motion'
-
+import { fetchTripByCategory } from '@/app/fetchTrip'
 import Image from 'next/image'
 import Card from '../common/Card'
 
@@ -105,10 +105,36 @@ export const StatsSection = () => {
 // }
 
 const TripCarousel = ({ destinations }) => {
+
+  const [loading, setLoading]=useState(true)
+  const [error, setError]=useState(null)
+  const [weekendTrips, setWeekendTrips]=useState([])
   // Filter destinations by the "weekend" category
-  const weekendTrips = destinations.filter((trip) =>
-    trip.category.includes('weekend')
-  )
+  // const weekendTrips = destinations.filter((trip) =>
+  //   trip.category.includes('weekend')
+  // )
+
+  useEffect(()=>{
+     const loadByCategory = async (category) => {
+            setLoading(true);
+            setError(null);
+            try {
+                const data = await fetchTripByCategory(category);
+                // console.log(data);
+                
+                console.log('cateogry: ',data.result.docs)
+                setWeekendTrips(data.result.docs)
+            }
+            catch (err) {
+                setError(err.message);
+            }
+            finally {
+                setLoading(false);
+            }
+        }
+
+        loadByCategory('Weekend Gateway');
+  },[])
 
   return (
     <div className="">

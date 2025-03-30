@@ -477,7 +477,7 @@ const ImagesGrid = ({ images }) => {
                 alt={`Media item ${index + 1}`}
                 className="object-cover w-full h-full"
                 quality={80}
-                priority
+               
               />
             )}
           </div>
@@ -530,7 +530,7 @@ const ImagesSlider = ({ images }) => {
                   alt={`Media item ${index + 1}`}
                   className="object-cover w-full h-auto rounded-lg min-h-[400px]"
                   quality={80}
-                  priority
+            
                 />
               )}
             </div>

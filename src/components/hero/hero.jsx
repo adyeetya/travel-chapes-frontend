@@ -10,6 +10,7 @@ import {
 } from "../../components/ui/bannerCarousel";
 // import { destinations } from '@/data/destinations/destinations'
 import { IoIosSearch } from "react-icons/io";
+
 const webBanners = [
   { id: 1, image: "/images/homepage/banner1.webp" },
   { id: 2, image: "/images/homepage/banner2.webp" },

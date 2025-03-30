@@ -87,7 +87,7 @@ export default function ImageSlider() {
               
                 className="object-cover rounded-lg w-full h-full"
               />
-            </div>
+            </div> 
           </SwiperSlide>
         ))}
       </Swiper>

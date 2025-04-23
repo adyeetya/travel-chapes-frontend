@@ -390,59 +390,58 @@ const TravelPackage = ({ destination }) => {
   )
 }
 
-const Itinerary = ({ shortItinerary, fullItinerary }) => {
-  const [expandedDay, setExpandedDay] = useState(null)
+
+
+const Itinerary = ({ fullItinerary }) => {
+  const [expandedDay, setExpandedDay] = useState(null);
 
   const toggleDay = (day) => {
-    setExpandedDay(expandedDay === day ? null : day)
-  }
+    setExpandedDay(expandedDay === day ? null : day);
+  };
 
   return (
     <div className="bg-gray-50 p-2 md:p-6 w-full max-w-screen-xl mx-auto rounded-lg border border-gray-200">
       <h2 className="text-xl font-semibold mb-4 text-gray-800">Itinerary</h2>
       <div className="space-y-4">
-        {shortItinerary.map((item, index) => (
+        {fullItinerary.map((item, index) => (
           <div
             key={index}
             className="p-1 md:p-3 bg-white rounded-lg shadow-sm border border-gray-200"
           >
             <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <div className="bg-gray-100 text-gray-700 font-semibold rounded-md px-2 md:px-4 py-2 mr-1 md:mr-4 text-sm md:text-md whitespace-nowrap">
+              <div className="flex flex-col">
+                <span className="text-sm md:text-md text-gray-600 font-medium">
                   {item.day}
-                </div>
-                <div className="text-gray-800 text-sm md:text-md">
-                  {item.description}
-                </div>
+                </span>
+                <h3 className="text-gray-800 text-md md:text-lg font-semibold">
+                  {item.title}
+                </h3>
               </div>
               <button
                 onClick={() => toggleDay(item.day)}
                 className="text-blue-500 font-medium text-sm md:text-md flex items-center justify-end min-w-12"
               >
                 <span className="hidden md:block">
-                  {expandedDay === item.day ? 'Show Less' : 'Show More'}
+                  {expandedDay === item.day ? "Show Less" : "Show More"}
                 </span>
                 <CiCircleChevDown
-                  className={`ml-1 transform transition-transform ${expandedDay === item.day ? 'rotate-180' : 'rotate-0'
-                    } w-8 h-8`}
+                  className={`ml-1 transform transition-transform ${
+                    expandedDay === item.day ? "rotate-180" : "rotate-0"
+                  } w-8 h-8`}
                 />
               </button>
             </div>
 
             <div
-              className={`transition-all duration-1000 ease-in-out overflow-hidden ${expandedDay === item.day
-                ? 'max-h-[1000px] opacity-100'
-                : 'max-h-0 opacity-0'
-                }`}
+              className={`transition-all duration-700 ease-in-out overflow-hidden ${
+                expandedDay === item.day
+                  ? "max-h-[1000px] opacity-100 mt-2"
+                  : "max-h-0 opacity-0"
+              }`}
             >
               {expandedDay === item.day && (
-                <div className="mt-3 p-1 md:p-4 bg-gray-50 border border-gray-200 rounded-lg text-gray-700">
-                  <h3 className="font-semibold text-gray-800 ">
-                    {fullItinerary[index].title}
-                  </h3>
-                  <p className="whitespace-pre-line">
-                    {fullItinerary[index].description}
-                  </p>
+                <div className="p-3 md:p-4 bg-gray-50 border border-gray-200 rounded-lg text-gray-700">
+                  <p className="whitespace-pre-line">{item.description}</p>
                 </div>
               )}
             </div>
@@ -450,8 +449,10 @@ const Itinerary = ({ shortItinerary, fullItinerary }) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
+
+
 
 const ImagesGrid = ({ images }) => {
   return (

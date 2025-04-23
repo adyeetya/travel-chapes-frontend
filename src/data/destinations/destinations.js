@@ -835,10 +835,7 @@ export const destinations = [
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/nag-tibba/nt7.webp',
       'https://travelchapes.s3.eu-north-1.amazonaws.com/images/nag-tibba/nt8.webp',
     ],
-    banners: {
-      phone: '/images/nag-tibba/ntbanner-phone.jpg',
-      web: '/images/nag-tibba/Nag Tibba_banner_web.jpg',
-    },
+   
     metaTitle: 'Nag Tibba Trek from Delhi | Weekend Adventure – Book Now!',
     metaDescription:
       'Join us for a memorable weekend trek to Nag Tibba from Delhi! Hike through stunning Himalayan landscapes, and create lasting memories. Book your adventure now!',

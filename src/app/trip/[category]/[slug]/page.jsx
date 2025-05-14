@@ -50,7 +50,7 @@ export default async function Page({ params }) {
 
     const trip = tripData?.result || {};
     const batch = batchData?.result || {};
-
+console.log('batch >>', batch);
     return (
       <div>
         <Content destination={trip} batch={batch} />

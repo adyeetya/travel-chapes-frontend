@@ -1,10 +1,7 @@
 import Image from 'next/image'
 import Hero from '@/components/hero/hero'
 import ReviewCarousel from '@/components/reviewcarousel/reviewcarousel'
-import TripCarousel from '@/components/weekendCarousel/weekendCarousel'
-import TrekCarousel from '@/components/trekCarousel/trekCarousel'
-import PlacesCarousel from '@/components/placesCarousel/roadtripCarousel'
-import BackpackingCarousel from '@/components/backpackingCarousel/backpackingCarousel'
+import CategoryTrips from '@/components/categoryTrips/CategoryTrips'
 import About from '@/components/aboutSection/About'
 import InternationalTours from '@/components/internationalTours/InternationalTours'
 import Feedback from '@/components/feedback/Feedback'
@@ -14,27 +11,31 @@ import TripModalWrapper from '@/components/modal/ModalWrapper'
 import { destinations } from '@/data/destinations/destinations'
 import ImageSlider from '@/components/imagesSlider'
 import WhyChooseUs from '@/components/WhyChooseUs'
+import { fetchAllCategories } from './fetchTrip'
 
-export default function Home() {
-  // todo - move the videos to s3 and update the links the hero vid and the memories one
+export default async function Home() {
+
+  const categories = await fetchAllCategories();
 
   return (
     <div className="min-h-screen">
       <Hero />
-      <TrendingDestinations destinations={destinations}/>
+      <TrendingDestinations destinations={destinations} />
       <WhyChooseUs />
       <ReviewCarousel />
-      <section id="weekend-fun">
-        <TripCarousel destinations={destinations} />
-      </section>
-      <section id="treks">
-        <TrekCarousel destinations={destinations} />
-      </section>
+      {categories.map((categoryObj) => (
+        // Skip customized/customised categories as they might be duplicates
+        !categoryObj.category.toLowerCase().includes('custom') && (
+          <section key={categoryObj._id} id={categoryObj.category.toLowerCase().replace(' ', '-')}>
+            <CategoryTrips 
+              categoryObj={categoryObj} 
+              title={`${categoryObj.category} Adventures`} 
+              noOfCards={3} 
+            />
+          </section>
+        )
+      ))}
       <ImageSlider />
-      <PlacesCarousel destinations={destinations} />
-      <section id="backpacking">
-        <BackpackingCarousel destinations={destinations} />
-      </section>
       <About />
       <InternationalTours />
       <TripModalWrapper />

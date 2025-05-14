@@ -24,8 +24,12 @@ const DescriptionWithReadMore = ({ destination }) => {
 
     return (
       <div>
-        <p className="text-black">
-          {displayText}
+        <div className="prose max-w-none text-black">
+          <div dangerouslySetInnerHTML={{
+            __html: isExpanded 
+              ? destination.description
+              : `${truncatedDescription}...`
+          }} />
           {destination.description.length > 200 && (
             <span
               onClick={handleToggleExpand}
@@ -34,7 +38,7 @@ const DescriptionWithReadMore = ({ destination }) => {
               {isExpanded ? 'Read Less' : 'Read More'}
             </span>
           )}
-        </p>
+        </div>
       </div>
     )
   }
@@ -54,7 +58,11 @@ const DescriptionWithReadMore = ({ destination }) => {
             {item.title}
           </h3>
         )}
-        <p className="text-black">{item.description}</p>
+        <p className="text-black">
+        <div
+          className="prose max-w-none"
+          dangerouslySetInnerHTML={{ __html: item.description }}
+        /></p>
       </div>
     ))
 
@@ -100,102 +108,135 @@ const BookingTable = ({ details }) => {
     setDropdownOpen(false)
   }
 
+  if (!details?.length) return null;
+
+  // Check if any batch has single sharing available
+  const hasSingleSharing = details.some(batch =>
+    Object.values(batch.pricing).some(vehiclePricing => vehiclePricing.single > 0)
+  );
+
   return (
     <div>
-      {/* Main Section */}
       <div className="bg-gray-100 h-56 mb-4 rounded-lg overflow-hidden">
-        {/* Header
-        {details?.optionSec && (
-          <div className="text-black text-lg p-2">{details?.route}</div>
-        )} */}
         <div className="flex bg-blue-600 text-white sticky top-0 gap-2 text-sm w-full">
-          {/* Batches */}
           <div className="flex-1 p-2 rounded-tl-lg flex justify-start items-center">
             Batches
           </div>
 
-          {/* Mode of Vehicle */}
           <div className="flex-1 p-2 whitespace-nowrap flex justify-start items-center">
             Mode of Vehicle
           </div>
 
-          {/* Price with Custom Dropdown */}
           <div className="flex-1 p-2 whitespace-nowrap relative">
             <div
               className="bg-blue-600 text-white px-2 py-1 rounded-md flex items-center cursor-pointer justify-between"
               onClick={toggleDropdown}
             >
-              {sharingType === 'triple' ? 'Triple Sharing' : 'Double Sharing'}
+              {sharingType === 'single'
+                ? 'Single Sharing'
+                : sharingType === 'double'
+                  ? 'Double Sharing'
+                  : 'Triple Sharing'}
               <FaCaretDown className="ml-2" />
             </div>
             {dropdownOpen && (
               <div className="absolute bg-white text-black mt-2 rounded-md shadow-md w-full z-10">
-                <div
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                  onClick={() => handleSelection('triple')}
-                >
-                  Triple Sharing
-                </div>
+                {hasSingleSharing && (
+                  <div
+                    className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                    onClick={() => handleSelection('single')}
+                  >
+                    Single Sharing
+                  </div>
+                )}
                 <div
                   className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
                   onClick={() => handleSelection('double')}
                 >
                   Double Sharing
                 </div>
+                <div
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                  onClick={() => handleSelection('triple')}
+                >
+                  Triple Sharing
+                </div>
               </div>
             )}
           </div>
         </div>
 
-        {/* Scrollable content */}
         <div className="h-48 overflow-y-auto text-sm">
-          {details &&
-            details.batch.map((tour, index) => (
-              <div
-                key={index}
-                className="grid grid-cols-4 text-black border-b gap-2 md:gap-4"
-              >
-                <div className="p-2 col-span-1 text-black flex flex-col items-center">
-                  <p>{tour.date}</p>
-                  <p className="text-orange-500 whitespace-nowrap text-xs md:text-sm bg-orange-200 w-fit px-2 rounded md:rounded-md mt-2">
-                    Filling Fast
-                  </p>
-                </div>
-                <div className="p-2 col-span-3 text-black">
-                  {tour.transports.map((vehicle, index) => (
-                    <div
-                      key={index}
-                      className="grid grid-cols-2 text-black gap-2"
-                    >
-                      <div className="mb-2 w-full flex justify-start items-center">
-                        {vehicle.type}
-                      </div>
-                      <div className="mb-2 w-full flex justify-center items-center">
-                        ₹
-                        {sharingType === 'triple'
-                          ? vehicle.costTripleSharing
-                          : vehicle.costDoubleSharing}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+          {details.map((batch, index) => (
+            <div
+              key={batch._id}
+              className="grid grid-cols-4 text-black border-b gap-2 md:gap-4"
+            >
+              <div className="p-2 col-span-1 text-black flex flex-col items-center">
+                <p>{new Date(batch.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
+                <p className="text-orange-500 whitespace-nowrap text-xs md:text-sm bg-orange-200 w-fit px-2 rounded md:rounded-md mt-2">
+                  Filling Fast
+                </p>
               </div>
-            ))}
+              <div className="p-2 col-span-3 text-black">
+                {Object.entries(batch.pricing).map(([vehicleType, prices], idx) => (
+                  <div
+                    key={`${batch._id}-${idx}`}
+                    className="grid grid-cols-2 text-black gap-2"
+                  >
+                    <div className="mb-2 w-full flex justify-start items-center">
+                      {vehicleType.toUpperCase()}
+                    </div>
+                    <div className="mb-2 w-full flex justify-center items-center">
+                      ₹
+                      {sharingType === 'single'
+                        ? prices.single || 'N/A'
+                        : sharingType === 'double'
+                          ? prices.double
+                          : prices.triple}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   )
 }
 
-const TravelPackage = ({ destination }) => {
+const TravelPackage = ({ destination, batch }) => {
   const [isModalOpen, setModalOpen] = useState(false)
   const [randomImages, setRandomImages] = useState([])
   const [details, setDetails] = useState(null)
 
+  // Calculate minPrice from the pricing data and prepare batch details
   useEffect(() => {
-    const matchedDestination = Trips.find((trip) => trip.id === destination.id)
-    setDetails(matchedDestination)
-  }, [destination.id])
+    if (destination && batch) {
+      // Calculate min price across all batches
+      let minPrice = Infinity;
+
+      batch.forEach(batchItem => {
+        Object.values(batchItem.pricing).forEach(vehiclePricing => {
+          // Include non-zero prices only
+          if (vehiclePricing.single > 0) minPrice = Math.min(minPrice, vehiclePricing.single);
+          if (vehiclePricing.double > 0) minPrice = Math.min(minPrice, vehiclePricing.double);
+          if (vehiclePricing.triple > 0) minPrice = Math.min(minPrice, vehiclePricing.triple);
+        });
+      });
+
+      setDetails({
+        route: destination.pickup,
+        category: destination.category || 'Adventure',
+        duration: `${destination.days} Days`,
+        ageGroup: '18-45',
+        meals: destination.meals || [],
+        minPrice: minPrice === Infinity ? 0 : minPrice,
+        gst: batch[0]?.gst || 5,
+      });
+    }
+  }, [destination, batch]);
 
   const getUniqueImages = (media) => {
     const imageExtensions = ['.jpg', '.jpeg', '.png', '.webp'] // List of valid image extensions
@@ -278,12 +319,11 @@ const TravelPackage = ({ destination }) => {
           {/* Inclusions */}
           <p className="my-4 text-black">Inclusions</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-yellow-600 p-4 flex justify-center items-center rounded-md text-center text-sm min-h-[80px]">
-              <p>Meals</p>
-            </div>
-            <div className="bg-yellow-600 p-4 flex justify-center items-center rounded-md text-center text-sm min-h-[80px]">
-              <p>Stays</p>
-            </div>
+            {details?.meals?.map((meal, index) => (
+              <div key={index} className="bg-yellow-600 p-4 flex justify-center items-center rounded-md text-center text-sm min-h-[80px]">
+                <p>{meal}</p>
+              </div>
+            ))}
             <div className="bg-yellow-600 p-4 flex justify-center items-center rounded-md text-center text-sm min-h-[80px]">
               <p>Transfers</p>
             </div>
@@ -337,44 +377,17 @@ const TravelPackage = ({ destination }) => {
           {/* Price and Discount */}
           <div className="mb-6">
             <p className="text-lg font-semibold text-black">Starts From</p>
-            {/* <div className="flex items-center space-x-2">
-              <span className="text-red-500 line-through text-sm">₹9,000</span>
-              <span className="bg-green-100 text-green-500 text-xs px-2 py-1 rounded-md">
-                20% Off
-              </span>
-            </div> */}
             <p className="text-4xl font-bold text-blue-600 mt-2">
               ₹{details?.minPrice}{' '}
-              {details?.optionSec && (
-                <span className="text-sm text-black font-normal">
-                  /{details.route}
-                </span>
-              )}
+              <span className="text-sm text-black font-normal">
+                + {details?.gst}% GST
+              </span>
             </p>
-
             <p className="text-sm text-gray-500">Per Person</p>
           </div>
 
           {/* Availability Table */}
-          <BookingTable details={details} />
-          {details?.optionSec && (
-            <div className="mt-4">
-              <p className="text-4xl font-bold text-blue-600 mt-12">
-                ₹{details?.optionSec.minPrice}{' '}
-                {details?.optionSec && (
-                  <span className="text-sm text-black font-normal">
-                    /{details?.optionSec.route}
-                  </span>
-                )}
-              </p>
-              <p className="text-sm text-gray-500">Per Person</p>
-              {details?.optionSec && (
-                <div className="my-6">
-                  <BookingTable details={details?.optionSec} />
-                </div>
-              )}
-            </div>
-          )}
+          <BookingTable details={batch} />
 
           {/* Book Now Button */}
           <button
@@ -425,23 +438,24 @@ const Itinerary = ({ fullItinerary }) => {
                   {expandedDay === item.day ? "Show Less" : "Show More"}
                 </span>
                 <CiCircleChevDown
-                  className={`ml-1 transform transition-transform ${
-                    expandedDay === item.day ? "rotate-180" : "rotate-0"
-                  } w-8 h-8`}
+                  className={`ml-1 transform transition-transform ${expandedDay === item.day ? "rotate-180" : "rotate-0"
+                    } w-8 h-8`}
                 />
               </button>
             </div>
 
             <div
-              className={`transition-all duration-700 ease-in-out overflow-hidden ${
-                expandedDay === item.day
-                  ? "max-h-[1000px] opacity-100 mt-2"
-                  : "max-h-0 opacity-0"
-              }`}
+              className={`transition-all duration-700 ease-in-out overflow-hidden ${expandedDay === item.day
+                ? "max-h-[1000px] opacity-100 mt-2"
+                : "max-h-0 opacity-0"
+                }`}
             >
               {expandedDay === item.day && (
                 <div className="p-3 md:p-4 bg-gray-50 border border-gray-200 rounded-lg text-gray-700">
-                  <p className="whitespace-pre-line">{item.description}</p>
+                  <div
+                    className="prose max-w-none"
+                    dangerouslySetInnerHTML={{ __html: item.description }}
+                  />
                 </div>
               )}
             </div>
@@ -478,7 +492,7 @@ const ImagesGrid = ({ images }) => {
                 alt={`Media item ${index + 1}`}
                 className="object-cover w-full h-full"
                 quality={80}
-               
+
               />
             )}
           </div>
@@ -531,7 +545,7 @@ const ImagesSlider = ({ images }) => {
                   alt={`Media item ${index + 1}`}
                   className="object-cover w-full h-auto rounded-lg min-h-[400px]"
                   quality={80}
-            
+
                 />
               )}
             </div>
@@ -725,7 +739,7 @@ const Testimonials = () => {
   )
 }
 
-const Page = ({ destination }) => {
+const Page = ({ destination, batch }) => {
   const [randomQuote, setRandomQuote] = useState('')
   const quotes = [
     'Adventures and memories',
@@ -832,7 +846,7 @@ const Page = ({ destination }) => {
         </div>
       </section>
       <section className="my-12 w-full">
-        <TravelPackage destination={destination} />
+        <TravelPackage destination={destination} batch={batch} />
       </section>
       <section className="my-12 w-full">
         <Itinerary

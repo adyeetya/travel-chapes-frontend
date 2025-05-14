@@ -6,9 +6,10 @@ export default function AllTrips() {
   const [trips, setTrips] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [pagination, setPagination] = useState(null);
   const [params, setParams] = useState({
     page: 1,
-    limit: 10,
+    limit: 8,
     // Add any default filter params here
   });
 
@@ -16,9 +17,16 @@ export default function AllTrips() {
     setLoading(true);
     setError(null);
     try {
-      const data = await fetchAllTrips();
+      const data = await fetchAllTrips(params);
       console.log(data);
       setTrips(data.result.docs || []);
+      setPagination({
+        currentPage: data.result.page,
+        totalPages: data.result.totalPages,
+        hasNextPage: data.result.hasNextPage,
+        hasPrevPage: data.result.hasPrevPage,
+        totalDocs: data.result.totalDocs
+      });
     } catch (err) {
       setError(err.message);
     } finally {
@@ -54,7 +62,7 @@ export default function AllTrips() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {trips.length > 0 ? (
           trips.map((trip) => (
-            <Link key={trip._id} href={`/trip/${trip.slug}`}>
+            <Link key={trip._id} href={`/trip/${trip.category}/${trip.slug}`}>
               <div
                 key={trip._id}
                 className="border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
@@ -88,19 +96,23 @@ export default function AllTrips() {
       <div className="mt-8 flex justify-between items-center">
         <button
           onClick={() =>
-            setParams((prev) => ({ ...prev, page: Math.max(1, prev.page - 1) }))
+            setParams((prev) => ({ ...prev, page: prev.page - 1 }))
           }
-          disabled={params.page === 1}
+          disabled={!pagination?.hasPrevPage}
           className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
         >
           Previous
         </button>
-        <span>Page {params.page}</span>
+        <div className="text-sm text-gray-600">
+          <span>Page {pagination?.currentPage} of {pagination?.totalPages}</span>
+          <span className="mx-2">·</span>
+          <span>Total trips: {pagination?.totalDocs}</span>
+        </div>
         <button
           onClick={() =>
             setParams((prev) => ({ ...prev, page: prev.page + 1 }))
           }
-          disabled={trips.length < params.limit}
+          disabled={!pagination?.hasNextPage}
           className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
         >
           Next

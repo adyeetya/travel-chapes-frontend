@@ -232,7 +232,7 @@ const TravelPackage = ({ destination, batch }) => {
         duration: `${destination.days} Days`,
         ageGroup: '18-45',
         meals: destination.meals || [],
-        minPrice: minPrice === Infinity ? 0 : minPrice,
+        minPrice: destination.minPrice || minPrice,
         gst: batch[0]?.gst || 5,
       });
     }

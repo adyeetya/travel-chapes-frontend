@@ -10,20 +10,15 @@ import {
 import Link from "next/link";
 import { LuCalendarClock } from "react-icons/lu";
 import { Trips } from "@/data/destinations/details";
-
+const makeUrlFriendly = (category) => {
+  return encodeURIComponent(category.toLowerCase().replace(/\s+/g, '-'));
+};
 const Card = ({ data, noOfCards }) => {
   const [tripDetails, setTripDetails] = useState([]);
 
   useEffect(() => {
-    // Map through the `data` array and find the corresponding price data from `Trips`
-    const updatedDetails = data.map((trip) => {
-      const matchedTrip = Trips.find((t) => t.id === trip.id);
-      return {
-        ...trip,
-        minPrice: matchedTrip ? matchedTrip.minPrice : "N/A", // Use 'N/A' if no matching trip is found
-      };
-    });
-    setTripDetails(updatedDetails);
+
+    setTripDetails(data);
   }, [data]);
 
   return (
@@ -40,7 +35,10 @@ const Card = ({ data, noOfCards }) => {
               key={idx}
               className={`w-full sm:basis-1/2 lg:basis-1/3 flex-shrink-0`}
             >
-              <Link href={`/destination/${trip.id}`}>
+              <Link href={`/trip/${Array.isArray(trip.category)
+                ? trip.category.map(makeUrlFriendly).join('&')
+                : makeUrlFriendly(trip.category)}/${trip.slug}`}
+              >
                 <div className="border-2 rounded-xl overflow-hidden h-[450px] flex flex-col">
                   {/* Image Section (Top 60%) */}
                   <div className="relative h-[60%]">

@@ -2,6 +2,12 @@
 import { useState, useEffect } from "react";
 import { fetchAllTrips } from "../fetchTrip";
 import Link from "next/link";
+
+// Helper function to make category names URL-friendly
+const makeUrlFriendly = (category) => {
+  return encodeURIComponent(category.toLowerCase().replace(/\s+/g, '-'));
+};
+
 export default function AllTrips() {
   const [trips, setTrips] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,6 +26,7 @@ export default function AllTrips() {
       const data = await fetchAllTrips(params);
       console.log(data);
       setTrips(data.result.docs || []);
+      
       setPagination({
         currentPage: data.result.page,
         totalPages: data.result.totalPages,
@@ -62,14 +69,23 @@ export default function AllTrips() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {trips.length > 0 ? (
           trips.map((trip) => (
-            <Link key={trip._id} href={`/trip/${trip.category}/${trip.slug}`}>
+            <Link 
+              key={trip._id} 
+              href={`/trip/${Array.isArray(trip.category) 
+                ? trip.category.map(makeUrlFriendly).join('&') 
+                : makeUrlFriendly(trip.category)}/${trip.slug}`}
+            >
               <div
                 key={trip._id}
                 className="border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
               >
                 <h2 className="text-xl font-semibold mb-2">{trip.title}</h2>
                 <p className="text-gray-600 mb-1">
-                  <span className="font-medium">Category:</span> {trip.category}
+                  <span className="font-medium">Category:</span> {
+                    Array.isArray(trip.category) 
+                      ? trip.category.join(', ') 
+                      : trip.category
+                  }
                 </p>
               
                 <p className="mb-1">

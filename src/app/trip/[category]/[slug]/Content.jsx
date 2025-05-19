@@ -108,7 +108,29 @@ const BookingTable = ({ details }) => {
     setDropdownOpen(false)
   }
 
-  if (!details?.length) return null;
+  if (!details?.length) {
+    return (
+      <div className="bg-gray-100 p-6 rounded-lg text-center">
+        <p className="text-lg text-gray-800 mb-4">No batches are currently available for this destination.</p>
+        <div className="flex justify-center gap-4">
+          <a 
+            href="tel:+918650500202" 
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700"
+          >
+            <span>📞</span> Call Us
+          </a>
+          <a 
+            href="https://wa.me/918650500202" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="bg-green-600 text-white px-6 py-2 rounded-lg flex items-center gap-2 hover:bg-green-700"
+          >
+            <span>💬</span> WhatsApp
+          </a>
+        </div>
+      </div>
+    );
+  }
 
   // Check if any batch has single sharing available
   const hasSingleSharing = details.some(batch =>

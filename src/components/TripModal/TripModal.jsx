@@ -2,13 +2,19 @@
 import { useState, useEffect } from 'react'
 import { IoClose } from 'react-icons/io5'
 import Image from 'next/image'
-export const TripModal = ({ onClose }) => {
+import { submitTripQuery } from '../modal/tripQueryController'
+export const TripModal = ({ destination, onClose }) => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
+    name: '',
+    destination: destination,
     phone: '',
+    email: '',
     travelers: '',
+  })
+  const [submitStatus, setSubmitStatus] = useState({
+    loading: false,
+    error: '',
+    success: false,
   })
   useEffect(() => {
     // Lock scrolling on mount
@@ -26,7 +32,7 @@ export const TripModal = ({ onClose }) => {
 
   const sendToWhatsApp = () => {
     const message = `Hello, I would like to plan a trip.
-Name: ${formData.firstName} ${formData.lastName}
+Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone}
 Number of Travelers: ${formData.travelers}`
@@ -39,7 +45,7 @@ Number of Travelers: ${formData.travelers}`
 
   const sendToEmail = () => {
     const subject = `Trip Planning Inquiry`
-    const body = `Hello,\n\nI would like to plan a trip.\n\nName: ${formData.firstName} ${formData.lastName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nNumber of Travelers: ${formData.travelers}`
+    const body = `Hello,\n\nI would like to plan a trip.\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nNumber of Travelers: ${formData.travelers}`
 
     const mailtoURL = `mailto:contact@travelchapes.com?subject=${encodeURIComponent(
       subject
@@ -57,6 +63,21 @@ Number of Travelers: ${formData.travelers}`
     sendToWhatsApp() // Or call sendToEmail()
   }
 
+  const handleActionWithQuery = async (actionFn) => {
+    setSubmitStatus({ loading: true, error: '', success: false });
+    const result = await submitTripQuery(formData);
+
+    if (result.success) {
+      setSubmitStatus({ loading: false, error: '', success: true });
+      setFormData({ ...formData, name: '', phone: '', email: '', travelers: '' });
+    } else {
+      setSubmitStatus({ loading: false, error: result.error, success: false });
+    }
+
+      actionFn();
+      setSubmitStatus({ loading: false, error: '', success: false });
+
+  }
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 px-4">
       <div className="relative bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-4/5 lg:max-w-4xl flex flex-col-reverse md:flex-row h-auto md:h-[65vh] lg:h-[90vh] max-h-[665px]">
@@ -88,28 +109,14 @@ Number of Travelers: ${formData.travelers}`
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-gray-700 text-xs md:text-sm mb-2">
-                First Name
+                Name
               </label>
               <input
                 type="text"
-                name="firstName"
-                value={formData.firstName}
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
-                placeholder="First Name"
-                className="w-full border text-black rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-gray-700 text-xs md:text-sm mb-2">
-                Last Name
-              </label>
-              <input
-                type="text"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                placeholder="Last Name"
+                placeholder="Name"
                 className="w-full border text-black rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 required
               />
@@ -157,22 +164,29 @@ Number of Travelers: ${formData.travelers}`
                 required
               />
             </div>
-
+            {/* {submitStatus.error && (
+              <div className="text-red-500 text-sm">{submitStatus.error}</div>
+            )}
+            {submitStatus.success && (
+              <div className="text-green-600 text-sm text-center">Your query has been submitted and we will contact you soon.</div>
+            )} */}
             {/* Buttons for WhatsApp and Email */}
             <div className="flex flex-row gap-4 justify-between items-center mt- w-full">
               <button
-                onClick={sendToWhatsApp}
+                onClick={() => handleActionWithQuery(sendToWhatsApp)}
                 type="button"
                 className="w-1/2 border border-green-500 text-black hover:text-white px-4 py-2 rounded-full hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+                disabled={submitStatus.loading}
               >
-                WhatsApp
+                {submitStatus.loading ? 'Submitting...' : 'WhatsApp'}
               </button>
               <button
-                onClick={sendToEmail}
+                onClick={() => handleActionWithQuery(sendToEmail)}
                 type="button"
                 className="w-1/2 border border-yellow-500 text-black hover:text-white px-4 py-2 rounded-full hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                disabled={submitStatus.loading}
               >
-                Email
+                {submitStatus.loading ? 'Submitting...' : 'Email'}
               </button>
             </div>
           </form>

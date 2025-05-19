@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react'
 import { IoClose } from 'react-icons/io5'
 import Image from 'next/image'
+import { submitTripQuery } from './tripQueryController'
+
 const TripModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -10,6 +12,8 @@ const TripModal = ({ onClose }) => {
     email: '',
     travelers: '',
   })
+  const [submitStatus, setSubmitStatus] = useState({ loading: false, error: '', success: false })
+
   useEffect(() => {
     // Lock scrolling on mount
     document.body.style.overflow = 'hidden'
@@ -19,6 +23,7 @@ const TripModal = ({ onClose }) => {
       document.body.style.overflow = ''
     }
   }, [])
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prevData) => ({ ...prevData, [name]: value }))
@@ -48,13 +53,38 @@ Number of Travelers: ${formData.travelers}`
   }
 
   const makeCall = () => {
-    const phoneNumber = '+918851629108' // Replace with your number
+    const phoneNumber = '+918851629108'
     window.open(`tel:${phoneNumber}`)
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    sendToWhatsApp() // Or call sendToEmail()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitStatus({ loading: true, error: '', success: false });
+    const result = await submitTripQuery(formData);
+    if (result.success) {
+      setSubmitStatus({ loading: false, error: '', success: true });
+      setFormData({ name: '', destination: '', phone: '', email: '', travelers: '' });
+      // Optionally close modal or show a success message
+    } else {
+      setSubmitStatus({ loading: false, error: result.error, success: false });
+    }
+  }
+
+  // Helper to submit query before external action
+  const handleActionWithQuery = async (actionFn) => {
+    setSubmitStatus({ loading: true, error: '', success: false });
+    const result = await submitTripQuery(formData);
+    if (result.success) {
+      setSubmitStatus({ loading: false, error: '', success: true });
+      setFormData({ name: '', destination: '', phone: '', email: '', travelers: '' });
+    } else {
+      setSubmitStatus({ loading: false, error: result.error, success: false });
+    }
+
+    setSubmitStatus({ loading: false, error: '', success: false });
+    actionFn();
+   
+
   }
 
   return (
@@ -154,21 +184,31 @@ Number of Travelers: ${formData.travelers}`
               />
             </div>
 
+            {/* Feedback message */}
+            {/* {submitStatus.error && (
+              <div className="text-red-500 text-sm">{submitStatus.error}</div>
+            )}
+            {submitStatus.success && (
+              <div className="text-green-600 text-sm text-center">Your query has been submitted and we will contact you soon.</div>
+            )} */}
+
             {/* Buttons for WhatsApp and Email */}
             <div className="flex flex-row gap-4 justify-between items-center mt- w-full">
               <button
-                onClick={sendToWhatsApp}
+                onClick={() => handleActionWithQuery(sendToWhatsApp)}
                 type="button"
                 className="w-1/2 border border-green-500 text-black hover:text-white px-4 py-2 rounded-full hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+                disabled={submitStatus.loading}
               >
-                WhatsApp
+                {submitStatus.loading ? 'Submitting...' : 'WhatsApp'}
               </button>
               <button
-                onClick={sendToEmail}
+                onClick={() => handleActionWithQuery(sendToEmail)}
                 type="button"
                 className="w-1/2 border border-yellow-500 text-black hover:text-white px-4 py-2 rounded-full hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                disabled={submitStatus.loading}
               >
-                Email
+                {submitStatus.loading ? 'Submitting...' : 'Email'}
               </button>
             </div>
           </form>
@@ -176,7 +216,7 @@ Number of Travelers: ${formData.travelers}`
 
         {/* Right Image Section */}
         <div className="md:w-1/2 h-56 md:h-full relative">
-        {/* laptop image */}
+          {/* laptop image */}
           <Image
             src="/images/holi-modal.jpg" // Replace with your image URL
             alt="Trip Preview"

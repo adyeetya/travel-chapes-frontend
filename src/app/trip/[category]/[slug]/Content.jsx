@@ -420,7 +420,7 @@ const TravelPackage = ({ destination, batch }) => {
           </button>
         </div>
       </div>
-      {isModalOpen && <TripModal onClose={closeModal} />}
+      {isModalOpen && <TripModal destination={destination.title} onClose={closeModal} />}
     </div>
   )
 }

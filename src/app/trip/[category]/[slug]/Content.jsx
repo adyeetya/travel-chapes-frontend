@@ -26,7 +26,7 @@ const DescriptionWithReadMore = ({ destination }) => {
       <div>
         <div className="prose max-w-none text-black">
           <div dangerouslySetInnerHTML={{
-            __html: isExpanded 
+            __html: isExpanded
               ? destination.description
               : `${truncatedDescription}...`
           }} />
@@ -59,10 +59,10 @@ const DescriptionWithReadMore = ({ destination }) => {
           </h3>
         )}
         <p className="text-black">
-        <div
-          className="prose max-w-none"
-          dangerouslySetInnerHTML={{ __html: item.description }}
-        /></p>
+          <div
+            className="prose max-w-none"
+            dangerouslySetInnerHTML={{ __html: item.description }}
+          /></p>
       </div>
     ))
 
@@ -113,16 +113,16 @@ const BookingTable = ({ details }) => {
       <div className="bg-gray-100 p-6 rounded-lg text-center">
         <p className="text-lg text-gray-800 mb-4">No batches are currently available for this destination.</p>
         <div className="flex justify-center gap-4">
-          <a 
-            href="tel:+918650500202" 
+          <a
+            href="tel:+918650500202"
             className="bg-blue-600 text-white px-6 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700"
           >
             <span>📞</span> Call Us
           </a>
-          <a 
-            href="https://wa.me/918650500202" 
-            target="_blank" 
-            rel="noopener noreferrer" 
+          <a
+            href="https://wa.me/918650500202"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-green-600 text-white px-6 py-2 rounded-lg flex items-center gap-2 hover:bg-green-700"
           >
             <span>💬</span> WhatsApp
@@ -804,13 +804,15 @@ const Page = ({ destination, batch }) => {
 
         {/* Top right overlayed image */}
         <div className="absolute top-16 right-4 md:top-16 md:right-4 h-1/3 w-1/2 md:h-1/2 md:w-1/3 bg-cover rounded-lg overflow-hidden">
-          <img
-            src={destination.images[2]}
-            alt="Place"
-            width={400}
-            height={400}
-            className="w-full h-full  max-h-[500px] object-cover rounded-lg"
-          />
+          {destination.images[2] && (
+            <img
+              src={destination.images[2]}
+              alt="Place"
+              width={400}
+              height={400}
+              className="w-full h-full  max-h-[500px] object-cover rounded-lg"
+            />
+          )}
         </div>
 
         {/* Small text below the right image */}

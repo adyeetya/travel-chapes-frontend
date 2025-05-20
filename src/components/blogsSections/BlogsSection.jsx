@@ -5,9 +5,12 @@ import { Poppins } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 
 const Carousel = () => {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
   const [currentSlide, setCurrentSlide] = useState(0)
   const [progress, setProgress] = useState(0)
 
@@ -60,7 +63,8 @@ const Carousel = () => {
   }
 
   return (
-    <div className={` ${poppins.className} my-12`}>
+    
+    <div className={` my-12`}>
       <h2 className="text-3xl font-semibold my-8 p-4 text-center">
         Helpful Blogs
       </h2>
@@ -75,7 +79,7 @@ const Carousel = () => {
               height={100}
               // Reduce quality for faster load
               className="filter blur-[2px] brightness-[0.3] object-cover bg-cover bg-center h-full w-full" // Apply blur and darken effect
-              // Optional: for preloading this image
+            // Optional: for preloading this image
             />
           </Link>
         </div>
@@ -117,13 +121,16 @@ const Carousel = () => {
                     >
                       <div className="h-80 w-60 rounded-3xl bg-gray-400">
                         <Link href={slides[currentSlide].link}>
-                          <img
-                            src={slide.img}
-                            alt={slide.title}
-                            width={1000}
-                            height={1000}
-                            className="object-cover w-full h-full rounded-3xl "
-                          />
+                          {mounted && (
+                            <img
+                              src={slide.img}
+                              alt={slide.title}
+                              width={1000}
+                              height={1000}
+                              className="object-cover w-full h-full rounded-3xl "
+                            />
+                          )}
+
                         </Link>
                       </div>
                     </div>

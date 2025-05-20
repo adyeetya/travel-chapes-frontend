@@ -230,7 +230,7 @@ const Hero = () => {
               TravelChapes Where dreams meet destinations
             </p>
 
-            <div className="flex justify-center gap-4 items-center">
+            {/* <div className="flex justify-center gap-4 items-center">
               <form onSubmit={handleSearch} className="flex gap-4 items-center">
               <input
   type="text"
@@ -247,7 +247,7 @@ const Hero = () => {
                   <IoIosSearch className="w-7 md:w-9 md:h-9 h-7" />
                 </button>
               </form>
-            </div>
+            </div> */}
 
             {searchResults.length > 0 && (
               <div className="relative">

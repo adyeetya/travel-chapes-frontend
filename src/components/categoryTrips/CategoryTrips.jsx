@@ -8,23 +8,30 @@ const CategoryTrips = ({ categoryObj, title, noOfCards = 3 }) => {
   const [error, setError] = useState(null)
   const [trips, setTrips] = useState([])
 
-  useEffect(() => {
-    const loadByCategory = async () => {
-      setLoading(true)
-      setError(null)
-      try {
-        const data = await fetchTripByCategory(categoryObj.category)
-        setTrips(data.result.docs)
-      } catch (err) {
-        setError(err.message)
-      } finally {
-        setLoading(false)
-      }
+useEffect(() => {
+  const cacheKey = `trips_${categoryObj.category}`
+  const cached = sessionStorage.getItem(cacheKey)
+  if (cached) {
+    setTrips(JSON.parse(cached))
+    setLoading(false)
+    return
+  }
+  const loadByCategory = async () => {
+    setLoading(true)
+    setError(null)
+    try {
+      const data = await fetchTripByCategory(categoryObj.category)
+      setTrips(data.result.docs)
+      sessionStorage.setItem(cacheKey, JSON.stringify(data.result.docs))
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
     }
+  }
 
-    loadByCategory()
-  }, [categoryObj])
-
+  loadByCategory()
+}, [categoryObj])
   if (loading) return <div>Loading...</div>
   if (error) return <div>Error: {error}</div>
   

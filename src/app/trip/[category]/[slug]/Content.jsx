@@ -578,6 +578,8 @@ const ImagesSlider = ({ images }) => {
   )
 }
 
+const isHTML = (str) => /<\/?[a-z][\s\S]*>/i.test(str);
+
 const InclusionsExclusions = ({ inclusions, exclusions }) => {
   return (
     <div className="bg-green-100 w-full max-w-screen-xl mx-auto p-4 md:p-6 rounded-lg shadow-md border border-gray-200">
@@ -593,7 +595,14 @@ const InclusionsExclusions = ({ inclusions, exclusions }) => {
                 <span className="h-3 w-3 bg-green-800 rounded-full mt-[6px] mr-3 flex-shrink-0"></span>
                 <div className="text-gray-700">
                   <strong className="text-gray-800">{item.title}:</strong>{' '}
-                  {item.description}
+                  {isHTML(item.description) ? (
+                    <span
+                      className="prose max-w-none"
+                      dangerouslySetInnerHTML={{ __html: item.description }}
+                    />
+                  ) : (
+                    item.description
+                  )}
                 </div>
               </div>
             ))}
@@ -611,7 +620,14 @@ const InclusionsExclusions = ({ inclusions, exclusions }) => {
                 <span className="h-3 w-3 bg-green-800 rounded-full mt-[6px] mr-3 flex-shrink-0"></span>
                 <div className="text-gray-700">
                   <strong className="text-gray-800">{item.title}:</strong>{' '}
-                  {item.description}
+                  {isHTML(item.description) ? (
+                    <span
+                      className="prose max-w-none"
+                      dangerouslySetInnerHTML={{ __html: item.description }}
+                    />
+                  ) : (
+                    item.description
+                  )}
                 </div>
               </div>
             ))}
@@ -634,7 +650,14 @@ const ImportantPoints = ({ points }) => {
             <h3 className="text-xl font-semibold text-gray-900 mb-3">
               {point.title}
             </h3>
-            <p className="text-gray-700">{point.description}</p>
+            {isHTML(point.description) ? (
+              <div
+                className="text-gray-700 prose max-w-none"
+                dangerouslySetInnerHTML={{ __html: point.description }}
+              />
+            ) : (
+              <p className="text-gray-700">{point.description}</p>
+            )}
           </div>
         ))}
       </div>

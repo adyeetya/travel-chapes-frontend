@@ -26,10 +26,10 @@ export default async function Home() {
       {categories.map((categoryObj) => (
         // Skip customized/customised categories as they might be duplicates
         !categoryObj.category.toLowerCase().includes('custom') && (
-          <section key={categoryObj._id} id={categoryObj.category.toLowerCase().replace(' ', '-')}>
+          <section className='my-12' key={categoryObj._id} id={categoryObj.category.toLowerCase().replace(' ', '-')}>
             <CategoryTrips 
               categoryObj={categoryObj} 
-              title={`${categoryObj.category} Adventures`} 
+              title={`${categoryObj.category}`} 
               noOfCards={3} 
             />
           </section>

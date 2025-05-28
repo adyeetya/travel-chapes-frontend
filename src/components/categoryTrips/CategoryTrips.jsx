@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { fetchTripByCategory } from '@/app/fetchTrip'
 import Card from '../common/Card'
+import Link from 'next/link';
 
 const CategoryTrips = ({ categoryObj, title, noOfCards = 3 }) => {
   const [loading, setLoading] = useState(true)
@@ -20,6 +21,7 @@ useEffect(() => {
     setLoading(true)
     setError(null)
     try {
+      console.log('Fetching trips for category:', categoryObj.category)
       const data = await fetchTripByCategory(categoryObj.category)
       setTrips(data.result.docs)
       sessionStorage.setItem(cacheKey, JSON.stringify(data.result.docs))
@@ -40,8 +42,14 @@ useEffect(() => {
 
   return (
     <div className="">
-      <h2 className="text-3xl px-4 max-w-screen-xl mx-auto font-bold my-4">
-        {title}
+      <h2 className="text-3xl px-4 max-w-screen-xl mx-auto font-bold my-4 flex items-center justify-between">
+        <span>{title}</span>
+        <Link
+          href={`/${categoryObj.category.toLowerCase().replace(/\s+/g, '-')}`}
+          className="text-yellow-600 hover:text-yellow-800 text-base font-semibold underline ml-4"
+        >
+          View All
+        </Link>
       </h2>
       <div className="my-12 p-4 max-w-screen-xl mx-auto">
         <Card data={trips} noOfCards={noOfCards} />

@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 import { FaWhatsapp } from "react-icons/fa";
 import { IoIosCall } from "react-icons/io";
 import { IoMailOutline } from "react-icons/io5";
-
+import { fetchAllCategories } from "@/app/fetchTrip";
 import React from "react";
 
 const Navbar = () => {
@@ -18,29 +18,42 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [categories, setCategories] = useState([]);
   const menuRef = useRef(null);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const isChristmasPage = pathname === "/christmas-new-year-special";
   const { user, logout } = useAuthContext();
 
-  // useEffect(()=>{
-  //   console.log('user_',user)
-  // },[user])
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const categories = await fetchAllCategories();
+        setCategories(categories);
+        console.log("Fetched categories:", categories);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
-  const handleClickOutside = useCallback((event) => {
-    if (
-      menuRef.current &&
-      !menuRef.current.contains(event.target) &&
-      !event.target.closest(".menu-button")
-    ) {
-      setIsMenuOpen(false);
-    }
-  }, []);
+  const handleClickOutside = useCallback(
+    (event) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        !event.target.closest(".menu-button")
+      ) {
+        setIsMenuOpen(false);
+      }
+    },
+    [menuRef]
+  );
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -68,6 +81,21 @@ const Navbar = () => {
     };
   }, []);
 
+  // Main categories to show as buttons
+  const mainCategories = [
+    "Backpacking",
+    "Treks",
+    "Weekend Trip",
+    "Biking Trip",
+  ];
+
+  // Helper to slugify category names for URLs
+  const slugify = (str) =>
+    str
+      .toLowerCase()
+      .replace(/ /g, "-")
+      .replace(/[^a-z0-9-]/g, "");
+
   return (
     <nav
       className={`${
@@ -94,37 +122,54 @@ const Navbar = () => {
           </div>
 
           {/* Links Section */}
-          <div className="hidden lg:flex space-x-4 lg:space-x-6">
-            <Link
-              href="/holi-special"
-              className={`border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
-        hover:bg-red-500 hover:text-white active:scale-95 ${
-          isChristmasPage ? "animate-glow bg-red-500" : ""
-        }`}
-            >
-              Holi Special
-            </Link>
-            <Link
-              href="/#backpacking"
-              className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
-        hover:bg-gray-300 hover:text-black active:scale-95"
-            >
-              Backpacking Trips
-            </Link>
-            <Link
-              href="/#treks"
-              className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
-        hover:bg-gray-300 hover:text-black active:scale-95"
-            >
-              Treks
-            </Link>
-            <Link
-              href="/#weekend-fun"
-              className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out 
-        hover:bg-gray-300 hover:text-black active:scale-95"
-            >
-              Weekend Fun
-            </Link>
+          <div className="hidden lg:flex space-x-4 lg:space-x-6 items-center">
+            {/* Main category buttons */}
+            {categories
+              .filter((cat) => mainCategories.includes(cat.category))
+              .map((cat) => (
+                <Link
+                  key={cat._id}
+                  href={`/${slugify(cat.category)}`}
+                  className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out hover:bg-gray-300 hover:text-black active:scale-95"
+                >
+                  {cat.category === "Backpacking"
+                    ? "Backpacking Trips"
+                    : cat.category === "Treks"
+                    ? "Treks"
+                    : cat.category === "Weekend Trip"
+                    ? "Weekend Trips"
+                    : cat.category === "Biking Trip"
+                    ? "Biking Trips"
+                    : cat.category}
+                </Link>
+              ))}
+            {/* More dropdown for other categories */}
+            <div className="relative group">
+              <button
+                className="border border-gray-100 text-sm rounded-full px-3 py-1 transition duration-200 ease-in-out hover:bg-gray-300 hover:text-black active:scale-95"
+              >
+                More
+              </button>
+              <div className="absolute left-0 mt-2 w-48 bg-white text-black rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50"
+                onMouseEnter={e => e.currentTarget.classList.add('opacity-100','visible')}
+                onMouseLeave={e => e.currentTarget.classList.remove('opacity-100','visible')}
+              >
+                {categories
+                  .filter((cat) =>
+                    !mainCategories.includes(cat.category) &&
+                    !["custom", "customised", "customized", "Customised", "Custom", "Customised"].some((c) => cat.category.toLowerCase().includes(c))
+                  )
+                  .map((cat) => (
+                    <Link
+                      key={cat._id}
+                      href={`/${slugify(cat.category)}`}
+                      className="block px-4 py-2 hover:bg-gray-200"
+                    >
+                      {cat.category}
+                    </Link>
+                  ))}
+              </div>
+            </div>
           </div>
 
           {/* Social Icons Section */}
@@ -195,46 +240,54 @@ const Navbar = () => {
           className="z-50 md:hidden absolute pb-8 top-12 right-0 bg-[#080808] text-white shadow-lg w-full"
         >
           <div className="px-4 py-4 space-y-2">
-            <Link
-              href="/holi-special"
-              className="block px-4 py-3 text-lg font-semibold border-b border-gray-600"
-            >
-              Holi Special
-            </Link>
-            <Link
-              href="/#backpacking"
-              className="block px-4 py-3 text-lg font-semibold border-b border-gray-600"
-            >
-              Backpacking Trips
-            </Link>
-            <Link
-              href="/#treks"
-              className="block px-4 py-3 text-lg font-semibold border-b border-gray-600"
-            >
-              Treks
-            </Link>
-            <Link
-              href="/#weekend-fun"
-              className="block px-4 py-3 text-lg font-semibold border-b border-gray-600"
-            >
-              Weekend Fun
-            </Link>
-            {/* Conditional Sign Up / Logout Button in Mobile Menu */}
-            {/* {user ? (
-              <button
-                onClick={logout}
-                className="block px-4 py-3 text-lg font-semibold border-b border-gray-600 w-full text-left"
-              >
-                Logout
-              </button>
-            ) : (
-              <Link
-                href="/auth/signup"
-                className="block px-4 py-3 text-lg font-semibold border-b border-gray-600"
-              >
-                Sign Up
-              </Link>
-            )} */}
+            {/* Main categories */}
+            {categories
+              .filter((cat) => mainCategories.includes(cat.category))
+              .map((cat) => (
+                <Link
+                  key={cat._id}
+                  href={`/${slugify(cat.category)}`}
+                  className="block px-4 py-3 text-lg font-semibold border-b border-gray-600"
+                >
+                  {cat.category === "Backpacking"
+                    ? "Backpacking Trips"
+                    : cat.category === "Treks"
+                    ? "Treks"
+                    : cat.category === "Weekend Trip"
+                    ? "Weekend Trips"
+                    : cat.category === "Biking Trip"
+                    ? "Biking Trips"
+                    : cat.category}
+                </Link>
+              ))}
+            {/* More menu for other categories */}
+            {categories.filter((cat) =>
+              !mainCategories.includes(cat.category) &&
+              !["custom", "customised", "customized"].some((c) => cat.category.toLowerCase().includes(c))
+            ).length > 0 && (
+              <details className="w-full">
+                <summary className="block px-4 py-3 text-lg font-semibold border-b border-gray-600 cursor-pointer select-none focus:outline-none">
+                  More
+                </summary>
+                <div className="bg-[#181818] rounded-b-md">
+                  {categories
+                    .filter((cat) =>
+                      !mainCategories.includes(cat.category) &&
+                      !["custom", "customised", "customized"].some((c) => cat.category.toLowerCase().includes(c))
+                    )
+                    .map((cat) => (
+                      <Link
+                        key={cat._id}
+                        href={`/${slugify(cat.category)}`}
+                        className="block px-4 py-2 text-base border-b border-gray-700 hover:bg-gray-700"
+                      >
+                        {cat.category}
+                      </Link>
+                    ))}
+                </div>
+              </details>
+            )}
+            
             <div className="flex justify-evenly space-x-4 items-center">
               <a
                 href="https://wa.me/+918650500202"

@@ -7,6 +7,7 @@ import { CiCircleChevDown } from 'react-icons/ci'
 
 import { FaCaretDown } from 'react-icons/fa'
 import { TripModal } from '@/components/TripModal/TripModal'
+import { downloadItineraryPDF } from './downloadItineraryPDF'
 
 const DescriptionWithReadMore = ({ destination }) => {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -115,7 +116,7 @@ const BookingTable = ({ details }) => {
         <div className="flex justify-center gap-4">
           <a
             href="tel:+918650500202"
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700"
+            className="bg-yellow-600 text-white px-6 py-2 rounded-lg flex items-center gap-2 hover:bg-yellow-700"
           >
             <span>📞</span> Call Us
           </a>
@@ -123,7 +124,7 @@ const BookingTable = ({ details }) => {
             href="https://wa.me/918650500202"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-green-600 text-white px-6 py-2 rounded-lg flex items-center gap-2 hover:bg-green-700"
+            className="bg-yellow-600 text-white px-6 py-2 rounded-lg flex items-center gap-2 hover:bg-yellow-700"
           >
             <span>💬</span> WhatsApp
           </a>
@@ -140,7 +141,7 @@ const BookingTable = ({ details }) => {
   return (
     <div>
       <div className="bg-gray-100 h-56 mb-4 rounded-lg overflow-hidden">
-        <div className="flex bg-blue-600 text-white sticky top-0 gap-2 text-sm w-full">
+        <div className="flex bg-yellow-600 text-white sticky top-0 gap-2 text-sm w-full">
           <div className="flex-1 p-2 rounded-tl-lg flex justify-start items-center">
             Batches
           </div>
@@ -151,7 +152,7 @@ const BookingTable = ({ details }) => {
 
           <div className="flex-1 p-2 whitespace-nowrap relative">
             <div
-              className="bg-blue-600 text-white px-2 py-1 rounded-md flex items-center cursor-pointer justify-between"
+              className="bg-yellow-600 text-white px-2 py-1 rounded-md flex items-center cursor-pointer justify-between"
               onClick={toggleDropdown}
             >
               {sharingType === 'single'
@@ -285,20 +286,34 @@ const TravelPackage = ({ destination, batch }) => {
 
   // Function to close the modal
   const closeModal = () => setModalOpen(false)
+
+  // Download PDF handler
+  const handleDownloadPDF = async () => {
+    await downloadItineraryPDF({
+      destination,
+      details,
+      itinerary: destination.fullItinerary,
+      images: destination.images || [],
+    })
+  }
+
   return (
     <div className="container mx-auto ">
       {/* Title */}
-      <div className="p-6">
+      <div className="p-6 flex items-center justify-between">
         <h2 className="text-3xl font-semibold mb-4 text-black">
           {destination.title} Overview
         </h2>
-        <section className="my-12">
-          <DescriptionWithReadMore destination={destination} />
-        </section>
+        <button
+          onClick={handleDownloadPDF}
+          className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg font-semibold shadow"
+        >
+          Download Itinerary PDF
+        </button>
       </div>
-      {/* Left Section */}
-      <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
+      <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+        {/* Left Section */}
+        <div className='col-span-1 md:col-span-2 '>
           {/* Image Gallery */}
           <div className="flex space-x-4 mb-6">
             {randomImages.map((image, index) => (
@@ -320,21 +335,21 @@ const TravelPackage = ({ destination, batch }) => {
           {/* Details Cards */}
           <div className="grid grid-cols-2 gap-4 mb-6 text-center">
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
-              <p className="text-sm font-medium text-gray-800">Pickup & Drop</p>
-              <p className="text-blue-600">{details?.route}</p>
+              <p className="text-sm font-medium text-gray-800">Route</p>
+              <p className="text-blue-600 dark:text-yellow-600">{destination?.route}</p>
             </div>
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
               <p className="text-sm font-medium text-gray-800">Category</p>
-              <p className="text-blue-600">{details?.category}</p>
+              <p className="text-blue-600 dark:text-yellow-600">{details?.category}</p>
             </div>
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
               <p className="text-sm font-medium text-gray-800">Duration</p>
-              <p className="text-blue-600">{details?.duration}</p>
+              <p className="text-blue-600 dark:text-yellow-600">{destination?.fullItinerary.length} Days</p>
             </div>
 
             <div className="bg-gray-100 rounded-lg p-2 md:p-4">
               <p className="text-sm font-medium text-gray-800">Age Group</p>
-              <p className="text-blue-600">{details?.ageGroup}</p>
+              <p className="text-blue-600 dark:text-yellow-600">{details?.ageGroup}</p>
             </div>
           </div>
 
@@ -392,14 +407,19 @@ const TravelPackage = ({ destination, batch }) => {
               </p>
             </div>
           </div>
+
+          <div className='my-12'>
+            <Itinerary fullItinerary={destination.fullItinerary} />
+          </div>
+
         </div>
 
         {/* Right Section */}
-        <div>
+        <div className="sticky top-20 my-12 self-start z-10 col-span-1 md:col-span-1">
           {/* Price and Discount */}
           <div className="mb-6">
             <p className="text-lg font-semibold text-black">Starts From</p>
-            <p className="text-4xl font-bold text-blue-600 mt-2">
+            <p className="text-4xl font-bold text-yellow-600 mt-2">
               ₹{details?.minPrice}{' '}
               <span className="text-sm text-black font-normal">
                 + {details?.gst}% GST
@@ -412,12 +432,18 @@ const TravelPackage = ({ destination, batch }) => {
           <BookingTable details={batch} />
 
           {/* Book Now Button */}
-          <button
+          {batch.length ? <button
             onClick={openModal}
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold mb-6"
+            className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded-lg font-semibold mb-6"
           >
             Book Now
-          </button>
+          </button> : <button
+            onClick={openModal}
+            className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded-lg font-semibold mb-6"
+          >
+            Enquire Now
+          </button>}
+
         </div>
       </div>
       {isModalOpen && <TripModal destination={destination.title} onClose={closeModal} />}
@@ -435,7 +461,7 @@ const Itinerary = ({ fullItinerary }) => {
   };
 
   return (
-    <div className="bg-gray-50 p-2 md:p-6 w-full max-w-screen-xl mx-auto rounded-lg border border-gray-200">
+    <div className="bg-gray-50 p-2 md:p-2 w-full max-w-screen-xl mx-auto rounded-lg border border-gray-200">
       <h2 className="text-xl font-semibold mb-4 text-gray-800">Itinerary</h2>
       <div className="space-y-4">
         {fullItinerary.map((item, index) => (
@@ -581,45 +607,54 @@ const ImagesSlider = ({ images }) => {
 const isHTML = (str) => /<\/?[a-z][\s\S]*>/i.test(str);
 
 const InclusionsExclusions = ({ inclusions, exclusions }) => {
-  return (
-    <div className="bg-green-100 w-full max-w-screen-xl mx-auto p-4 md:p-6 rounded-lg shadow-md border border-gray-200">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Inclusions Column */}
-        <div>
-          <h2 className="text-xl font-semibold text-green-800 mb-4">
-            Inclusions
-          </h2>
-          <ul className="space-y-3">
-            {inclusions.map((item, index) => (
-              <div key={index} className="flex items-start">
-                <span className="h-3 w-3 bg-green-800 rounded-full mt-[6px] mr-3 flex-shrink-0"></span>
-                <div className="text-gray-700">
-                  <strong className="text-gray-800">{item.title}:</strong>{' '}
-                  {isHTML(item.description) ? (
-                    <span
-                      className="prose max-w-none"
-                      dangerouslySetInnerHTML={{ __html: item.description }}
-                    />
-                  ) : (
-                    item.description
-                  )}
-                </div>
-              </div>
-            ))}
-          </ul>
-        </div>
+  const [activeTab, setActiveTab] = useState('inclusions');
 
-        {/* Exclusions Column */}
-        <div>
-          <h2 className="text-xl font-semibold text-green-800 mb-4">
-            Exclusions
-          </h2>
-          <ul className="space-y-3">
-            {exclusions.map((item, index) => (
-              <div key={index} className="flex items-start">
-                <span className="h-3 w-3 bg-green-800 rounded-full mt-[6px] mr-3 flex-shrink-0"></span>
+  return (
+    <div className="w-full max-w-screen-xl mx-auto p-4 md:p-6 rounded-lg shadow-md border border-gray-200 bg-white">
+      {/* Tabs Navigation */}
+      <div className="flex border-b border-gray-200 mb-6">
+        <button
+          onClick={() => setActiveTab('inclusions')}
+          className={`px-4 py-2 font-medium text-sm md:text-base transition-colors duration-200 ${activeTab === 'inclusions'
+            ? 'text-yellow-600 border-b-2 border-yellow-600'
+            : 'text-gray-500 hover:text-yellow-500'
+            }`}
+        >
+          Inclusions
+        </button>
+        <button
+          onClick={() => setActiveTab('exclusions')}
+          className={`px-4 py-2 font-medium text-sm md:text-base transition-colors duration-200 ${activeTab === 'exclusions'
+            ? 'text-yellow-600 border-b-2 border-yellow-600'
+            : 'text-gray-500 hover:text-yellow-500'
+            }`}
+        >
+          Exclusions
+        </button>
+      </div>
+
+      {/* Tab Content */}
+      <div className="min-h-[200px]">
+        {activeTab === 'inclusions' ? (
+          <ul className="space-y-4">
+            {inclusions.map((item, index) => (
+              <li key={index} className="flex items-start group">
+                <span className="h-5 w-5 bg-yellow-600 rounded-full mt-0.5 mr-3 flex-shrink-0 flex items-center justify-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 text-white"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
                 <div className="text-gray-700">
-                  <strong className="text-gray-800">{item.title}:</strong>{' '}
+                  <strong className="text-gray-800 font-medium">{item.title}:</strong>{' '}
                   {isHTML(item.description) ? (
                     <span
                       className="prose max-w-none"
@@ -629,14 +664,46 @@ const InclusionsExclusions = ({ inclusions, exclusions }) => {
                     item.description
                   )}
                 </div>
-              </div>
+              </li>
             ))}
           </ul>
-        </div>
+        ) : (
+          <ul className="space-y-4">
+            {exclusions.map((item, index) => (
+              <li key={index} className="flex items-start group">
+                <span className="h-5 w-5 bg-gray-200 rounded-full mt-0.5 mr-3 flex-shrink-0 flex items-center justify-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 text-gray-600"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+                <div className="text-gray-700">
+                  <strong className="text-gray-800 font-medium">{item.title}:</strong>{' '}
+                  {isHTML(item.description) ? (
+                    <span
+                      className="prose max-w-none"
+                      dangerouslySetInnerHTML={{ __html: item.description }}
+                    />
+                  ) : (
+                    item.description
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
 const ImportantPoints = ({ points }) => {
   return (
@@ -815,47 +882,47 @@ const Page = ({ destination, batch }) => {
     <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center  text-white relative">
       {/* Hero Section */}
       <section
-        className="relative w-full h-[calc(100vh-4rem)]  bg-cover bg-center bg-gray-500"
+        className="relative w-full h-[calc(100vh-4rem)] bg-cover bg-center bg-gray-500"
         style={{
           backgroundImage: `url('${destination.banners.web}')`,
         }}
       >
         {/* Top left glass effect text */}
-        <div className="absolute top-4 left-4 md:top-8 md:left-8 bg-white bg-opacity-20 text-white px-2 py-1 md:px-4 md:py-2 rounded-md backdrop-blur-lg">
+        <div className="absolute top-4 left-4 md:top-8 md:left-8 bg-yellow-600 bg-opacity-80 text-white px-2 py-1 md:px-4 md:py-2 rounded-md backdrop-blur-lg shadow-lg border-2 border-yellow-400">
           <p className="text-md font-light">&quot;{randomQuote}&quot;</p>
         </div>
 
         {/* Top right overlayed image */}
-        <div className="absolute top-16 right-4 md:top-16 md:right-4 h-1/3 w-1/2 md:h-1/2 md:w-1/3 bg-cover rounded-lg overflow-hidden">
+        <div className="absolute top-16 right-4 md:top-16 md:right-4 h-1/3 w-1/2 md:h-1/2 md:w-1/3 bg-cover rounded-lg overflow-hidden shadow-2xl border-4 border-yellow-600">
           {destination.images[2] && (
             <img
               src={destination.images[2]}
               alt="Place"
               width={400}
               height={400}
-              className="w-full h-full  max-h-[500px] object-cover rounded-lg"
+              className="w-full h-full max-h-[500px] object-cover rounded-lg"
             />
           )}
         </div>
 
         {/* Small text below the right image */}
-        <div className="absolute bottom-56 right-4 md:bottom-32 md:right-4 text-xs font-thin w-2/3 md:w-1/3 bg-black bg-opacity-30 text-gray-300 px-2 py-1 md:px-4 md:py-2 rounded-md backdrop-blur-sm">
+        <div className="absolute bottom-56 right-4 md:bottom-32 md:right-4 text-xs font-thin w-2/3 md:w-1/3 bg-yellow-600 bg-opacity-80 text-white px-2 py-1 md:px-4 md:py-2 rounded-md backdrop-blur-sm shadow border-2 border-yellow-400">
           <p>{destination.metaDescription}</p>
         </div>
 
         {/* Overlapping circular images */}
         <div className="absolute bottom-28 right-4 md:bottom-12 md:right-16 flex -space-x-2">
           {destination.images.slice(1, 4).map((url, index) => {
-            const isImage = /\.(jpg|jpeg|png|webp)$/i.test(url) // Check if the URL is an image
+            const isImage = /\.(jpg|jpeg|png|webp)$/i.test(url)
             return (
               <div
                 key={index}
                 className={`w-10 h-10 md:w-12 md:h-12 ${index === 0
-                  ? 'bg-gray-400'
+                  ? 'bg-yellow-600 border-2 border-yellow-400'
                   : index === 1
-                    ? 'bg-gray-300'
-                    : 'bg-gray-200'
-                  } rounded-full overflow-hidden`}
+                    ? 'bg-yellow-500 border-2 border-yellow-400'
+                    : 'bg-yellow-200 border-2 border-yellow-400'
+                  } rounded-full overflow-hidden shadow-lg`}
               >
                 {isImage ? (
                   <img
@@ -880,27 +947,32 @@ const Page = ({ destination, batch }) => {
           })}
         </div>
 
-        {/* Place name at the bottom left */}
-        <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8">
+        {/* Place name and info at the bottom left */}
+        <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 flex flex-col gap-2">
           <h1
-            className="text-2xl md:text-5xl font-bold tracking-tight"
+            className="text-2xl md:text-5xl font-bold tracking-tight text-yellow-600 drop-shadow-lg"
             style={{
               textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
             }}
           >
             {destination.headline}
           </h1>
+          <div className="flex flex-wrap gap-2 mt-2">
+            <span className="bg-yellow-600 text-white text-xs md:text-sm px-3 py-1 rounded-full shadow border border-yellow-400 font-semibold">{destination.days || destination.fullItinerary.length} Days</span>
+            <span className="bg-yellow-600 text-white text-xs md:text-sm px-3 py-1 rounded-full shadow border border-yellow-400 font-semibold">{destination.category}</span>
+            <span className="bg-yellow-600 text-white text-xs md:text-sm px-3 py-1 rounded-full shadow border border-yellow-400 font-semibold">{destination.route}</span>
+          </div>
         </div>
       </section>
       <section className="my-12 w-full">
         <TravelPackage destination={destination} batch={batch} />
       </section>
-      <section className="my-12 w-full">
+      {/* <section className="my-12 w-full">
         <Itinerary
-          shortItinerary={destination.shortItinerary}
+
           fullItinerary={destination.fullItinerary}
         />
-      </section>
+      </section> */}
       <section className=" w-full">
         <img
           src="/images/homepage/gallery_font.svg"

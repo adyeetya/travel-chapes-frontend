@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import Link from "next/link";
 import { LuCalendarClock } from "react-icons/lu";
-import { Trips } from "@/data/destinations/details";
+
 const makeUrlFriendly = (category) => {
   return encodeURIComponent(category.toLowerCase().replace(/\s+/g, '-'));
 };
@@ -17,7 +17,7 @@ const Card = ({ data, noOfCards }) => {
   const [tripDetails, setTripDetails] = useState([]);
 
   useEffect(() => {
-
+console.log("Data received in Card component:", data);
     setTripDetails(data);
   }, [data]);
 

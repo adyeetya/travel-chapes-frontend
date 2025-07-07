@@ -7,12 +7,14 @@ import InternationalTours from '@/components/internationalTours/InternationalTou
 import Feedback from '@/components/feedback/Feedback'
 import BlogsSection from '@/components/blogsSections/BlogsSection'
 import TrendingDestinations from '@/components/trendingDestinations'
+import FeaturedDestinations from '@/components/featuredTrips'
 import TripModalWrapper from '@/components/modal/ModalWrapper'
 import { destinations } from '@/data/destinations/destinations'
 import ImageSlider from '@/components/imagesSlider'
 import WhyChooseUs from '@/components/WhyChooseUs'
 import { fetchAllCategories } from './fetchTrip'
 import { DomesticTrips, InternationalTrips } from '@/components/domesticTrips'
+import UpcomingBatches from '@/components/upcomingBatches'
 export default async function Home() {
 
   // const categories = await fetchAllCategories();
@@ -37,9 +39,11 @@ export default async function Home() {
       ))} */}
       <DomesticTrips />
       <InternationalTrips />
+      <UpcomingBatches />
+      <FeaturedDestinations/>
       <ImageSlider />
       <About />
-      <InternationalTours />
+      {/* <InternationalTours /> */}
       <TripModalWrapper />
       <BlogsSection />
     </div>

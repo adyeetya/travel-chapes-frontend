@@ -97,7 +97,7 @@ const Hero = () => {
         const total = reviews.length;
         return (prevIndex + 1) % total;
       });
-    }, 10000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
@@ -242,12 +242,12 @@ const Hero = () => {
 
           {/* Right - Reviews (Desktop) */}
           <div className="hidden md:flex flex-col w-1/2 pl-8 justify-end items-end">
-            <div className="relative h-[28rem] overflow-hidden w-full max-w-md">
+            <div className="relative h-[30vh] overflow-hidden w-full max-w-md">
               <div
                 ref={containerRef}
                 className="flex flex-col transition-transform duration-700 ease-in-out"
                 style={{
-                  transform: `translateY(-${currentReviewIndex * 50}%)`,
+                  transform: `translateY(-${currentReviewIndex * 5}%)`,
                 }}
               >
                 {/* Duplicate reviews for infinite loop feel */}

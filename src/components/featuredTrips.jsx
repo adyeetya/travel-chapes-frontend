@@ -5,7 +5,7 @@ import axios from "axios";
 
 const getTrendingTrips = async () => {
   try {
-    const res = await axios.get(`${ServerUrl}/tripPlans/trendingTrips`, {
+    const res = await axios.get(`${ServerUrl}/tripPlans/featuredTrips`, {
       cache: 'no-store'
     });
     return res.data.result || [];
@@ -14,7 +14,7 @@ const getTrendingTrips = async () => {
   }
 };
 
-const TrendingDestinations = async () => {
+const FeaturedDestinations = async () => {
   const trendingTrips = await getTrendingTrips();
 
   const makeUrlFriendly = (category) => {
@@ -32,7 +32,7 @@ const TrendingDestinations = async () => {
   return (
     <div className="trending-destinations mb-16 mt-4 p-4 md:pt-2 md:p-6">
       <h2 className="text-left text-2xl md:text-3xl font-bold mb-8">
-        Trending Destinations
+        Featured Destinations
       </h2>
       {/* Desktop grid */}
       <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -91,4 +91,4 @@ const TrendingDestinations = async () => {
   );
 };
 
-export default TrendingDestinations;
+export default FeaturedDestinations;

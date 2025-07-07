@@ -192,25 +192,28 @@ const UpcomingBatches = () => {
   }, [filter]);
 
   return (
-    <div className='my-16 md:my-28 bg-gradient-to-b from-blue-50 to-white py-12'>
+   <div className='my-16 md:my-28 bg-gradient-to-b from-blue-50 to-white py-12'>
       <div className="max-w-screen-xl mx-auto px-4">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-4xl font-bold text-gray-800 flex items-center gap-3">
-            <HiOutlineCalendar className="h-10 w-10 text-yellow-600" />
-            Upcoming Batches
-          </h2>
-
-          {/* Filter Buttons */}
-          <div className="space-x-3">
+        <div className="flex flex-col sm:flex-row md:items-center justify-between mb-6 gap-3 sm:gap-0">
+          {/* Left side: Heading always on top */}
+          <div className="w-full sm:w-auto">
+            <h2 className="text-lg sm:text-2xl md:text-4xl font-bold text-gray-800 flex items-center gap-2 sm:gap-3 mb-4 sm:mb-0">
+              <HiOutlineCalendar className="h-6 w-6 sm:h-10 sm:w-10 text-yellow-600" />
+              Upcoming Batches
+            </h2>
+          </div>
+          
+          {/* Right side: Filter Buttons */}
+          <div className="flex space-x-2 sm:space-x-3">
             <button
               onClick={() => setFilter('this-month')}
-              className={`px-4 py-1.5 rounded-full border ${filter === 'this-month' ? 'bg-yellow-500 text-white' : 'border-yellow-500 text-yellow-600'}`}
+              className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border text-xs sm:text-sm transition-all duration-200 ${filter === 'this-month' ? 'bg-yellow-500 text-white border-yellow-500 shadow-md' : 'border-yellow-500 text-yellow-600 bg-white hover:bg-yellow-50'}`}
             >
               This Month
             </button>
             <button
               onClick={() => setFilter('next-month')}
-              className={`px-4 py-1.5 rounded-full border ${filter === 'next-month' ? 'bg-yellow-500 text-white' : 'border-yellow-500 text-yellow-600'}`}
+              className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border text-xs sm:text-sm transition-all duration-200 ${filter === 'next-month' ? 'bg-yellow-500 text-white border-yellow-500 shadow-md' : 'border-yellow-500 text-yellow-600 bg-white hover:bg-yellow-50'}`}
             >
               Next Month
             </button>

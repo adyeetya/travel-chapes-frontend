@@ -70,37 +70,36 @@ const SectionWithCarousel = () => {
   }, [currentIndex])
 
   return (
-    <div className=" flex flex-col md:flex-row items-center justify-between p-4 max-w-screen-xl mx-auto">
-      <div className="md:w-1/2 mb-4 md:mb-0">
-        <h2 className="text-3xl text-left font-bold my-4">
+    <div className="flex px-4 flex-col md:flex-row items-center justify-between p-2 sm:p-4 max-w-screen-xl mx-auto">
+      <div className="md:w-1/2 mb-6 md:mb-0">
+        <h2 className="text-lg sm:text-2xl md:text-3xl text-left md:font-bold font-semibold my-2 sm:my-4">
           What Our Customers Say
         </h2>
-        <p className="text-gray-600">
-          Our customers love our product and have shared their amazing
-          experiences.
+        <p className="text-gray-600 text-xs sm:text-sm">
+          Our customers love our product and have shared their amazing experiences.
         </p>
       </div>
 
       <div className="md:w-1/2 flex flex-col items-center">
-        <div className="w-full p-2 rounded-lg shadow-lg bg-yellow-100 border border-yellow-300 h-[230px] flex-col items-center justify-between">
-          <div className="flex mb-3 flex-row justify-start items-center gap-4 h-[50px]">
+        <div className="w-full p-2 sm:p-3 rounded-lg shadow-lg bg-yellow-100 border border-yellow-300 h-[150px] sm:h-[230px] flex-col items-center justify-between">
+          <div className="flex mb-2 sm:mb-3 flex-row justify-start items-center gap-3 sm:gap-4 h-[40px] sm:h-[50px]">
             <div
-              className={`w-12 h-12 flex items-center justify-center rounded-full text-white font-bold ${reviews[currentIndex].color}`}
+              className={`w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full text-white font-bold ${reviews[currentIndex].color}`}
             >
               {getInitials(reviews[currentIndex].reviewerName)}
             </div>
-            <p className="italic font-bold text-sm">
+            <p className="italic font-bold text-xs sm:text-sm">
               {reviews[currentIndex].reviewerName}
             </p>
-            <p className="text-gray-600 text-xs md:text-sm">
+            <p className="text-gray-600 text-[10px] sm:text-xs md:text-sm">
               {reviews[currentIndex].destination}
             </p>
           </div>
-          <div className="flex-1 ml-4 max-h-[150px] overflow-y-auto">
-            <p className="text-gray-800 mt-2 text-xs md:text-sm">
+          <div className="flex-1 ml-2 sm:ml-4 max-h-[110px] sm:max-h-[150px] overflow-y-auto">
+            <p className="text-gray-800 mt-1 sm:mt-2 text-xs sm:text-sm">
               &apos;
-              {reviews[currentIndex].reviewText.length > 250
-                ? `${reviews[currentIndex].reviewText.substring(0, 247)}...`
+              {reviews[currentIndex].reviewText.length > 180
+                ? `${reviews[currentIndex].reviewText.substring(0, 177)}...`
                 : reviews[currentIndex].reviewText}
               &apos;
             </p>
@@ -108,19 +107,19 @@ const SectionWithCarousel = () => {
               href={reviews[currentIndex].url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-500 underline mt-2 block"
+              className="text-blue-500 underline mt-1 sm:mt-2 block text-xs sm:text-sm"
             >
               View Review
             </a>
           </div>
         </div>
 
-        <div className="flex w-full justify-end md:justify-start space-x-4 mt-4">
+        <div className="flex w-full justify-end md:justify-start space-x-2 sm:space-x-4 mt-2 sm:mt-4">
           <button onClick={prevReview} className="">
-            <CiCircleChevLeft className="w-8 h-8" />
+            <CiCircleChevLeft className="w-7 h-7 sm:w-8 sm:h-8" />
           </button>
           <button onClick={nextReview} className="">
-            <CiCircleChevRight className="w-8 h-8" />
+            <CiCircleChevRight className="w-7 h-7 sm:w-8 sm:h-8" />
           </button>
         </div>
       </div>

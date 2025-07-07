@@ -49,3 +49,6 @@ export default async function Home() {
     </div>
   )
 }
+// todo - category page too long fix that too many cards
+// add loading skeleton 
+//  linkk upcoming batches to trip page

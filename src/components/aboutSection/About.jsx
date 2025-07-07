@@ -21,7 +21,7 @@ const About = () => {
       {/* Content Section */}
       <div className="relative z-10 flex flex-col md:flex-row items-center w-full max-w-6xl px-6 md:px-12">
         {/* Left Side - Heading */}
-        <h1 className="text-white text-4xl md:text-6xl font-bold flex-1">
+        <h1 className="text-white text-4xl md:text-6xl font-bold flex-1 mb-8 md:mb-0">
           From Screen <br /> To Reality
         </h1>
 

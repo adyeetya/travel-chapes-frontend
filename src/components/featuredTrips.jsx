@@ -2,7 +2,12 @@ import React from "react";
 import Link from "next/link";
 import { ServerUrl } from "@/app/config";
 import axios from "axios";
+import Card from "./common/Card";
+import {
 
+  LuStar,
+
+} from "react-icons/lu";
 const getTrendingTrips = async () => {
   try {
     const res = await axios.get(`${ServerUrl}/tripPlans/featuredTrips`, {
@@ -30,63 +35,12 @@ const FeaturedDestinations = async () => {
   if (!trendingTrips.length) return <div>No trending trips found.</div>;
 
   return (
-    <div className="trending-destinations mb-16 mt-4 p-4 md:pt-2 md:p-6">
-      <h2 className="text-left text-2xl md:text-3xl font-bold mb-8">
+    <div className="trending-destinations mb-16 mt-4 p-4 md:pt-2 md:p-6 max-w-screen-xl mx-auto px-4">
+      <h2 className="text-lg sm:text-2xl md:text-4xl font-bold text-gray-800 flex items-center gap-2 mb-8">
+        <LuStar className="h-6 w-6 sm:h-10 sm:w-10 text-yellow-600" />
         Featured Destinations
       </h2>
-      {/* Desktop grid */}
-      <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-        {trendingTrips.map((trip) => (
-          <Link key={trip._id} href={`/trip/${Array.isArray(trip.category)
-            ? trip.category.map(makeUrlFriendly).join('&')
-            : makeUrlFriendly(trip.category)}/${trip.slug}`} passHref>
-            <div className="flex flex-col items-center cursor-pointer">
-              <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-200">
-                <img
-                  src={trip.banners?.web}
-                  alt={trip.title}
-                  width={128}
-                  height={128}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <p className="mt-4 text-sm font-semibold text-center">
-                {trip.title?.split(" ").slice(0, 2).join(" ")}
-              </p>
-            </div>
-          </Link>
-        ))}
-      </div>
-      {/* Mobile carousel */}
-      <div className="sm:hidden overflow-x-auto pb-4 no-scrollbar">
-        <div className="flex gap-4 pl-4">
-          {columnPairs.map((pair, index) => (
-            <div
-              key={index}
-              className="flex flex-col justify-between gap-4"
-              style={{ minWidth: "calc(50% - 8px)" }}
-            >
-              {pair.map((trip) => (
-                <Link key={trip._id} href={`destination/${trip._id}`}>
-                  <div className="flex flex-col items-center justify-between bg-white p-2 rounded-lg shadow-sm">
-                    <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-200">
-                      <img
-                        src={trip.banners?.web}
-                        alt={trip.title}
-                        className="object-cover w-full h-full"
-                        loading="lazy"
-                      />
-                    </div>
-                    <p className="mt-2 text-sm text-center font-medium w-full line-clamp-2 overflow-hidden text-ellipsis">
-                      {trip.title?.split(" ").slice(0, 2).join(" ")}
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
+      <Card data={trendingTrips} />
     </div>
   );
 };

@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/carousel";
 import { FaMapMarkerAlt, FaArrowRight, FaStar, FaClock } from 'react-icons/fa';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
-
+import { CiGlobe } from "react-icons/ci";
 const categoryDescriptions = {
   "Backpacking": "Budget-friendly adventures for free-spirited travelers who love exploring on foot and living minimally.",
   "Weekend Trip": "Quick getaways perfect for refreshing your mind and escaping the city for 2–3 days.",
@@ -90,8 +90,8 @@ const DomesticTrips = async () => {
     <div className='my-16 md:my-28 bg-gradient-to-b from-blue-50 to-white py-12'>
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-4xl font-bold text-gray-800 flex items-center gap-3">
-            <HiOutlineLocationMarker className="h-10 w-10 text-yellow-600" />
+          <h2 className="text-xl md:text-4xl font-semibold md:font-bold text-gray-800 flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <HiOutlineLocationMarker className="md:h-10 md:w-10 h-6 w-6 text-yellow-600" />
             Domestic Trips
           </h2>
         </div>
@@ -175,11 +175,13 @@ const InternationalTrips = async () => {
     <div className='my-16 md:my-28 bg-gradient-to-b from-blue-50 to-white py-12'>
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-4xl font-bold text-gray-800 flex items-center gap-3">
-            <HiOutlineLocationMarker className="h-10 w-10 text-yellow-600" />
+          <h2 className="text-xl md:text-4xl font-semibold md:font-bold text-gray-800 flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <CiGlobe className="md:h-10 md:w-10 h-6 w-6 text-yellow-600" />
             International Trips
           </h2>
         </div>
+
+
 
         {/* Modified Carousel with peeking cards */}
         <div className="relative">

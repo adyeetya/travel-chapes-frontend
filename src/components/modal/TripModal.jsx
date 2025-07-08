@@ -217,16 +217,16 @@ Number of Travelers: ${formData.travelers}`
         {/* Right Image Section */}
         <div className="md:w-1/2 h-56 md:h-full relative">
           {/* laptop image */}
-          <Image
-            src="/images/holi-modal.jpg" // Replace with your image URL
+          <img
+            src="/images/himachal/himachal_banner_both.webp" // Replace with your image URL
             alt="Trip Preview"
             width={1000}
             height={1000}
             className="object-cover hidden md:block w-full h-full rounded-lg md:rounded-l-none md:rounded-r-lg"
           />
           {/* mobile image */}
-          <Image
-            src="/images/sangla holi_phone_modal_image.webp" // Replace with your image URL
+          <img
+            src="/images/himachal/himachal_banner_both.webp" // Replace with your image URL
             alt="Trip Preview"
             width={1000}
             height={1000}

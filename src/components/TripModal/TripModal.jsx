@@ -194,8 +194,8 @@ Number of Travelers: ${formData.travelers}`
 
         {/* Right Image Section */}
         <div className="md:w-1/2 h-56 md:h-full relative">
-          <Image
-            src="/images/homepage/modalimg.jpg" // Replace with your image URL
+          <img
+            src="/images/himachal/himachal_banner_both.webp" // Replace with your image URL
             alt="Trip Preview"
             width={1000}
             height={1000}

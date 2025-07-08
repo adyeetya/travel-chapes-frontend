@@ -10,8 +10,8 @@ import "swiper/css/navigation";
 const pacifico = Pacifico({ weight: "400", subsets: ["latin"] });
 
 const images = [
-  "/images/sanghla/sangla_1.webp",
-  "/images/sanghla/sangla2.webp",
+  "https://travelchapes.s3.eu-north-1.amazonaws.com/shimla-4n5d-tour-package/1747831552492_anuj-rawat-TQLqUmQQF2o-unsplash.jpg",
+  "https://travelchapes.s3.eu-north-1.amazonaws.com/shimla-4n5d-tour-package/1747831551096_aryan-nikhil-D41QK3VrLZM-unsplash.jpg",
   "https://travelchapes.s3.eu-north-1.amazonaws.com/images/Spiti/spiti4.webp",
   "https://travelchapes.s3.eu-north-1.amazonaws.com/images/CHOPTA_TUNGNATH/ct7.jpg",
   "https://travelchapes.s3.eu-north-1.amazonaws.com/images/jibhitirthan/jt4.png",
@@ -46,36 +46,36 @@ export default function ImageSlider() {
         Wall of Memories
       </h2>
       <p className="text-white z-10 text-center text-lg md:text-xl max-w-2xl mb-12">
-      Preserving moments, cherishing memories—one wall at a time.
+        Preserving moments, cherishing memories—one wall at a time.
       </p>
 
       {/* Image Slider */}
       <Swiper
-  effect="coverflow"
-  grabCursor={true}
-  centeredSlides={true}
-  loop={true}
-  slidesPerView={1}
-  spaceBetween={0} // Ensures proper centering on small screens
-  centerInsufficientSlides={true}
-  breakpoints={{
-    240: { slidesPerView: 2, spaceBetween: 30 }, // Tablets
+        effect="coverflow"
+        grabCursor={true}
+        centeredSlides={true}
+        loop={true}
+        slidesPerView={1}
+        spaceBetween={0} // Ensures proper centering on small screens
+        centerInsufficientSlides={true}
+        breakpoints={{
+          240: { slidesPerView: 2, spaceBetween: 30 }, // Tablets
 
-    640: { slidesPerView: 2, spaceBetween: 100 }, // Tablets
-    1024: { slidesPerView: 3, spaceBetween: 30 }, // Small laptops
-    1280: { slidesPerView: 4, spaceBetween: 50 }, // Desktops
-  }}  
-  coverflowEffect={{
-    rotate: -10,
-    stretch: 0,
-    depth: 150,
-    modifier: 1,
-    slideShadows: false,
-  }}
-  navigation={false}
-  modules={[EffectCoverflow, Navigation]}
-  className="w-full 6xl"
->
+          640: { slidesPerView: 2, spaceBetween: 100 }, // Tablets
+          1024: { slidesPerView: 3, spaceBetween: 30 }, // Small laptops
+          1280: { slidesPerView: 4, spaceBetween: 50 }, // Desktops
+        }}
+        coverflowEffect={{
+          rotate: -10,
+          stretch: 0,
+          depth: 150,
+          modifier: 1,
+          slideShadows: false,
+        }}
+        navigation={false}
+        modules={[EffectCoverflow, Navigation]}
+        className="w-full 6xl"
+      >
 
         {images.map((src, index) => (
           <SwiperSlide key={index} className="relative">
@@ -83,11 +83,11 @@ export default function ImageSlider() {
               <img
                 src={src}
                 alt={`Slide ${index}`}
-                
-              
+
+
                 className="object-cover rounded-lg w-full h-full"
               />
-            </div> 
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

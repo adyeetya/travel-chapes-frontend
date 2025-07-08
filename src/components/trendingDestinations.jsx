@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ServerUrl } from "@/app/config";
 import axios from "axios";
 import { IoIosTrendingUp } from "react-icons/io";
+import { Skeleton } from "./ui/skeleton";
 const getTrendingTrips = async () => {
   try {
     const res = await axios.get(`${ServerUrl}/tripPlans/trendingTrips`, {
@@ -68,7 +69,9 @@ const TrendingDestinations = async () => {
               style={{ minWidth: "calc(30% - 6px)" }}
             >
               {pair.map((trip) => (
-                <Link key={trip._id} href={`destination/${trip._id}`}>
+                <Link key={trip._id} href={`/trip/${Array.isArray(trip.category)
+                  ? trip.category.map(makeUrlFriendly).join('&')
+                  : makeUrlFriendly(trip.category)}/${trip.slug}`} passHref>
                   <div className="flex flex-col items-center justify-between bg-  rounded-lg shadow-sm">
                     <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-gray-200">
                       <img

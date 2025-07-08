@@ -12,6 +12,7 @@ import TripModalWrapper from '@/components/modal/ModalWrapper'
 import { destinations } from '@/data/destinations/destinations'
 import ImageSlider from '@/components/imagesSlider'
 import WhyChooseUs from '@/components/WhyChooseUs'
+import SpecialCategories from '@/components/specialCategories'
 import { fetchAllCategories } from './fetchTrip'
 import { DomesticTrips, InternationalTrips } from '@/components/domesticTrips'
 import UpcomingBatches from '@/components/upcomingBatches'
@@ -39,6 +40,7 @@ export default async function Home() {
       ))} */}
       <DomesticTrips />
       <InternationalTrips />
+      <SpecialCategories />
       <UpcomingBatches />
       <FeaturedDestinations/>
       <ImageSlider />
@@ -52,3 +54,4 @@ export default async function Home() {
 // todo - category page too long fix that too many cards
 // add loading skeleton 
 //  linkk upcoming batches to trip page
+// add 4 cards of main cats back trek biki weekend

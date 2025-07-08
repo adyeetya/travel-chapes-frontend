@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from './common/Card'
+
 import { ServerUrl } from '@/app/config'
 import axios from 'axios'
 import Link from 'next/link'
@@ -10,6 +10,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
+
 import { FaMapMarkerAlt, FaArrowRight, FaStar, FaClock } from 'react-icons/fa';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { CiGlobe } from "react-icons/ci";

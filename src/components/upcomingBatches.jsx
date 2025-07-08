@@ -62,84 +62,84 @@ const LoadingSkeleton = () => (
 
 const BatchCard = ({ trip }) => {
   return (
-    <Link href={`/trips/${trip.slug}`} className="block h-full">
-      <div className="border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300 bg-white flex flex-col h-full group">
-        <div className="relative h-48 w-full overflow-hidden">
-          {trip.image ? (
-            <img
-              src={trip.image}
-              alt={trip.slug}
-              className="object-cover w-full h-full transition duration-500 group-hover:scale-105"
-            />
-          ) : (
-            <div className="bg-gray-100 h-full flex items-center justify-center">
-              <HiOutlineCalendar className="h-16 w-16 text-gray-300 mx-auto" />
+
+    <div className="border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300 bg-white flex flex-col h-full group">
+      <div className="relative h-48 w-full overflow-hidden">
+        {trip.image ? (
+          <img
+            src={trip.image}
+            alt={trip.slug}
+            className="object-cover w-full h-full transition duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <div className="bg-gray-100 h-full flex items-center justify-center">
+            <HiOutlineCalendar className="h-16 w-16 text-gray-300 mx-auto" />
+          </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-gray-900/30 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full bg-white/70 backdrop-blur-sm rounded-t-lg px-3 py-1 shadow-sm">
+          <div className="flex justify-between items-center gap-2">
+            <div className="text-center flex items-center gap-2">
+              <p className="text-xs font-medium text-gray-500">From</p>
+              <p className="text-sm font-bold text-gray-800">
+                {new Date(trip.startDate).getDate()}
+                <span className="text-xs font-normal ml-1">
+                  {new Date(trip.startDate).toLocaleString('default', { month: 'short' })}
+                </span>
+              </p>
             </div>
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-gray-900/30 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 w-full bg-white/70 backdrop-blur-sm rounded-t-lg px-3 py-1 shadow-sm">
-            <div className="flex justify-between items-center gap-2">
-              <div className="text-center flex items-center gap-2">
-                <p className="text-xs font-medium text-gray-500">From</p>
-                <p className="text-sm font-bold text-gray-800">
-                  {new Date(trip.startDate).getDate()}
-                  <span className="text-xs font-normal ml-1">
-                    {new Date(trip.startDate).toLocaleString('default', { month: 'short' })}
-                  </span>
-                </p>
-              </div>
-              <div className="h-4 w-px bg-gray-300"></div>
-              <div className="text-center flex items-center gap-2">
-                <p className="text-xs font-medium text-gray-500">To</p>
-                <p className="text-sm font-bold text-gray-800">
-                  {new Date(trip.endDate).getDate()}
-                  <span className="text-xs font-normal ml-1">
-                    {new Date(trip.endDate).toLocaleString('default', { month: 'short' })}
-                  </span>
-                </p>
-              </div>
+            <div className="h-4 w-px bg-gray-300"></div>
+            <div className="text-center flex items-center gap-2">
+              <p className="text-xs font-medium text-gray-500">To</p>
+              <p className="text-sm font-bold text-gray-800">
+                {new Date(trip.endDate).getDate()}
+                <span className="text-xs font-normal ml-1">
+                  {new Date(trip.endDate).toLocaleString('default', { month: 'short' })}
+                </span>
+              </p>
             </div>
           </div>
-          <span className="absolute top-4 right-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">
-            Available
-          </span>
+        </div>
+        <span className="absolute top-4 right-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+          Available
+        </span>
+      </div>
+
+      <div className="p-4 flex flex-col flex-1">
+        <div className="flex items-start justify-between mb-2">
+          <h3 className="font-semibold text-md text-gray-800 line-clamp-2">
+            {trip.slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+          </h3>
+          <FaArrowRight className="h-5 w-5 text-yellow-600 mt-1 flex-shrink-0" />
         </div>
 
-        <div className="p-4 flex flex-col flex-1">
-          <div className="flex items-start justify-between mb-2">
-            <h3 className="font-semibold text-md text-gray-800 line-clamp-2">
-              {trip.slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
-            </h3>
-            <FaArrowRight className="h-5 w-5 text-yellow-600 mt-1 flex-shrink-0" />
-          </div>
+        <div className="flex items-center text-xs text-gray-600 mb-2">
+          <FaMapMarkerAlt className="h-4 w-4 mr-1 text-blue-500 flex-shrink-0" />
+          <span className="truncate">Pickup {trip.pickup}</span>
+        </div>
 
-          <div className="flex items-center text-xs text-gray-600 mb-2">
-            <FaMapMarkerAlt className="h-4 w-4 mr-1 text-blue-500 flex-shrink-0" />
-            <span className="truncate">Pickup {trip.pickup}</span>
-          </div>
+        {trip.route && (
+          <p className="text-xs text-gray-600 line-clamp-2">
+            {trip.route}
+          </p>
+        )}
 
-          {trip.route && (
-            <p className="text-xs text-gray-600 line-clamp-2">
-              {trip.route}
-            </p>
-          )}
-
-          <div className="mt-auto pt-3 border-t border-gray-100">
-            <div className="flex justify-between items-center">
-              <div className="flex flex-col">
-                <span className="text-xs text-gray-500">Starting from</span>
-                <span className="text-yellow-600 font-bold">
-                  ₹{trip.pricing?.bus?.double?.toLocaleString() || 'N/A'}
-                </span>
-              </div>
-              <div className="bg-blue-50 text-blue-600 text-xs font-medium px-2 py-1 rounded">
-                {trip.days} days
-              </div>
+        <div className="mt-auto pt-3 border-t border-gray-100">
+          <div className="flex justify-between items-center">
+            <div className="flex flex-col">
+              <span className="text-xs text-gray-500">Starting from</span>
+              <span className="text-yellow-600 font-bold">
+                ₹{trip.pricing?.bus?.double?.toLocaleString() || 'N/A'}
+              </span>
+            </div>
+            <div className="bg-blue-50 text-blue-600 text-xs font-medium px-2 py-1 rounded">
+              {trip.days} days
             </div>
           </div>
         </div>
       </div>
-    </Link>
+    </div>
+
   )
 }
 
@@ -167,6 +167,7 @@ const UpcomingBatches = () => {
               ...trip,
               image: tripDetails?.banners?.web || tripDetails?.images?.[0] || null,
               route: tripDetails?.route || null,
+              category: tripDetails?.category ||[]
             };
           } catch (error) {
             console.error('Error enriching trip:', error);
@@ -187,12 +188,16 @@ const UpcomingBatches = () => {
     setLoading(false);
   };
 
+  const makeUrlFriendly = (category) => {
+    return encodeURIComponent(category.toLowerCase().replace(/\s+/g, '-'));
+  };
+
   useEffect(() => {
     fetchTrips();
   }, [filter]);
 
   return (
-   <div className='my-16 md:my-28 bg-gradient-to-b from-blue-50 to-white py-12'>
+    <div className='my-16 md:my-28 bg-gradient-to-b from-blue-50 to-white py-12'>
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="flex flex-col sm:flex-row md:items-center justify-between mb-6 gap-3 sm:gap-0">
           {/* Left side: Heading always on top */}
@@ -202,7 +207,7 @@ const UpcomingBatches = () => {
               Upcoming Batches
             </h2>
           </div>
-          
+
           {/* Right side: Filter Buttons */}
           <div className="flex space-x-2 sm:space-x-3">
             <button
@@ -233,7 +238,11 @@ const UpcomingBatches = () => {
                     key={trip._id}
                     className="pl-4 basis-[80%] sm:basis-[45%] lg:basis-[30%]"
                   >
-                    <BatchCard trip={trip} />
+                    <Link href={`/trip/${Array.isArray(trip.category)
+                      ? trip.category.map(makeUrlFriendly).join('&')
+                      : makeUrlFriendly(trip.category)}/${trip.slug}`} passHref>
+                      <BatchCard trip={trip} />
+                    </Link>
                   </CarouselItem>
                 ))}
               </CarouselContent>

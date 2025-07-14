@@ -4,10 +4,11 @@ import Image from 'next/image'
 import { destinations } from '@/data/destinations/destinations'
 import { Trips } from '@/data/destinations/details'
 import { CiCircleChevDown } from 'react-icons/ci'
-
+import BookingModal from './BookingModal'
 import { FaCaretDown } from 'react-icons/fa'
 import { TripModal } from '@/components/TripModal/TripModal'
 import { downloadItineraryPDF } from './downloadItineraryPDF'
+import { set } from 'react-hook-form'
 
 const DescriptionWithReadMore = ({ destination }) => {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -101,6 +102,8 @@ const DescriptionWithReadMore = ({ destination }) => {
 const BookingTable = ({ details }) => {
   const [sharingType, setSharingType] = useState('triple')
   const [dropdownOpen, setDropdownOpen] = useState(false)
+
+  
 
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen)
 
@@ -231,6 +234,7 @@ const BookingTable = ({ details }) => {
 
 const TravelPackage = ({ destination, batch }) => {
   const [isModalOpen, setModalOpen] = useState(false)
+  const [bookingModal, setBookingModal] = useState(false)
   const [randomImages, setRandomImages] = useState([])
   const [details, setDetails] = useState(null)
 
@@ -281,6 +285,14 @@ const TravelPackage = ({ destination, batch }) => {
       setRandomImages(getUniqueImages(destination.images))
     }
   }, [destination?.id])
+
+  const openBookingModal = () => {
+    setBookingModal(true)
+  }
+const closeBookingModal = ()=>{
+  setBookingModal(false)
+}
+
   // Function to open the modal
   const openModal = () => setModalOpen(true)
 
@@ -433,7 +445,7 @@ const TravelPackage = ({ destination, batch }) => {
 
           {/* Book Now Button */}
           {batch.length ? <button
-            onClick={openModal}
+            onClick={openBookingModal}
             className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded-lg font-semibold mb-6"
           >
             Book Now
@@ -447,6 +459,7 @@ const TravelPackage = ({ destination, batch }) => {
         </div>
       </div>
       {isModalOpen && <TripModal destination={destination.title} onClose={closeModal} />}
+      {bookingModal && <BookingModal destination={destination} batches={batch} onClose={closeBookingModal} />}
     </div>
   )
 }
@@ -549,6 +562,7 @@ const ImagesGrid = ({ images }) => {
     </div>
   )
 }
+
 const ImagesSlider = ({ images }) => {
   return (
     <div className="p-4">

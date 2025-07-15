@@ -312,7 +312,7 @@ const closeBookingModal = ()=>{
   return (
     <div className="container mx-auto ">
       {/* Title */}
-      <div className="p-6 flex items-center justify-between">
+      <div className="p-6 flex flex-col md:flex-row md:items-center items-start justify-between">
         <h2 className="text-3xl font-semibold mb-4 text-black">
           {destination.title} Overview
         </h2>

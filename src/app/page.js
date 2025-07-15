@@ -25,7 +25,7 @@ export default async function Home() {
       <Hero />
       <TrendingDestinations />
       <WhyChooseUs />
-      <ReviewCarousel />
+      {/* <ReviewCarousel /> */}
       {/* {categories.map((categoryObj) => (
         // Skip customized/customised categories as they might be duplicates
         !categoryObj.category.toLowerCase().includes('custom') && (

@@ -9,6 +9,13 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import { useAuth } from '@/app/auth/AuthLogic';
 import LoginSignupModal from './LoginSignupModal';
+import SuccessModal from './SuccessModal';
+import TripHeader from './TripHeader';
+import BatchFilters from './BatchFilters';
+import BatchSelection from './BatchSelection';
+import OccupancySelection from './OccupancySelection';
+import VehicleSelection from './VehicleSelection';
+import PriceSummary from './PriceSummary';
 import { ServerUrl } from '@/app/config';
 
 const BookingModal = ({ destination, batches, onClose }) => {
@@ -27,7 +34,8 @@ const BookingModal = ({ destination, batches, onClose }) => {
   const [razorpayOrder, setRazorpayOrder] = useState(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [invoiceUrl, setInvoiceUrl] = useState('');
-  const confettiRef = useRef(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+
   const auth = useAuth();
 
   // Get available occupancy types based on pricing
@@ -127,9 +135,11 @@ const BookingModal = ({ destination, batches, onClose }) => {
   // Remove Book Now button and use only Pay Now
   // Add proper checks before initiating booking/payment
   const handlePayNow = async () => {
+    setIsProcessing(true);
     const scriptLoaded = await loadRazorpayScript();
     if (!scriptLoaded || typeof window.Razorpay !== 'function') {
       alert('Razorpay SDK failed to load. Please check your internet connection.');
+      setIsProcessing(false);
       return;
     }
 
@@ -138,20 +148,24 @@ const BookingModal = ({ destination, batches, onClose }) => {
     const jwt = Cookies.get('jwt');
     if (!jwt) {
       setShowLoginModal(true);
+      setIsProcessing(false);
       return;
     }
     // Validation checks
     if (!selectedBatch) {
       alert('Please select a batch.');
+      setIsProcessing(false);
       return;
     }
     const noOfPeople = Object.values(vehicleCounts).reduce((a, b) => a + b, 0);
     if (noOfPeople < 1) {
       alert('Please select at least one person.');
+      setIsProcessing(false);
       return;
     }
     if (!totalPrice || totalPrice <= 0) {
       alert('Price must be greater than zero.');
+      setIsProcessing(false);
       return;
     }
     // Prepare booking data
@@ -204,6 +218,7 @@ const BookingModal = ({ destination, batches, onClose }) => {
           } catch (err) {
             alert('Payment verification failed');
           }
+          setIsProcessing(false);
         },
         prefill: {
           name: auth.user?.name || '',
@@ -217,6 +232,7 @@ const BookingModal = ({ destination, batches, onClose }) => {
     } catch (err) {
       console.error('Booking or payment failed:', err);
       alert(err.response?.data?.responseMessage || 'Booking or payment failed');
+      setIsProcessing(false);
     }
   };
 
@@ -232,168 +248,44 @@ const BookingModal = ({ destination, batches, onClose }) => {
         </button>
         <div className="p-6 overflow-y-auto h-full">
           {/* Trip Header */}
-          <div className="flex flex-col md:flex-row gap-6 mb-8">
-            <div className="md:w-1/3">
-              <img
-                src={destination?.banners?.web}
-                alt={destination?.title}
-                className="w-full h-48 object-cover rounded-lg"
-              />
-            </div>
-            <div className="md:w-2/3">
-              <h2 className="text-3xl font-bold mb-2 text-black">{destination?.title}</h2>
-              <p className="text-gray-600 mb-2">{destination?.route}</p>
-              <p className="text-gray-700 mb-4">{destination?.fullItinerary?.length || 9} Days / {destination?.fullItinerary?.length - 1 || 8} Nights</p>
-              <div
-                className="prose prose-sm"
-                dangerouslySetInnerHTML={{ __html: destination?.description.substring(0, 300) + '...' }}
-              />
-            </div>
-          </div>
+          <TripHeader destination={destination} />
 
-          <div className='flex justify-between items-center mb-6'>
-            {/* Batch Filters as Buttons */}
-            <div className=" flex gap-2 items-center">
-              <span className="font-medium">Show:</span>
-              <Button
-                variant={filterType === 'thisMonth' ? 'default' : 'outline'}
-                onClick={() => setFilterType('thisMonth')}
-              >
-                This Month
-              </Button>
-              <Button
-                variant={filterType === 'nextMonth' ? 'default' : 'outline'}
-                onClick={() => setFilterType('nextMonth')}
-              >
-                Next Month
-              </Button>
-              <Button
-                variant={filterType === 'all' ? 'default' : 'outline'}
-                onClick={() => setFilterType('all')}
-              >
-                All
-              </Button>
-            </div>
+          <BatchFilters
+            filterType={filterType}
+            setFilterType={setFilterType}
+            sortType={sortType}
+            setSortType={setSortType}
+          />
 
-            {/* Batch Sort Dropdown */}
-            <div className=" flex gap-2 items-center">
-              <label className="font-medium">Sort:</label>
-              <select value={sortType} onChange={e => setSortType(e.target.value)} className="border rounded px-2 py-1">
-                <option value="date">By Date</option>
-                <option value="price">By Price</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Batch Selection */}
-          <div className="mb-8">
-            <h3 className="text-xl font-semibold mb-4">Select Your Travel Dates</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {filteredBatches.map(batch => (
-                <Card
-                  key={batch._id}
-                  className={`cursor-pointer ${selectedBatch?._id === batch._id ? 'border-blue-500 bg-blue-50' : ''}`}
-                  onClick={() => setSelectedBatch(batch)}
-                >
-                  <CardHeader>
-                    <CardTitle className="text-lg">
-                      {format(new Date(batch.startDate), 'dd MMM')} - {format(new Date(batch.endDate), 'dd MMM yyyy')}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <Badge variant="secondary" className="bg-green-100 text-green-800">
-                      Available
-                    </Badge>
-                    <p className="text-sm mt-2">
-                      From ₹{Math.min(
-                        batch.pricing.bus?.single > 0 ? batch.pricing.bus.single : batch.pricing.bus.double,
-                        batch.pricing.bus?.double,
-                        batch.pricing.bus?.triple
-                      )}/person
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
+          <BatchSelection
+            filteredBatches={filteredBatches}
+            selectedBatch={selectedBatch}
+            setSelectedBatch={setSelectedBatch}
+          />
 
           {selectedBatch && (
             <>
-              {/* Occupancy Selection */}
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold mb-4">Select Occupancy Type</h3>
-                <div className="flex gap-4">
-                  {getAvailableOccupancyTypes().map(occupancy => (
-                    <Button
-                      key={occupancy}
-                      variant={selectedOccupancy === occupancy ? 'default' : 'outline'}
-                      onClick={() => setSelectedOccupancy(occupancy)}
-                    >
-                      {occupancy.charAt(0).toUpperCase() + occupancy.slice(1)} Occupancy
-                    </Button>
-                  ))}
-                </div>
-              </div>
+              <OccupancySelection
+                availableTypes={getAvailableOccupancyTypes()}
+                selectedOccupancy={selectedOccupancy}
+                setSelectedOccupancy={setSelectedOccupancy}
+              />
 
-              {/* Vehicle Selection */}
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold mb-4">Select Vehicles</h3>
-                <div className="space-y-4">
-                  {Object.entries(selectedBatch.pricing).map(([vehicle, pricing]) => (
-                    <Card key={vehicle}>
-                      <CardContent className="p-4">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h4 className="font-medium uppercase">{vehicle}</h4>
-                            <p className="text-sm text-gray-600">
-                              ₹{formatPrice(pricing[selectedOccupancy])} per person
-                            </p>
-                          </div>
-                          <div className="flex items-center gap-4">
-                            <Button
-                              variant="outline"
-                              size="icon"
-                              onClick={() => handleVehicleCountChange(vehicle, -1)}
-                              disabled={!vehicleCounts[vehicle] || vehicleCounts[vehicle] <= 0}
-                            >
-                              <Minus className="h-4 w-4" />
-                            </Button>
-                            <span className="w-8 text-center font-medium">
-                              {vehicleCounts[vehicle] || 0}
-                            </span>
-                            <Button
-                              variant="outline"
-                              size="icon"
-                              onClick={() => handleVehicleCountChange(vehicle, 1)}
-                            >
-                              <Plus className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
+              <VehicleSelection
+                selectedBatch={selectedBatch}
+                selectedOccupancy={selectedOccupancy}
+                vehicleCounts={vehicleCounts}
+                handleVehicleCountChange={handleVehicleCountChange}
+                formatPrice={formatPrice}
+              />
 
-              {/* Price Summary */}
-              <Card className="sticky bottom-0 bg-white border-t">
-                <CardContent className="p-4">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <div className="text-sm text-gray-600">Total Amount</div>
-                      <div className="text-2xl font-bold">₹{formatPrice(totalPrice)}</div>
-                      <div className="text-xs text-gray-500">incl. {selectedBatch.gst}% GST</div>
-                    </div>
-                    <Button
-                      onClick={handlePayNow}
-                      className="bg-green-600 hover:bg-green-700"
-                    >
-                      Pay Now
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+              <PriceSummary
+                totalPrice={totalPrice}
+                selectedBatch={selectedBatch}
+                formatPrice={formatPrice}
+                handlePayNow={handlePayNow}
+                isProcessing={isProcessing}
+              />
             </>
           )}
         </div>
@@ -405,21 +297,7 @@ const BookingModal = ({ destination, batches, onClose }) => {
         />
       )}
       {showSuccessModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center">
-            <span style={{fontSize: '3rem'}}>🎉</span>
-            <h2 className="text-2xl font-bold mt-2 mb-4 text-green-700">Payment Successful!</h2>
-            <p className="mb-4">Thank you for your booking. Your payment was processed successfully.</p>
-            {invoiceUrl ? (
-              <a href={invoiceUrl} target="_blank" rel="noopener noreferrer">
-                <Button className="bg-blue-600 hover:bg-blue-700 mb-2">Download Invoice</Button>
-              </a>
-            ) : (
-              <Button disabled className="mb-2">Invoice not available</Button>
-            )}
-            <Button onClick={() => setShowSuccessModal(false)} className="bg-gray-400 hover:bg-gray-500">Close</Button>
-          </div>
-        </div>
+        <SuccessModal invoiceUrl={invoiceUrl} setShowSuccessModal={setShowSuccessModal} />
       )}
     </div>
   );

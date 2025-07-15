@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import { FaGlobeAsia } from "react-icons/fa";
 const WhyChooseUs = () => {
   const features = [
     {
@@ -25,9 +25,10 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="pb-6 px-4 sm:px-4 md:px-6 lg:px-8 bg-white">
+    <section className="pb-6 my-8 md:my-12 px-4 sm:px-4 md:px-6 lg:px-8 bg-white">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-lg sm:text-xl md:text-4xl font-semibold md:font-bold text-gray-800 flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+        <h2 className="text-xl md:text-4xl font-semibold md:font-bold text-gray-800 flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+          <FaGlobeAsia className="md:h-10 md:w-10 h-6 w-6 sm:h-6 sm:w-6 text-yellow-600" />
           Why Choose TravelChapes
         </h2>
         <div className="mt-8 grid grid-cols-2 grid-rows-2 gap-4 sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-4 md:grid-rows-1 md:gap-8">

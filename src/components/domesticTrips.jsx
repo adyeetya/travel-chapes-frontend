@@ -88,7 +88,7 @@ const DomesticTrips = async () => {
   const categories = Object.keys(groupedTrips)
 
   return (
-    <div className='my-16 md:my-28 bg-gradient-to-b from-blue-50 to-white py-12'>
+    <div className='my-8 md:my-12 bg-gradient-to-b from-blue-50 to-white py-12'>
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-xl md:text-4xl font-semibold md:font-bold text-gray-800 flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
@@ -173,7 +173,7 @@ const InternationalTrips = async () => {
   const groupedTrips = groupTripsByCategory(trips)
   const categories = Object.keys(groupedTrips)
   return (
-    <div className='my-16 md:my-28 bg-gradient-to-b from-blue-50 to-white py-12'>
+    <div className='my-8 md:my-12 bg-gradient-to-b from-blue-50 to-white py-12'>
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-xl md:text-4xl font-semibold md:font-bold text-gray-800 flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">

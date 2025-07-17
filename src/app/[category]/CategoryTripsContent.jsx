@@ -45,7 +45,7 @@ const CategoryTripsContent = ({ initialTrips, ageGroups, category, heroImage }) 
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-white">
+        <div className="min-h-screen ">
             {/* Hero Section - Made slightly shorter on mobile */}
             <div className="relative w-full h-60 md:h-96 flex flex-col items-center justify-center mb-6 md:mb-10">
                 <img 
@@ -53,7 +53,7 @@ const CategoryTripsContent = ({ initialTrips, ageGroups, category, heroImage }) 
                     alt="Category Hero" 
                     className="absolute inset-0 w-full h-full object-cover brightness-90" 
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-yellow-600/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-600/60 to-transparent" />
                 <h1 className="relative z-10 text-3xl md:text-6xl font-bold text-white drop-shadow-lg text-center px-4">
                     {category.charAt(0).toUpperCase() + category.slice(1)} Trips
                 </h1>
@@ -63,7 +63,7 @@ const CategoryTripsContent = ({ initialTrips, ageGroups, category, heroImage }) 
             </div>
 
             {/* Filters - Stacked vertically on mobile */}
-            <div className="max-w-7xl mx-auto px-4 mb-6 sticky top-0 bg-yellow-50/90 backdrop-blur-sm py-3 z-10 border-b border-yellow-200">
+            <div className="max-w-7xl mx-auto px-4 mb-6 sticky top-0  backdrop-blur-sm py-3 z-10 border-b border-yellow-200">
                 <form className="flex flex-col md:flex-row gap-3" onSubmit={(e) => e.preventDefault()}>
                     <input
                         type="text"

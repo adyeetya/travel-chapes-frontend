@@ -1,15 +1,15 @@
 'use client'
 import React, { useState, use, useEffect } from 'react'
-import Image from 'next/image'
-import { destinations } from '@/data/destinations/destinations'
-import { Trips } from '@/data/destinations/details'
+
 import { CiCircleChevDown } from 'react-icons/ci'
 import BookingModal from './BookingModal'
 import { FaCaretDown } from 'react-icons/fa'
 import { TripModal } from '@/components/TripModal/TripModal'
 import { downloadItineraryPDF } from './downloadItineraryPDF'
 import { set } from 'react-hook-form'
-
+import { Badge } from '@/components/ui/badge'
+import { Star, Clock, Users, Mountain, MapPin, PhoneIcon, MessageCircleMore } from "lucide-react"
+import Link from 'next/link'
 const DescriptionWithReadMore = ({ destination }) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
@@ -103,7 +103,7 @@ const BookingTable = ({ details }) => {
   const [sharingType, setSharingType] = useState('triple')
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
-  
+
 
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen)
 
@@ -233,30 +233,34 @@ const BookingTable = ({ details }) => {
 }
 
 const TravelPackage = ({ destination, batch }) => {
-  const [isModalOpen, setModalOpen] = useState(false)
-  const [bookingModal, setBookingModal] = useState(false)
-  const [randomImages, setRandomImages] = useState([])
-  const [details, setDetails] = useState(null)
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [bookingModal, setBookingModal] = useState(false);
+  const [sharingType, setSharingType] = useState('triple');
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [details, setDetails] = useState(null);
 
   // Calculate minPrice from the pricing data and prepare batch details
   useEffect(() => {
     if (destination && batch) {
-      // Calculate min price across all batches
       let minPrice = Infinity;
 
       batch.forEach(batchItem => {
         Object.values(batchItem.pricing).forEach(vehiclePricing => {
-          // Include non-zero prices only
           if (vehiclePricing.single > 0) minPrice = Math.min(minPrice, vehiclePricing.single);
           if (vehiclePricing.double > 0) minPrice = Math.min(minPrice, vehiclePricing.double);
           if (vehiclePricing.triple > 0) minPrice = Math.min(minPrice, vehiclePricing.triple);
         });
       });
 
+      const duration = destination.duration ||
+        (destination.fullItinerary ? destination.fullItinerary.length : 0);
+
       setDetails({
         route: destination.pickup,
-        category: destination.category || 'Adventure',
-        duration: `${destination.days} Days`,
+        category: Array.isArray(destination.category) ?
+          destination.category.join(", ") :
+          destination.category || 'Adventure',
+        duration: `${duration} Days`,
         ageGroup: '18-45',
         meals: destination.meals || [],
         minPrice: destination.minPrice || minPrice,
@@ -265,204 +269,250 @@ const TravelPackage = ({ destination, batch }) => {
     }
   }, [destination, batch]);
 
-  const getUniqueImages = (media) => {
-    const imageExtensions = ['.jpg', '.jpeg', '.png', '.webp'] // List of valid image extensions
-    const isImage = (url) => imageExtensions.some((ext) => url.endsWith(ext)) // Check if the URL ends with a valid image extension
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  const handleSelection = (type) => {
+    setSharingType(type);
+    setDropdownOpen(false);
+  };
 
-    const images = media.filter((url) => isImage(url)) // Filter only images
-    const uniqueSet = new Set()
+  const openBookingModal = () => setBookingModal(true);
+  const closeBookingModal = () => setBookingModal(false);
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
-    while (uniqueSet.size < 3 && uniqueSet.size < images.length) {
-      const randomImage = images[Math.floor(Math.random() * images.length)]
-      uniqueSet.add(randomImage) // Set will handle duplicates automatically
-    }
-
-    return Array.from(uniqueSet) // Convert Set back to Array
-  }
-
-  useEffect(() => {
-    if (destination.images?.length) {
-      setRandomImages(getUniqueImages(destination.images))
-    }
-  }, [destination?.id])
-
-  const openBookingModal = () => {
-    setBookingModal(true)
-  }
-const closeBookingModal = ()=>{
-  setBookingModal(false)
-}
-
-  // Function to open the modal
-  const openModal = () => setModalOpen(true)
-
-  // Function to close the modal
-  const closeModal = () => setModalOpen(false)
-
-  // Download PDF handler
   const handleDownloadPDF = async () => {
     await downloadItineraryPDF({
       destination,
       details,
       itinerary: destination.fullItinerary,
       images: destination.images || [],
-    })
-  }
+    });
+  };
+
+  // Check if any batch has single sharing available
+  const hasSingleSharing = batch?.some(batch =>
+    Object.values(batch.pricing).some(vehiclePricing => vehiclePricing.single > 0)
+  );
 
   return (
-    <div className="container mx-auto ">
-      {/* Title */}
-      <div className="p-6 flex flex-col md:flex-row md:items-center items-start justify-between">
-        <h2 className="text-3xl font-semibold mb-4 text-black">
-          {destination.title} Overview
-        </h2>
-        <button
-          onClick={handleDownloadPDF}
-          className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg font-semibold shadow"
-        >
-          Download Itinerary PDF
+   <div className="container mx-auto px-2 md:px-4 text-black pb-20 md:pb-0"> {/* Added padding-bottom for mobile */}
+  <div className="flex flex-col lg:flex-row gap-6">
+    {/* Left Content */}
+    <div className="md:w-2/3 bg-re">
+      <section className="rounded-lg bg-white md:p-6 shadow-sm">
+        <h2 className="mb-4 text-2xl font-bold">Trip Overview</h2>
+        <div
+          dangerouslySetInnerHTML={{ __html: destination.description }}
+          className="text-gray-700 text-xs md:text-base leading-relaxed line-clamp-3 md:line-clamp-none"
+        />
+        {/* Read More button for mobile */}
+        <button className="md:hidden text-blue-600 text-sm mt-2">
+          Read More
         </button>
-      </div>
-      <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-        {/* Left Section */}
-        <div className='col-span-1 md:col-span-2 '>
-          {/* Image Gallery */}
-          <div className="flex space-x-4 mb-6">
-            {randomImages.map((image, index) => (
-              <div
-                key={index}
-                className="w-24 h-36 md:w-32 md:h-48 rounded-full overflow-hidden"
+
+        {destination.fullItinerary && destination.fullItinerary.length > 0 && (
+          <div className="mt-6">
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="text-lg font-semibold">Trip Highlights</h3>
+              <button
+                onClick={handleDownloadPDF}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm font-medium"
               >
-                <img
-                  src={image}
-                  alt={`Image ${index + 1}`}
-                  width={200}
-                  height={300}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-            ))}
+                Download Itinerary PDF
+              </button>
+            </div>
+            <ul className="space-y-2">
+              {destination.fullItinerary.slice(0, 5).map((day, index) => (
+                <li key={index} className="flex items-start gap-2">
+                  <span className="mt-1.5 h-2 w-2 rounded-full bg-blue-400 flex-shrink-0" />
+                  <span className="text-gray-700">{day.title}</span>
+                </li>
+              ))}
+            </ul>
           </div>
+        )}
+      </section>
+      
+      {/* Gallery and Itinerary sections */}
+      <h2 className='text-2xl text-center font-semibold w-full'>Gallery</h2>
+      <section className="my-8 w-full hidden md:block">
+        <ImagesGrid images={destination.images} />
+      </section>
+      <section className="my-8 w-full md:hidden">
+        <ImagesSlider images={destination.images} />
+      </section>
+      <section className="my-8 w-full">
+        <Itinerary fullItinerary={destination.fullItinerary} />
+      </section>
+    </div>
 
-          {/* Details Cards */}
-          <div className="grid grid-cols-2 gap-4 mb-6 text-center">
-            <div className="bg-gray-100 rounded-lg p-2 md:p-4">
-              <p className="text-sm font-medium text-gray-800">Route</p>
-              <p className="text-blue-600 dark:text-yellow-600">{destination?.route}</p>
-            </div>
-            <div className="bg-gray-100 rounded-lg p-2 md:p-4">
-              <p className="text-sm font-medium text-gray-800">Category</p>
-              <p className="text-blue-600 dark:text-yellow-600">{details?.category}</p>
-            </div>
-            <div className="bg-gray-100 rounded-lg p-2 md:p-4">
-              <p className="text-sm font-medium text-gray-800">Duration</p>
-              <p className="text-blue-600 dark:text-yellow-600">{destination?.fullItinerary.length} Days</p>
-            </div>
-
-            <div className="bg-gray-100 rounded-lg p-2 md:p-4">
-              <p className="text-sm font-medium text-gray-800">Age Group</p>
-              <p className="text-blue-600 dark:text-yellow-600">{details?.ageGroup}</p>
-            </div>
-          </div>
-
-          {/* Inclusions */}
-          <p className="my-4 text-black">Inclusions</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            {details?.meals?.map((meal, index) => (
-              <div key={index} className="bg-yellow-600 p-4 flex justify-center items-center rounded-md text-center text-sm min-h-[80px]">
-                <p>{meal}</p>
-              </div>
-            ))}
-            <div className="bg-yellow-600 p-4 flex justify-center items-center rounded-md text-center text-sm min-h-[80px]">
-              <p>Transfers</p>
-            </div>
-            <div className="bg-yellow-600 p-4 flex justify-center items-center rounded-md text-center text-sm min-h-[80px]">
-              <p>Qualified Captains</p>
-            </div>
-          </div>
-
-          {/* Icons */}
-          <div className="flex justify-around text-center space-x-4 text-black">
-            <div className="flex flex-col gap-2 items-center">
-              <div className="bg-blue-100 p-2 w-16 h-16 flex justify-center items-center rounded-full">
-                <p className="text-3xl">🌍</p>
-              </div>
-              <p className="text-sm">
-                Safe <br /> Travel
-              </p>
-            </div>
-            <div className="flex flex-col gap-2  items-center">
-              <div className="bg-blue-100 p-2 w-16 h-16 flex justify-center items-center rounded-full">
-                <p className="text-3xl flex justify-center items-center mb-3">
-                  💳
-                </p>
-              </div>
-              <p className="text-sm">
-                Flexible <br /> Cancellation
-              </p>
-            </div>
-            <div className="flex flex-col gap-2  items-center">
-              <div className="bg-blue-100 p-2 w-16 h-16 flex justify-center items-center rounded-full">
-                <p className="text-3xl">💸</p>
-              </div>
-              <p className="text-sm">
-                Affordable <br /> Prices
-              </p>
-            </div>
-            <div className="flex flex-col gap-2  items-center">
-              <div className="bg-blue-100 p-2 w-16 h-16 flex justify-center items-center rounded-full">
-                <p className="text-3xl">📞</p>
-              </div>
-              <p className="text-sm">
-                24/7 <br />
-                Support
-              </p>
-            </div>
-          </div>
-
-          <div className='my-12'>
-            <Itinerary fullItinerary={destination.fullItinerary} />
-          </div>
-
-        </div>
-
-        {/* Right Section */}
-        <div className="sticky top-20 my-12 self-start z-10 col-span-1 md:col-span-1">
-          {/* Price and Discount */}
+    {/* Right Sidebar - Sticky Booking Section */}
+    <div className="md:w-1/3 bg-r">
+      <div className="md:sticky md:top-12  space-y-6">
+        <div className="bg-white px-2 md:p-6 rounded-lg shadow-sm">
           <div className="mb-6">
-            <p className="text-lg font-semibold text-black">Starts From</p>
-            <p className="text-4xl font-bold text-yellow-600 mt-2">
-              ₹{details?.minPrice}{' '}
-              <span className="text-sm text-black font-normal">
-                + {details?.gst}% GST
-              </span>
+            <p className="text-lg font-semibold">Starts From</p>
+            <p className="text-4xl font-bold text-blue-600 mt-2">
+              ₹{(details?.minPrice || 0).toLocaleString()}
+              <span className="text-sm text-gray-600 ml-1">+ {details?.gst || 5}% GST</span>
             </p>
             <p className="text-sm text-gray-500">Per Person</p>
           </div>
 
-          {/* Availability Table */}
-          <BookingTable details={batch} />
-
-          {/* Book Now Button */}
-          {batch.length ? <button
-            onClick={openBookingModal}
-            className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded-lg font-semibold mb-6"
-          >
-            Book Now
-          </button> : <button
-            onClick={openModal}
-            className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded-lg font-semibold mb-6"
-          >
-            Enquire Now
-          </button>}
-
+          {/* Booking Buttons - Hidden on mobile (will show in fixed bottom bar) */}
+          <div className="space-y-4 hidden md:block">
+            {batch?.length ? (
+              <button
+                onClick={openBookingModal}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold"
+              >
+                Book Now
+              </button>
+            ) : (
+              <button
+                onClick={openModal}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold"
+              >
+                Enquire Now
+              </button>
+            )}
+          </div>
         </div>
+
+        {/* Batches Section */}
+          {batch?.length ? (
+              <div className="bg- p-3 rounded-lg shadow-sm ">
+                <h3 className="text-lg font-semibold mb-4">Available Batches</h3>
+
+                {/* Sharing Type Selector */}
+                <div className="mb-2">
+                  <div className="relative">
+                    <button
+                      onClick={toggleDropdown}
+                      className="w-full bg-blue-50 text-blue-700 px-4 py-2 rounded-lg flex items-center justify-between border border-blue-200"
+                    >
+                      <span>
+                        {sharingType === 'single' ? 'Single Sharing' :
+                          sharingType === 'double' ? 'Double Sharing' : 'Triple Sharing'}
+                      </span>
+                      <FaCaretDown className={`transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    {dropdownOpen && (
+                      <div className="absolute z-10 mt-1 w-full bg-white border border-blue-200 rounded-lg shadow-lg">
+                        {hasSingleSharing && (
+                          <button
+                            onClick={() => handleSelection('single')}
+                            className="w-full text-left px-4 py-2 hover:bg-blue-50"
+                          >
+                            Single Sharing
+                          </button>
+                        )}
+                        <button
+                          onClick={() => handleSelection('double')}
+                          className="w-full text-left px-4 py-2 hover:bg-blue-50"
+                        >
+                          Double Sharing
+                        </button>
+                        <button
+                          onClick={() => handleSelection('triple')}
+                          className="w-full text-left px-4 py-2 hover:bg-blue-50 rounded-b-lg"
+                        >
+                          Triple Sharing
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Batch List */}
+                <div className="space-y-2 max-h-60 -red-500 overflow-y-auto">
+                  {batch.map((batchItem) => (
+                    <div key={batchItem._id} className="border border-blue-100 rounded-lg p-2">
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium text-blue-800">
+                          {new Date(batchItem.startDate).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric'
+                          })}
+                        </span>
+                        <span className="text-xs bg-blue-100 text-blue-800 px-2 rounded-full">
+                          Filling Fast
+                        </span>
+                      </div>
+
+                      <div className="space-y-2">
+                        {Object.entries(batchItem.pricing).map(([vehicleType, prices]) => (
+                          <div key={vehicleType} className="flex justify-between items-center">
+                            <span className="text-xs text-gray-700">{vehicleType.toUpperCase()}</span>
+                            <span className="font-medium text-blue-600">
+                              ₹{prices[sharingType]?.toLocaleString() || 'N/A'}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="bg-blue-50 p-6 rounded-lg text-center border border-blue-100">
+                <p className="text-blue-800 mb-4">No batches are currently available for this destination.</p>
+                <div className="flex flex-col space-y-3">
+                  <a
+                    href="tel:+918650500202"
+                    className="bg-blue-600 text-white px-6 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-blue-700"
+                  >
+                    <PhoneIcon className="h-4 w-4" />
+                    Call Us
+                  </a>
+                  <a
+                    href="https://wa.me/918650500202"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-blue-600 text-white px-6 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-blue-700"
+                  >
+                    <MessageCircleMore className="h-4 w-4" />
+                    WhatsApp
+                  </a>
+                </div>
+              </div>
+            )}
       </div>
-      {isModalOpen && <TripModal destination={destination.title} onClose={closeModal} />}
-      {bookingModal && <BookingModal destination={destination} batches={batch} onClose={closeBookingModal} />}
     </div>
-  )
-}
+  </div>
+
+  {/* Mobile Fixed Bottom Bar */}
+  <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-3 z-50">
+    <div className="flex justify-between items-center">
+      <div>
+        <p className="text-sm font-medium">From ₹{(details?.minPrice || 0).toLocaleString()}</p>
+        <p className="text-xs text-gray-500">+ {details?.gst || 5}% GST</p>
+      </div>
+      {batch?.length ? (
+        <button
+          onClick={openBookingModal}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold text-sm"
+        >
+          Book Now
+        </button>
+      ) : (
+        <button
+          onClick={openModal}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold text-sm"
+        >
+          Enquire Now
+        </button>
+      )}
+    </div>
+  </div>
+
+  {/* Modals */}
+  {isModalOpen && <TripModal destination={destination.title} onClose={closeModal} />}
+  {bookingModal && <BookingModal destination={destination} batches={batch} onClose={closeBookingModal} />}
+</div>
+  );
+};
 
 
 
@@ -630,8 +680,8 @@ const InclusionsExclusions = ({ inclusions, exclusions }) => {
         <button
           onClick={() => setActiveTab('inclusions')}
           className={`px-4 py-2 font-medium text-sm md:text-base transition-colors duration-200 ${activeTab === 'inclusions'
-            ? 'text-yellow-600 border-b-2 border-yellow-600'
-            : 'text-gray-500 hover:text-yellow-500'
+            ? 'text-blue-600 border-b-2 border-blue-600 bg-gray-50 rounded'
+            : 'text-gray-500 hover:text-blue-500 bg-gray-200 rounded'
             }`}
         >
           Inclusions
@@ -639,8 +689,8 @@ const InclusionsExclusions = ({ inclusions, exclusions }) => {
         <button
           onClick={() => setActiveTab('exclusions')}
           className={`px-4 py-2 font-medium text-sm md:text-base transition-colors duration-200 ${activeTab === 'exclusions'
-            ? 'text-yellow-600 border-b-2 border-yellow-600'
-            : 'text-gray-500 hover:text-yellow-500'
+            ? 'text-blue-600 border-b-2 border-blue -600 bg-gray-50 rounded'
+            : 'text-gray-500 hover:text-blue-500 bg-gray-200 rounded'
             }`}
         >
           Exclusions
@@ -653,7 +703,7 @@ const InclusionsExclusions = ({ inclusions, exclusions }) => {
           <ul className="space-y-4">
             {inclusions.map((item, index) => (
               <li key={index} className="flex items-start group">
-                <span className="h-5 w-5 bg-yellow-600 rounded-full mt-0.5 mr-3 flex-shrink-0 flex items-center justify-center">
+                <span className="h-5 w-5 bg-blue-600 rounded-full mt-0.5 mr-3 flex-shrink-0 flex items-center justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-3 w-3 text-white"
@@ -893,92 +943,82 @@ const Page = ({ destination, batch }) => {
   }
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center  text-white relative">
+    <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center  text-black relative">
       {/* Hero Section */}
-      <section
-        className="relative w-full h-[calc(100vh-4rem)] bg-cover bg-center bg-gray-500"
-        style={{
-          backgroundImage: `url('${destination.banners.web}')`,
-        }}
-      >
-        {/* Top left glass effect text */}
-        <div className="absolute top-4 left-4 md:top-8 md:left-8 bg-yellow-600 bg-opacity-80 text-white px-2 py-1 md:px-4 md:py-2 rounded-md backdrop-blur-lg shadow-lg border-2 border-yellow-400">
-          <p className="text-md font-light">&quot;{randomQuote}&quot;</p>
+      <section className="relative h-[50vh] w-full">
+        {/* Background Image */}
+        <div className="absolute inset-0 bg-gray-500">
+          <img
+            src={destination.banners?.web || "/placeholder.svg"}
+            alt={destination.headline}
+            className="object-cover w-full h-full"
+
+          />
         </div>
 
-        {/* Top right overlayed image */}
-        <div className="absolute top-16 right-4 md:top-16 md:right-4 h-1/3 w-1/2 md:h-1/2 md:w-1/3 bg-cover rounded-lg overflow-hidden shadow-2xl border-4 border-yellow-600">
-          {destination.images[2] && (
-            <img
-              src={destination.images[2]}
-              alt="Place"
-              width={400}
-              height={400}
-              className="w-full h-full max-h-[500px] object-cover rounded-lg"
-            />
-          )}
-        </div>
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/30" />
 
-        {/* Small text below the right image */}
-        <div className="absolute bottom-56 right-4 md:bottom-32 md:right-4 text-xs font-thin w-2/3 md:w-1/3 bg-yellow-600 bg-opacity-80 text-white px-2 py-1 md:px-4 md:py-2 rounded-md backdrop-blur-sm shadow border-2 border-yellow-400">
-          <p>{destination.metaDescription}</p>
-        </div>
+        {/* Content at bottom */}
+        <div className="absolute bottom-0 left-0 w-full p-6 text-white">
+          <div className="container mx-auto px-4">
+            {/* Badge for category */}
+            <Badge className="mb-2" style={{ backgroundColor: "#fbc31f", color: "#183863" }}>
+              {destination.category || "Adventure"}
+            </Badge>
 
-        {/* Overlapping circular images */}
-        <div className="absolute bottom-28 right-4 md:bottom-12 md:right-16 flex -space-x-2">
-          {destination.images.slice(1, 4).map((url, index) => {
-            const isImage = /\.(jpg|jpeg|png|webp)$/i.test(url)
-            return (
-              <div
-                key={index}
-                className={`w-10 h-10 md:w-12 md:h-12 ${index === 0
-                  ? 'bg-yellow-600 border-2 border-yellow-400'
-                  : index === 1
-                    ? 'bg-yellow-500 border-2 border-yellow-400'
-                    : 'bg-yellow-200 border-2 border-yellow-400'
-                  } rounded-full overflow-hidden shadow-lg`}
-              >
-                {isImage ? (
-                  <img
-                    src={url}
-                    alt={`Media ${index + 1}`}
-                    width={200}
-                    height={200}
-                    className="object-cover w-full h-full"
-                  />
-                ) : (
-                  <video
-                    src={url}
-                    controls={false}
-                    autoPlay
-                    loop
-                    muted
-                    className="object-cover w-full h-full"
-                  />
-                )}
+            {/* Destination title */}
+            <h1 className="mb-2 text-2xl font-bold md:text-3xl lg:text-4xl">
+              {destination.headline}
+            </h1>
+
+            {/* Trip details */}
+            <div className="flex flex-wrap items-center gap-4 text-sm">
+              <div className="flex items-center gap-1">
+                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                <span>{destination.rating || '4+'}</span>
+                <span>({destination.review_count || '100+'} reviews)</span>
               </div>
-            )
-          })}
-        </div>
 
-        {/* Place name and info at the bottom left */}
-        <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 flex flex-col gap-2">
-          <h1
-            className="text-2xl md:text-5xl font-bold tracking-tight text-yellow-600 drop-shadow-lg"
-            style={{
-              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
-            }}
-          >
-            {destination.headline}
-          </h1>
-          <div className="flex flex-wrap gap-2 mt-2">
-            <span className="bg-yellow-600 text-white text-xs md:text-sm px-3 py-1 rounded-full shadow border border-yellow-400 font-semibold">{destination.days || destination.fullItinerary.length} Days</span>
-            <span className="bg-yellow-600 text-white text-xs md:text-sm px-3 py-1 rounded-full shadow border border-yellow-400 font-semibold">{destination.category}</span>
-            <span className="bg-yellow-600 text-white text-xs md:text-sm px-3 py-1 rounded-full shadow border border-yellow-400 font-semibold">{destination.route}</span>
+              <div className="flex items-center gap-1">
+                <Clock className="h-4 w-4" />
+                <span>{destination.duration || destination.fullItinerary?.length || 0} Days</span>
+              </div>
+
+              <div className="flex items-center gap-1">
+                <MapPin className="h-4 w-4" />
+                <span>{destination.route || "Various Locations"}</span>
+              </div>
+
+              <div className="flex items-center gap-1">
+                <Mountain className="h-4 w-4" />
+                <span>{destination.altitude || "High Altitude"}</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-      <section className="my-12 w-full">
+
+      {/* Breadcrumbs */}
+      <section className="border-b bg-white py-4">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <Link href="/" className="hover:text-navy-600">
+              Home
+            </Link>
+            <span>/</span>
+            <Link href="/destinations" className="hover:text-navy-600">
+              Destinations
+            </Link>
+            <span>/</span>
+            <span className="font-medium" style={{ color: "#183863" }}>
+              {destination.headline}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section className=" md:my-12 w-full">
         <TravelPackage destination={destination} batch={batch} />
       </section>
       {/* <section className="my-12 w-full">
@@ -987,31 +1027,32 @@ const Page = ({ destination, batch }) => {
           fullItinerary={destination.fullItinerary}
         />
       </section> */}
-      <section className=" w-full">
-        <img
+      {/* <section className=" w-full">
+       <img
           src="/images/homepage/gallery_font.svg"
           width={1000}
           height={1000}
           alt="gallery"
           className="w-full h-full object-cover p-4 max-w-screen-xl mx-auto"
-        />
-      </section>
-      <section className="my-12 w-full hidden md:block">
+        /> 
+        
+      </section> */}
+      {/* <section className="my-12 w-full hidden md:block">
         <ImagesGrid images={destination.images} />
       </section>
       <section className="my-12 w-full md:hidden">
         <ImagesSlider images={destination.images} />
-      </section>
-      <section className="my-12 w-full">
+      </section> */}
+      <section className=" md:my-12 w-full">
         <InclusionsExclusions
           inclusions={destination.inclusions}
           exclusions={destination.exclusions}
         />
       </section>
-      <section className="my-12 w-full">
+      <section className="md:my-12 w-full">
         <ImportantPoints points={destination.importantPoints} />
       </section>
-      <section className="my-12 w-full">
+      <section className="md:my-12 w-full">
         <Testimonials />
       </section>
     </div>

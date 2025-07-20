@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 const OccupancySelection = ({ availableTypes, selectedOccupancy, setSelectedOccupancy }) => (
   <div className="mb-6">
     <h3 className="text-xl font-semibold mb-4">Select Occupancy Type</h3>
-    <div className="flex gap-4">
+    <div className="grid grid-cols-2 gap-3 sm:flex sm:gap-4">
       {availableTypes.map(occupancy => (
         <Button
           key={occupancy}

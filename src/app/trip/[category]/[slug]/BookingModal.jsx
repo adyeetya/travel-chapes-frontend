@@ -238,7 +238,10 @@ const BookingModal = ({ destination, batches, onClose }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
-      <div className="bg-white text-black rounded-lg shadow-lg relative flex flex-col mt-12" style={{ width: '90vw', height: '90vh' }}>
+      <div
+        className="bg-white text-black rounded-lg shadow-lg relative flex flex-col mt-12 w-[90vw] h-[90vh] max-w-2xl max-h-[90vh] sm:w-[90vw] sm:h-[90vh] sm:max-w-2xl sm:max-h-[90vh] md:w-[600px] md:h-[90vh] md:max-w-2xl md:max-h-[90vh] overflow-hidden"
+        style={{ width: '100vw', maxWidth: '100vw', height: '100vh', maxHeight: '100vh' }}
+      >
         <button
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
           onClick={onClose}
@@ -246,7 +249,7 @@ const BookingModal = ({ destination, batches, onClose }) => {
         >
           <X size={32} />
         </button>
-        <div className="p-6 overflow-y-auto h-full">
+        <div className="p-4 sm:p-6 overflow-y-auto h-full w-full">
           {/* Trip Header */}
           <TripHeader destination={destination} />
 

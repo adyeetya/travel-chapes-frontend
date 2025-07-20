@@ -19,7 +19,7 @@ const BatchSelection = ({ filteredBatches, selectedBatch, setSelectedBatch }) =>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <Badge variant="secondary" className="bg-green-100 text-green-800">Available</Badge>
+            <Badge variant="secondary" className={`${batch.available ? 'bg-green-100 text-green-800':'bg-yellow-100 text-yellow-600'}`}>{batch.available ? 'Available': 'Full'}</Badge>
             <p className="text-sm mt-2">
               From ₹{Math.min(
                 batch.pricing.bus?.single > 0 ? batch.pricing.bus.single : batch.pricing.bus.double,

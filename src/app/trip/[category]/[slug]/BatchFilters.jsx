@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 
 const BatchFilters = ({ filterType, setFilterType, sortType, setSortType }) => (
-  <div className='flex justify-between items-center mb-6'>
+  <div className='flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-4'>
     <div className=" flex gap-2 items-center">
       <span className="font-medium">Show:</span>
       <Button variant={filterType === 'thisMonth' ? 'default' : 'outline'} onClick={() => setFilterType('thisMonth')}>This Month</Button>

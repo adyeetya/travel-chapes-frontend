@@ -33,7 +33,7 @@ const BookingModal = ({ destination, batches, onClose }) => {
   const [paymentStatus, setPaymentStatus] = useState('');
   const [razorpayOrder, setRazorpayOrder] = useState(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [invoiceUrl, setInvoiceUrl] = useState('');
+
   const [isProcessing, setIsProcessing] = useState(false);
 
   const auth = useAuth();
@@ -209,8 +209,30 @@ const BookingModal = ({ destination, batches, onClose }) => {
             });
             setPaymentStatus(verifyRes.data.status);
             if (verifyRes.data.status === 'success') {
-              setShowSuccessModal(true);
-              setInvoiceUrl(verifyRes.data?.paymentDetails?.invoiceUrl || '');
+              
+            try {
+                const invoiceRes = await axios.post(
+                `${ServerUrl}/payment/razorpay/invoice`,
+                { razorpay_payment_id: response.razorpay_payment_id },
+                {
+                  responseType: "blob", // Important: PDF is binary
+                  headers: {
+                    Authorization: `Bearer ${jwt}`,
+                  },
+                }
+              );
+
+              const blob = new Blob([invoiceRes.data], { type: "application/pdf" });
+              const link = document.createElement("a");
+              link.href = window.URL.createObjectURL(blob);
+              link.download = `invoice_${response.razorpay_payment_id}.pdf`;
+              link.click();
+            } catch (error) {
+              console.log("Error downloading invoice:", error);
+              alert("Failed to download invoice. Please try again later.");
+            }
+            setShowSuccessModal(true);
+
               // Optionally trigger confetti animation here
             } else {
               alert('Payment failed!');
@@ -300,7 +322,7 @@ const BookingModal = ({ destination, batches, onClose }) => {
         />
       )}
       {showSuccessModal && (
-        <SuccessModal invoiceUrl={invoiceUrl} setShowSuccessModal={setShowSuccessModal} />
+        <SuccessModal setShowSuccessModal={setShowSuccessModal} />
       )}
     </div>
   );

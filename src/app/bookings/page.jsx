@@ -124,7 +124,7 @@ const Page = () => {
     <div className="min-h-[calc(100vh-3rem)] flex flex-col items-center justify-center bg-blue-50 p-4">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
         <h2 className="text-2xl font-bold text-blue-800 mb-4">No Bookings Found</h2>
-        <p className="text-gray-600 mb-6">You haven't made any bookings yet</p>
+        <p className="text-gray-600 mb-6">You haven&apos;t made any bookings yet</p>
         <Link
           href="/"
           className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 inline-block"
@@ -155,7 +155,7 @@ const Page = () => {
               <CardTitle className="text-gray-700">No bookings yet</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-500 mb-6">You haven't made any bookings yet</p>
+              <p className="text-gray-500 mb-6">You haven&apos;t made any bookings yet</p>
               <Button asChild>
                 <Link href="/">Browse Trips</Link>
               </Button>

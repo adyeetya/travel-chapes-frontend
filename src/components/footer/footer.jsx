@@ -69,7 +69,14 @@ const Footer = () => {
           </div>
           {/* address */}
           <div className="text-white text-left md:text-lg my-2 z-50">
-            <h2>Let&apos;s add spotlight to our endless Travels.</h2>
+            {/* address */}
+            <div className="text-white text-left text-sm md:text-base my-2 z-50">
+              <h2 className="font-semibold mb-1">Let&apos;s add spotlight to our endless Travels.</h2>
+              <p>B6, 2nd Floor, Amaltash Marg,</p>
+              <p>B Block, Sector 4, Noida,</p>
+              <p>Uttar Pradesh – 201301</p>
+            </div>
+
           </div>
         </div>
 
@@ -95,14 +102,7 @@ const Footer = () => {
                     Contact Us
                   </Link>
                 </li>
-                <li className="my-2">
-                  <Link
-                    href="/christmas-new-year-special"
-                    className="hover:underline flex items-center whitespace-nowrap"
-                  >
-                    <FaChevronRight className="mr-2 w-2" /> Christmas Special
-                  </Link>
-                </li>
+
                 <li className="my-2">
                   <Link
                     href="/blogs"
@@ -116,39 +116,18 @@ const Footer = () => {
             <div>
               <ul>
                 <li className="my-2">
-                  <Link
-                    href="/#treks"
-                    className="hover:underline flex items-center"
-                  >
-                    <FaChevronRight className="mr-2 w-2" /> Treks
+                  <Link href="/policies/privacy" className="hover:underline flex items-center whitespace-nowrap">
+                    <FaChevronRight className="mr-2 w-2" /> Privacy Policy
                   </Link>
                 </li>
                 <li className="my-2">
-                  <Link
-                    href="/#weekend-trips"
-                    className="hover:underline flex items-center"
-                  >
-                    <FaChevronRight className="mr-2 w-2 whitespace-nowrap" />{' '}
-                    Weekend Trips
-                  </Link>
-                </li>
-
-                <li className="my-2">
-                  <Link
-                    href="/himachal-high"
-                    className="hover:underline flex items-center"
-                  >
-                    <FaChevronRight className="mr-2 w-2 whitespace-nowrap" />{' '}
-                    Himachal High
+                  <Link href="/policies/terms-and-conditions" className="hover:underline flex items-center whitespace-nowrap">
+                    <FaChevronRight className="mr-2 w-2" /> Terms & Conditions
                   </Link>
                 </li>
                 <li className="my-2">
-                  <Link
-                    href="/#backpacking"
-                    className="hover:underline flex items-center"
-                  >
-                    <FaChevronRight className="mr-2 w-2 whitespace-nowrap" />{' '}
-                    Backpacking Trips
+                  <Link href="/policies/cancellation-and-refund" className="hover:underline flex items-center whitespace-nowrap">
+                    <FaChevronRight className="mr-2 w-2" /> Refund & Cancellation
                   </Link>
                 </li>
               </ul>
